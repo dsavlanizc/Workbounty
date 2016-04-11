@@ -24,8 +24,6 @@ namespace Workbounty.Controllers
                 list.Add(user);
             }
             return list;
-
-
         }
     }
 }
