@@ -7,6 +7,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/assets/css")
     @Scripts.Render("~/assets/js")
+    
 
 </head>
 <body class="no-skin">
@@ -43,7 +44,9 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <span class="user-info">
                                 Welcome,
-                                @Session["FirstName"].ToString()
+                                 @Session["FirstName"].ToString()
+                                
+                                    
 
                             </span>
                         </a>

@@ -41,8 +41,17 @@ function AddWorkitem() {
         data: JSON.stringify(item),
         contentType: "application/json;charset=utf-8",
         processData: true,
-        success: function (data, status, xhr) {
-            alert("The result is : " + status);
+        success: function (response) {
+            console.log(response);
+            if (response.IsSuccess)
+            {
+                alert(response.successAddWorkitemMessage);
+                location.href = response.redirectURL;
+            }
+            else
+            {
+                alert(response.successAddWorkitemMessage);
+            }
         },
         error: function (xhr) {
             alert(xhr.responseText);

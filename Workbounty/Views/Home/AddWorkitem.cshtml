@@ -11,7 +11,7 @@
     <script src="~/assets/js/jquery-addworkitem.js"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-    
+    <script src="~/assets/js/jquery_datepicker_addworkitem.js"></script>
 
 </head>
 <h2></h2>
@@ -32,21 +32,19 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Summary<span>*</span> </label>
                 <div class="col-sm-9">
-                    <textarea rows="4" id="Summary" class="col-xs-10 col-sm-5"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Start date<span>*</span></label>
-                <div class="col-sm-9">
-                    <input type="date" id="StartDate" placeholder="Start Date" class="col-xs-10 col-sm-5" />
+                    <textarea rows="4" id="Summary" class="col-xs-10 col-sm-5" ></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Expected completion date<span>*</span></label>
+                <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Start date<span>*</span></label>
                 <div class="col-sm-9">
-
-                    <input type="date" id="DueDate" placeholder="Expected completion date" class="col-xs-10 col-sm-5" />
+                    <input type="text" id="StartDate" placeholder="Start Date" class="col-xs-10 col-sm-5 datepicker" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Due date<span>*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" id="DueDate" placeholder="End of Completion Date" class="col-xs-10 col-sm-5 datepicker" />
                 </div>
             </div>
 
@@ -139,7 +137,7 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <label for="form-field-1"> Amount <span style="color:red;">*</span></label>
+                                            <label for="form-field-1"> Amount <span>*</span></label>
                                             <label>
                                                 <input type="text" id="amount" placeholder="" />
                                             </label>

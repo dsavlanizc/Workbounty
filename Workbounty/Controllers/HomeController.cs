@@ -101,6 +101,7 @@ namespace Workbounty.Controllers
             ViewBag.itemsForIWantDone = getItemsIWantDoneData;
 
             var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
+           
             ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
             return View();
         }
@@ -109,7 +110,7 @@ namespace Workbounty.Controllers
         {
             int currentUserID = Convert.ToInt32(Session["UserID"]);
             var getTeamData = teamRepo.GetTeamList(currentUserID);
-            return View(getTeamData);
+              return View(getTeamData);
         }
 
         public ActionResult ViewRewards()
@@ -131,9 +132,29 @@ namespace Workbounty.Controllers
         [HttpPost]
         public JsonResult AddWorkitem(Workitem addWorkitemData)
         {
-            var getResultsOfWorkitemData = workbountyRepo.AddWorkitem(addWorkitemData);
-            return Json(getResultsOfWorkitemData);
+            var redirectURL = "";
+            var IsSuccess = false;
+            var successAddWorkitemMessage = "";
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var getResultsOfWorkitemData = workbountyRepo.AddWorkitem(addWorkitemData);
+                    IsSuccess = true;
+                    successAddWorkitemMessage = "Workitem Added successfully!";
+                    redirectURL = Url.Action("Dashboard", "Home");
 
+                }
+                successAddWorkitemMessage = "Error while entering in Data";
+               
+            }
+            catch(Exception)
+            {
+                successAddWorkitemMessage = "Error";
+                return Json("Error");
+            }
+            return Json(new { IsSuccess = IsSuccess, successAddWorkitemMessage = successAddWorkitemMessage, redirectURL = redirectURL });
+       
         }
 
         public ActionResult OpenWorkitem(int currentUserID)

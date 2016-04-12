@@ -4,46 +4,8 @@
     Layout = "~/Views/_IndexLayout.cshtml";
 }
 <script src="~/assets/js/jquery_datepicker_signup.js"></script>
-@*<script src="~/assets/js/jquery-signup.js"></script>*@
-<script type="text/javascript">
-    function AddUserData() {
-        
-        var item = {
-            "FirstName": $("#FirstName").val(),
-            "LastName": $("#LastName").val(),
-            "DateofBirth": $("#DateSelect").val().toLocaleString().substring(0, 10),
-            "Email": $("#Email").val(),
-            "PhoneNumber": $("#PhoneNumber").val(),
-            "Password": $("#Password").val(),
-            "InterestedKeywords": $("#InterestedKeywords").val(),
-            "isActive": true
-        };
+<script src="~/assets/js/jquery-signup.js"></script>
 
-        $.ajax({
-            url: "/Home/Signup/",
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(item),
-            dataType: "json",
-            success: function (response) {
-                if (response == "Success") {
-                    var url = "/home/dashboard/"
-                    document.location.href = url;
-                }
-                else {
-                    alert("Signup Fail");
-                }
-
-            },
-
-            error: function (x, e) {
-                alert("Error");
-
-
-            }
-        });
-    }
-</script>
 
 
 
