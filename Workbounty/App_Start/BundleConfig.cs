@@ -46,17 +46,21 @@ namespace Workbounty
                       "~/assets/js/jquery_mobile_custom_start.js",
                       "~/assets/js/bootstrap.min.js",
                       "~/assets/js/jquery-ui.custom.min.js",
+                      "~/assets/js/jquery-ui.min.js",
                       "~/assets/js/jquery.ui.touch-punch.min.js", 
                       "~/assets/js/jquery.easypiechart.min.js",
                        "~/assets/js/jquery.sparkline.min.js", 
                        "~/assets/js/jquery.flot.min.js", 
+                        "~/assets/js/ace-extra.min.js",
                         "~/assets/js/jquery.flot.pie.min.js",
                        "~/assets/js/jquery.flot.resize.min.js", 
                          "~/assets/js/ace-elements.min.js",
                          "~/assets/js/ace.min.js",
                       "~/assets/js/jquery_onclick_success.js",
                       "~/assets/js/ace-extra.min.js",
-                       "~/assets/js/jquery_onclick_success.js"
+                       "~/assets/js/jquery_onclick_success.js",
+                         "~/assets/js/bootstrap-datepicker.min.js"
+                       
                 ));
 
             bundles.Add(new StyleBundle("~/assets/css").Include(
@@ -65,7 +69,8 @@ namespace Workbounty
                  "~/assets/fonts/fonts.googleapis.com.css",
                  "~/Content/themes/base/jquery.ui.all.css",
                 "~/assets/css/ace.min.css",
-                "~/assets/css/datepicker.min.css"
+                "~/assets/css/datepicker.min.css",
+                "~/assets/css/jquery-ui.min.css"
                 ));
 
 

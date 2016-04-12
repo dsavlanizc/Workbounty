@@ -148,7 +148,7 @@ namespace Workbounty.Repository
         {
             List<WorkitemRegistration> item = new List<WorkitemRegistration>();
             var name = entity.WorkitemRegistrations.Where(w => w.UserID == currentUserID).Select(s => s.Workitem.UserInfo.FirstName).FirstOrDefault();
-            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount }).ToList();
+            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount,CreatedDateTime=s.Workitem.CreatedDateTime }).ToList();
 
             return getCurrentWorkitemData;
         }

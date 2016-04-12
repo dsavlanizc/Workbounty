@@ -1,4 +1,15 @@
-﻿<div id="body">
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/_DashboardLayout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datepicker').datepicker({
+            format: "dd/mm/yyyy"
+        });
+    });
+</script>
+<div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
@@ -9,6 +20,17 @@
                 ASP.NET Web API allows you to expose your applications, data and services to the
                 web directly over HTTP.
             </p>
+
+  
+            <div class="input-group input-group-sm">
+                <input type="text" id="datepicker" class="form-control" />
+                <span class="input-group-addon">
+                    <i class="ace-icon fa fa-calendar"></i>
+                </span>
+            </div>
+
+
+
             <p>
                 To learn more about ASP.NET Web API visit the
                 <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
