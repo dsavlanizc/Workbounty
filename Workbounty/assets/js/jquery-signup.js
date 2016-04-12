@@ -1,8 +1,8 @@
 ﻿$(function () {
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
-
-        var userSignupData = {
+      
+         var userSignupData = {
             "FirstName": $("#FirstName").val(),
             "LastName": $("#LastName").val(),
             "DateofBirth": $("#DateSelect").val().toLocaleString().substring(0, 10),
@@ -13,8 +13,8 @@
             "isActive": true
         };
 
-
-
+        
+     
         $.ajax({
             url: "/Home/Signup/",
             type: "POST",
@@ -38,7 +38,8 @@
 
             }
         });
-
+         
     });
 });
+
 
