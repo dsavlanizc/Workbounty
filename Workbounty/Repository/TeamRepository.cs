@@ -25,7 +25,7 @@ namespace Workbounty.Repository
                     teamInfo.TeamUserInfoID = item;
                     foreach (var _user in data)
                     {
-                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber,TeamName=_user.TeamName };
+                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber,TeamName=_user.TeamName};
                         teamInfo.TeamUserList.Add(_team);
                     }
                     team.Add(teamInfo);

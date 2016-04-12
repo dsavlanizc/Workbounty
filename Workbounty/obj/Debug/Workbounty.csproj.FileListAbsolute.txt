@@ -34,3 +34,9 @@ E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.pdb
 E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.dll
 E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.pdb
 E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
+E:\WorkbountyRepo1\Workbounty\bin\Workbounty.dll.config
+E:\WorkbountyRepo1\Workbounty\bin\Workbounty.dll
+E:\WorkbountyRepo1\Workbounty\bin\Workbounty.pdb
+E:\WorkbountyRepo1\Workbounty\obj\Debug\Workbounty.dll
+E:\WorkbountyRepo1\Workbounty\obj\Debug\Workbounty.pdb
+E:\WorkbountyRepo1\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
