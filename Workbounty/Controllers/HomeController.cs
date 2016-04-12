@@ -109,7 +109,7 @@ namespace Workbounty.Controllers
         {
             int currentUserID = Convert.ToInt32(Session["UserID"]);
             var getTeamData = teamRepo.GetTeamList(currentUserID);
-            return View(getTeamData);
+              return View(getTeamData);
         }
 
         public ActionResult ViewRewards()
