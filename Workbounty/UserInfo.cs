@@ -11,6 +11,7 @@ namespace Workbounty
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class UserInfo
     {
@@ -33,6 +34,7 @@ namespace Workbounty
         public System.DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsActive { get; set; }
+        
         public string InterestedKeywords { get; set; }
     
         public virtual ICollection<Team> Teams { get; set; }

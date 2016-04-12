@@ -7,8 +7,6 @@
 <script src="~/assets/js/jquery-signup.js"></script>
 
 
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -35,73 +33,76 @@
                                         <i class="ace-icon fa fa-users blue"></i>
                                         New User Registration
                                     </h4>
-                                    <div class="space-6"></div>
-                                    <p> Enter your details to begin: </p>
+                                   
+                                        <div class="space-6"></div>
+                                        <p> Enter your details to begin: </p>
 
 
-                                    <form id="form1">
-                                        <fieldset>
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.Email, new { @id = "Email", @class = "form-control", @placeholder = "E mail" })
+                                        <form id="form1">
+                                            <fieldset>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.TextBoxFor(a => a.Email, new { @id = "Email", @class = "form-control", @placeholder = "E mail" })
 
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.Email)
-                                            </label>
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.PhoneNumber, new { @id = "PhoneNumber", @class = "form-control", @placeholder = "Number" })
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.PhoneNumber)
-                                            </label>
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.FirstName, new { @id = "FirstName", @class = "form-control", @placeholder = "First Name" })
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.FirstName)
-                                            </label>
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.LastName, new { @id = "LastName", @class = "form-control", @placeholder = "Last Name" })
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.LastName)
-                                            </label>
-                                            <div class="block clearfix">
-                                                <div class="hero-unit">
+                                                    </span>
 
-                                                    @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control hasDatepicker", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth" })
-                                                </div>
-                                            </div>
-                                            @Html.ValidationMessageFor(a => a.DateOfBirth)
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.PasswordFor(a => a.Password, new { @id = "Password", @class = "form-control", @placeholder = "Password" })
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.Password)
-                                            </label>
-                                            <label class="block clearfix">
-                                                <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @class = "form-control", @placeholder = "Interested Keywords" })
-                                                </span>
-                                                @Html.ValidationMessageFor(a => a.InterestedKeywords)
-                                            </label>
-                                            <div class="space-6"></div>
-                                            <div class="clearfix">
-                                                <div>
+                                                </label>
 
-                                                    <a href="~/Home/Login" class="user-signup-link">
-                                                        <i class="ace-icon fa fa-arrow-left"></i> Back To login
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.TextBoxFor(a => a.PhoneNumber, new { @id = "PhoneNumber", @class = "form-control", @placeholder = "Number" })
+                                                    </span>
 
-                                                    </a>
-                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="btnSave" onclick="AddUserData(); return false;">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Signup</span>
-                                                    </button>
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.TextBoxFor(a => a.FirstName, new { @id = "FirstName", @class = "form-control", @placeholder = "First Name" }) <span>asd</span>
+                                                    </span>
+
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.TextBoxFor(a => a.LastName, new { @id = "LastName", @class = "form-control", @placeholder = "Last Name" })
+                                                    </span>
+
+                                                </label>
+                                                <div class="block clearfix">
+                                                    <div class="hero-unit">
+
+                                                        @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control datepicker", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth" })
+                                                    </div>
                                                 </div>
 
-                                            </div>
-                                        </fieldset>
-                                    </form>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.PasswordFor(a => a.Password, new { @id = "Password", @class = "form-control", @placeholder = "Password" })
+                                                    </span>
+
+                                                </label>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @class = "form-control", @placeholder = "Interested Keywords" })
+                                                    </span>
+
+                                                </label>
+                                                <div class="space-6"></div>
+                                                <div class="clearfix">
+                                                    <div>
+
+                                                        <a href="~/Home/Login" class="user-signup-link">
+                                                            <i class="ace-icon fa fa-arrow-left"></i> Back To login
+
+                                                        </a>
+
+                                                        <input id="btnSubmit" class="btn btn-primary pull-right" value="Signup">
+
+
+                                                    </div>
+
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                
                                 </div>
                             </div>
                         </div>
