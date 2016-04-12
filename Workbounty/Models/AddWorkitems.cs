@@ -22,6 +22,7 @@ namespace Workbounty.Models
         public string ProposedReward { get; set; }
         public string Amount { get; set; }
         public bool PublishedTo { get; set; }
+        public System.DateTime CreatedDateTime { get; set; }
 
     }
 }

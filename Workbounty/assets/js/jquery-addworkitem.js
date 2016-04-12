@@ -35,12 +35,32 @@ function AddWorkitem() {
         "IsOpenForGroup": true
     };
 
-    $.ajax({
-        type: "POST",
-        url: '/home/AddWorkitem/',
-        data: JSON.stringify(item),
-        contentType: "application/json;charset=utf-8",
-        processData: true,
+    if ($("#Title").val() == "") {
+        $("#TitleError").text("Title is Required");
+
+        if ($("#Summary").val() == "") {
+            $("#SummaryError").text("Summary is Required");
+
+            if ($("#StartDate").val() == "") {
+                $("#StartdateError").text("Start Date is Required");
+
+                if ($("#DueDate").val() == "") {
+                    $("#DuedateError").text("Due Date is Required");
+
+                    if ($("#amount").val() == "") {
+                        $("#AmountError").text("Amount is Required");
+                    }
+                }
+            }
+        }
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: '/home/AddWorkitem/',
+            data: JSON.stringify(item),
+            contentType: "application/json;charset=utf-8",
+            processData: true,
         success: function (response) {
             console.log(response);
             if (response.IsSuccess)
@@ -52,9 +72,11 @@ function AddWorkitem() {
             {
                 alert(response.successAddWorkitemMessage);
             }
-        },
-        error: function (xhr) {
-            alert(xhr.responseText);
-        }
-    });
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    
 }

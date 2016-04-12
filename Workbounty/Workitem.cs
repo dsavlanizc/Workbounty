@@ -11,6 +11,7 @@ namespace Workbounty
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Workitem
     {
@@ -23,13 +24,27 @@ namespace Workbounty
         }
     
         public int WorkitemID { get; set; }
+       
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Summary { get; set; }
+
+        [Required]
         public System.DateTime StartDate { get; set; }
+
+        [Required]
         public System.DateTime DueDate { get; set; }
+
         public int PublishedTo { get; set; }
+
         public string DocumentFilePath { get; set; }
+
+         [Required]
         public string ProposedReward { get; set; }
+
+         [Required]
         public string Amount { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDateTime { get; set; }

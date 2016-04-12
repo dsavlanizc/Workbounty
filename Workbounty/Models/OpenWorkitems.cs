@@ -19,5 +19,7 @@ namespace Workbounty.Models
         public int UserID { get; set; }
         public int PublishedTo { get; set; }
         public string Status { get; set; }
+        public System.DateTime CreatedDateTime { get; set; }
+
     }
 }

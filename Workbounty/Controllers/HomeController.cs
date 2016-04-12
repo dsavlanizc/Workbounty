@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Workbounty.Repository;
 using Workbounty.Models;
+using PagedList;
 
 namespace Workbounty.Controllers
 {
@@ -101,7 +102,7 @@ namespace Workbounty.Controllers
             ViewBag.itemsForIWantDone = getItemsIWantDoneData;
 
             var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
-           
+
             ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
             return View();
         }
@@ -110,7 +111,7 @@ namespace Workbounty.Controllers
         {
             int currentUserID = Convert.ToInt32(Session["UserID"]);
             var getTeamData = teamRepo.GetTeamList(currentUserID);
-              return View(getTeamData);
+            return View(getTeamData);
         }
 
         public ActionResult ViewRewards()
@@ -145,16 +146,18 @@ namespace Workbounty.Controllers
                     redirectURL = Url.Action("Dashboard", "Home");
 
                 }
-                successAddWorkitemMessage = "Error while entering in Data";
-               
+                else
+                {
+                    successAddWorkitemMessage = "Error while entering in Data";
+                }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 successAddWorkitemMessage = "Error";
                 return Json("Error");
             }
             return Json(new { IsSuccess = IsSuccess, successAddWorkitemMessage = successAddWorkitemMessage, redirectURL = redirectURL });
-       
+
         }
 
         public ActionResult OpenWorkitem(int currentUserID)
@@ -199,6 +202,37 @@ namespace Workbounty.Controllers
 
             return View();
         }
+
+        public ActionResult Viewitemsiwantdone(int? page)
+        {
+            int currentUserID = Convert.ToInt32(Session["UserID"]);
+            var getItemsIWantDoneData = workbountyRepo.ItemsIWantDone(currentUserID);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(getItemsIWantDoneData.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult Viewitemsimworkingon(int? page)
+        {
+            int currentUserID = Convert.ToInt32(Session["UserID"]);
+            var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(getWorkitemAssigntoMeData.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult Viewitemsinterestedin(int? page)
+        {
+            int currentUserID = Convert.ToInt32(Session["UserID"]);
+            var getAllWorkitemData = workbountyRepo.GetAllWorkitems(currentUserID);
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(getAllWorkitemData.ToPagedList(pageNumber, pageSize));
+        }
+
 
 
     }

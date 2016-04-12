@@ -16,6 +16,7 @@ namespace Workbounty.Repository
         {
             try
             {
+               
                 if (ModelState.IsValid)
                 {
                     var fileName = Path.GetFileName(addWorkitemData.DocumentFilePath);
@@ -130,12 +131,13 @@ namespace Workbounty.Repository
                             if (getUserData.PublishedTo == getUserTeamID)
                             {
 
-                                workitemlist.Add(entity.Workitems.Where(s => s.WorkitemID == getUserData.WorkitemID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID, FirstName = s.UserInfo.FirstName, Title = s.Title, Summary = s.Summary, ProposedReward = s.ProposedReward, Amount = s.Amount }).FirstOrDefault());
+                                workitemlist.Add(entity.Workitems.Where(s => s.WorkitemID == getUserData.WorkitemID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID, FirstName = s.UserInfo.FirstName, Title = s.Title, Summary = s.Summary, ProposedReward = s.ProposedReward, Amount = s.Amount, CreatedDateTime=s.CreatedDateTime }).FirstOrDefault());
                             }
                         }
                     }
                 }
                 workitemlist.RemoveAll(x => registereditems.Any(y => y.WorkitemID == x.WorkitemID));
+                workitemlist = workitemlist.OrderByDescending(s => s.CreatedDateTime).ToList();
                 return workitemlist;
             }
             catch (Exception)
@@ -148,8 +150,8 @@ namespace Workbounty.Repository
         {
             List<WorkitemRegistration> item = new List<WorkitemRegistration>();
             var name = entity.WorkitemRegistrations.Where(w => w.UserID == currentUserID).Select(s => s.Workitem.UserInfo.FirstName).FirstOrDefault();
-            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount,CreatedDateTime=s.Workitem.CreatedDateTime }).ToList();
-
+            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime  }).ToList();
+            getCurrentWorkitemData = getCurrentWorkitemData.OrderByDescending(s => s.CreatedDateTime).ToList();
             return getCurrentWorkitemData;
         }
 
@@ -169,7 +171,8 @@ namespace Workbounty.Repository
                         on u.WorkitemID equals b.WorkitemID
                         into userArticles
                         from ua in userArticles.DefaultIfEmpty()
-                        select new AddWorkitems { WorkitemID = u.WorkitemID, Title = u.Title, FirstName = ua.UserInfo.FirstName, ProposedReward = u.ProposedReward, StartDate = u.StartDate, EndDate = u.DueDate };
+                        select new AddWorkitems { WorkitemID = u.WorkitemID, Title = u.Title, FirstName = ua.UserInfo.FirstName, ProposedReward = u.ProposedReward, StartDate = u.StartDate, EndDate = u.DueDate, CreatedDateTime = u.CreatedDateTime  };
+            getWorkitemData = getWorkitemData.OrderByDescending(s => s.CreatedDateTime);
             return getWorkitemData.ToList();
         }
 
@@ -266,8 +269,8 @@ namespace Workbounty.Repository
         public List<Team> SelectTeam(int currentUserID)
         {
             List<Team> selectedteamData = new List<Team>();
-            selectedteamData.Add(entity.Teams.Where(s => s.TeamID == 1).FirstOrDefault());
-            foreach (var item in entity.Teams)
+            selectedteamData.Add(new Team { TeamName = "Public", TeamUserInfoID = 0 });
+             foreach (var item in entity.Teams)
             {
                 if (item.UserID == currentUserID)
                 {

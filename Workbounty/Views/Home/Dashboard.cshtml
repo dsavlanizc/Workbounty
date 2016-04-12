@@ -14,7 +14,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    Items I Want Done | @Html.ActionLink("Add workitem", "addworkitem", "Home")
+                    @Html.ActionLink("Items I Want Done", "Viewitemsiwantdone", "Home") | @Html.ActionLink("Add workitem", "addworkitem", "Home")
                 </h4>
             </div>
 
@@ -34,9 +34,11 @@
                                 <th width="2%">Feedback</th>
                             </tr>
                         </thead>
-                     
+                   
+
                         @foreach (Workbounty.Models.AddWorkitems item in ViewBag.itemsForIWantDone)
                         {
+                            
                             <tbody>
                                 <tr>
                                     <td>@(ViewBag.itemsForIWantDone.IndexOf(item) + 1)</td>
@@ -49,7 +51,12 @@
                                     <td></td>
                                 </tr>
                             </tbody>
+                            if ((ViewBag.itemsForIWantDone.IndexOf(item) + 1) == 5)
+                            {
+                                break;
+                            }
                         }
+                        
                     </table>
                 </div>
             </div>
@@ -61,7 +68,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    Items I’m Working On
+                    @Html.ActionLink("Items I'm Working On", "Viewitemsimworkingon", "Home")
 
                 </h4>
             </div>
@@ -96,6 +103,10 @@
                                 <td>@Html.ActionLink("Update", "UpdateWorkitem", "workitem", new { currentWorkitemID = myWorkitem.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
 
                             </tr>
+                            if ((ViewBag.itemsForAssigntoMe.IndexOf(myWorkitem) + 1) == 5)
+                            {
+                                break;
+                            }
 
                         }
                     </table>
@@ -112,7 +123,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    Items You Might Be Interested In
+                    @Html.ActionLink("Items You Might Be Interested In", "Viewitemsinterestedin", "Home")
                 </h4>
             </div>
             <div class="row">
@@ -144,6 +155,12 @@
                                     <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
                                 </tr>
                             </tbody>
+                            if ((ViewBag.itemsForAllWorkitem.IndexOf(i) + 1) == 5)
+                            {
+                                break;
+                            }
+                        
+                        
                         }
                     </table>
                 </div>
