@@ -401,6 +401,7 @@
     <Content Include="assets\js\jquery_datepicker_signup.js" />
     <Content Include="assets\js\jquery_DetailItem.js" />
     <Content Include="assets\js\jquery_mobile_custom_start.js" />
+    <Content Include="assets\js\jquery_modernizer_datepicker.js" />
     <Content Include="assets\js\jquery_myitems.js" />
     <Content Include="assets\js\jquery_onclick_success.js" />
     <Content Include="assets\js\jquery_Openworkitems.js" />

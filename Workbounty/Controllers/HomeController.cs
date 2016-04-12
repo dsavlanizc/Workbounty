@@ -101,6 +101,7 @@ namespace Workbounty.Controllers
             ViewBag.itemsForIWantDone = getItemsIWantDoneData;
 
             var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
+           
             ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
             return View();
         }
@@ -133,7 +134,6 @@ namespace Workbounty.Controllers
         {
             var getResultsOfWorkitemData = workbountyRepo.AddWorkitem(addWorkitemData);
             return Json(getResultsOfWorkitemData);
-
         }
 
         public ActionResult OpenWorkitem(int currentUserID)
