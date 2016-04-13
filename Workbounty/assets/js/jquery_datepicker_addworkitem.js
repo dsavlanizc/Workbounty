@@ -1,8 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#StartDate').datepicker({
-        format: "dd/mm/yyyy"
-    });
-          $('#DueDate').datepicker({
-              format: "dd/mm/yyyy"
+    $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+    }).on('changeDate', function (e) {
+        $(this).datepicker('hide');
     });
 });

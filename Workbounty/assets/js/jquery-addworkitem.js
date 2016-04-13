@@ -17,24 +17,25 @@ $(document).ready(function () {
 function AddWorkitem() {
 
     var d = new Date();
-    var item = {
-        "Title": $("#Title").val(),
-        "Summary": $("#Summary").val(),
-        "StartDate": $("#StartDate").val(),
-        "DueDate": $("#DueDate").val(),
-        "PublishedTo": $("#TeamName1").val(),
-        "DocumentFilePath": document.getElementById("myFile").value,
-        "ProposedReward": sessionStorage.getItem('key1'),
-        "Amount": sessionStorage.getItem('key2'),
-        "CreatedBy": document.getElementById("Userid").value,
-        "CreatedDateTime": d.toDateString(),
-        "ModifyBy": document.getElementById("Userid").value,
-        "ModifyDateTime": d.toDateString(),
-        "Status": true,
-        "Remarks": "Good",
-        "IsOpenForGroup": true
-    };
-
+   
+    var newitem = {};
+        newitem.Title = $("#Title").val();
+        newitem.Summary= $("#Summary").val();
+        newitem.StartDate= $("#StartDate").val();
+        newitem.DueDate = $("#DueDate").val();
+        newitem.PublishedTo= $("#TeamName1").val();
+        newitem.DocumentFilePath = document.getElementById("myFile").value;
+        newitem.ProposedReward = sessionStorage.getItem('key1');
+        newitem.Amount = sessionStorage.getItem('key2');
+        newitem.CreatedBy = document.getElementById("Userid").value;
+        newitem.CreatedDateTime = d.toDateString();
+        newitem.ModifyBy = document.getElementById("Userid").value;
+        newitem.ModifyDateTime = d.toDateString();
+        newitem.Status = true;
+        newitem.Remarks = "Good";
+        newitem.IsOpenForGroup = true;
+   
+   
     if ($("#Title").val() == "") {
         $("#TitleError").text("Title is Required");
 
@@ -58,13 +59,14 @@ function AddWorkitem() {
         $.ajax({
             type: "POST",
             url: '/home/AddWorkitem/',
-            data: JSON.stringify(item),
+            data: JSON.stringify({ addWorkitemData: newitem }),
             contentType: "application/json;charset=utf-8",
             processData: true,
         success: function (response) {
             console.log(response);
             if (response.IsSuccess)
             {
+                
                 alert(response.successAddWorkitemMessage);
                 location.href = response.redirectURL;
             }
