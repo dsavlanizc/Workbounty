@@ -57,3 +57,13 @@ D:\WorkBountyRepo\Workbounty\bin\PagedList.xml
 D:\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.xml
 D:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.dll
 D:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.pdb
+C:\WorkBountyRepo\Workbounty\bin\Workbounty.dll.config
+C:\WorkBountyRepo\Workbounty\bin\Workbounty.dll
+C:\WorkBountyRepo\Workbounty\bin\Workbounty.pdb
+C:\WorkBountyRepo\Workbounty\bin\PagedList.dll
+C:\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.dll
+C:\WorkBountyRepo\Workbounty\bin\PagedList.xml
+C:\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.xml
+C:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
+C:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.dll
+C:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.pdb
