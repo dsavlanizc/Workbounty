@@ -645,6 +645,7 @@
     <Content Include="Views\Home\Viewitemsiwantdone.cshtml" />
     <Content Include="Views\Home\Viewitemsimworkingon.cshtml" />
     <Content Include="Views\Home\Viewitemsinterestedin.cshtml" />
+    <Content Include="Views\Home\ViewUserData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
