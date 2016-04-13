@@ -21,12 +21,7 @@
                     </div>
                     <div class="space-6"></div>
                     @Html.AntiForgeryToken()
-                    @if (ViewBag.Message != null)
-                    {
-                        <div style="border:solid 1px green">
-                            @ViewBag.Message
-                        </div>
-                    }
+            
                     <div class="position-relative">
                         <div id="signup-box" class="signup-box widget-box no-border">
                             <div class="widget-body">
@@ -93,10 +88,8 @@
                                                         <i class="ace-icon fa fa-arrow-left"></i> Back To login
 
                                                     </a>
-                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="btnSave" onclick="AddUserData(); return true;">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Signup</span>
-                                                    </button>
+                                                    <input id="btnSubmit" type="button" class="btn btn-primary pull-right" value="Signup">
+
                                                 </div>
 
                                             </div>

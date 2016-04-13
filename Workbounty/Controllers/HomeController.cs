@@ -37,9 +37,7 @@ namespace Workbounty.Controllers
             var redirectURL = "";
             try
             {
-                if (ModelState.IsValid)
-                {
-                    var loginData = userRepo.UserLogin(userLoginData);
+                  var loginData = userRepo.UserLogin(userLoginData);
                     if (loginData != null)
                     {
                         Session["UserID"] = loginData.UserID;
@@ -48,11 +46,9 @@ namespace Workbounty.Controllers
                         message = "login successfully!";
                         redirectURL = Url.Action("Dashboard", "Home");
                     }
-                    message = "Error in Input";
-                }
-                else
+                   else
                 {
-                    message = "Invalid data";
+                    message = "Error in Input";
                 }
             }
             catch (Exception)
@@ -80,7 +76,10 @@ namespace Workbounty.Controllers
                     Session["FirstName"] = userSignupInfo.FirstName;
                     return Json("Success");
                 }
-                else { return Json("false"); }
+
+                else { 
+                    return Json("false"); 
+                    }
 
             }
             catch (Exception)
