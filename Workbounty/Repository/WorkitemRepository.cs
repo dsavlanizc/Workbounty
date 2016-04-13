@@ -270,7 +270,7 @@ namespace Workbounty.Repository
         {
             List<Team> selectedteamData = new List<Team>();
             selectedteamData.Add(new Team { TeamName = "Public", TeamUserInfoID = 0 });
-             foreach (var item in entity.Teams)
+            foreach (var item in entity.Teams)
             {
                 if (item.UserID == currentUserID)
                 {

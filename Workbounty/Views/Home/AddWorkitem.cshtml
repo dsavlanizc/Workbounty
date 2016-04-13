@@ -26,12 +26,12 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Title <span>*</span></label>
                 <div class="col-sm-9">
-                    <input type="text" id="Title" placeholder="" class="col-xs-10 col-sm-5" required="required" />
+                    <input type="text" id="Title" placeholder="" class="col-xs-10 col-sm-5" required="required" maxlength="30" />
                     <span id="TitleError" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Summary<span>*</span> </label>
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1" maxlength="200"> Summary<span>*</span> </label>
                 <div class="col-sm-9">
                     <textarea rows="4" id="Summary" class="col-xs-10 col-sm-5" ></textarea>
                     <span id="SummaryError" class="text-danger"></span>
@@ -40,14 +40,14 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Start date<span>*</span></label>
                 <div class="col-sm-9">
-                    <input type="text" id="StartDate" placeholder="Start Date" class="col-xs-10 col-sm-5 datepicker" />
+                    <input type="text" id="StartDate" placeholder="Start Date" class="col-xs-10 col-sm-5 datepicker" maxlength="12" />
                     <span id="StartdateError" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Due date<span>*</span></label>
                 <div class="col-sm-9">
-                    <input type="text" id="DueDate" placeholder="End of Completion Date" class="col-xs-10 col-sm-5 datepicker" />
+                    <input type="text" id="DueDate" placeholder="End of Completion Date" class="col-xs-10 col-sm-5 datepicker" maxlength="12" />
                     <span id="DuedateError" class="text-danger"></span>
                 </div>
             </div>
@@ -145,7 +145,8 @@
                                             </table>
                                             <label for="form-field-1"> Amount <span>*</span></label>
                                             <label>
-                                                <input type="text" id="amount" placeholder="" />
+                                              
+                                                <input type="text" id="amount" onkeypress="return isNumberKey(event)" placeholder="" maxlength="6" />
                                             </label>
                                             <input type="button" class="btn btn-info btn-xs ace-icon fa fa-check bigger-110" id="btn" value="Save" />
                                             <input type="reset" class="btn btn-xs ace-icon fa fa-undo bigger-110" value="Reset" />
@@ -164,14 +165,11 @@
                 <div class="col-sm-9">
                     <div class="clearfix">
                         <input type="hidden" id="Userid" value="@Session["UserID"]" />
-                        <button class="btn btn-info" type="submit" onclick="AddWorkitem(); return false;">
+                        <button class="btn btn-info" type="submit" onclick="AddWorkitem();">
                             <i class="ace-icon fa fa-check bigger-110"></i>
                             Submit
                         </button>
-                        <button class="btn btn-info" type="button">
-                            <i class="ace-icon fa fa-file bigger-110"></i>
-                            Save
-                        </button>
+                    
 
                         <button class="btn" type="reset">
                             <i class="ace-icon fa fa-undo bigger-110"></i>
@@ -183,8 +181,3 @@
         </form>
     </div>
 </div>
-
-
-
-
-

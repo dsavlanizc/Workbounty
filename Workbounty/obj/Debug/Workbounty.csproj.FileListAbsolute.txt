@@ -48,3 +48,12 @@ E:\Workbounty\Workbounty\Workbounty\bin\PagedList.dll
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.dll
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.xml
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.xml
+D:\WorkBountyRepo\Workbounty\bin\Workbounty.dll.config
+D:\WorkBountyRepo\Workbounty\bin\Workbounty.dll
+D:\WorkBountyRepo\Workbounty\bin\Workbounty.pdb
+D:\WorkBountyRepo\Workbounty\bin\PagedList.dll
+D:\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.dll
+D:\WorkBountyRepo\Workbounty\bin\PagedList.xml
+D:\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.xml
+D:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.dll
+D:\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.pdb

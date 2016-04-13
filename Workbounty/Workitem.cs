@@ -45,6 +45,8 @@ namespace Workbounty
         public string ProposedReward { get; set; }
 
          [Required]
+         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Count must be a natural number")]
+         public int Count { get; set; }
         public string Amount { get; set; }
         public int CreatedBy { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
