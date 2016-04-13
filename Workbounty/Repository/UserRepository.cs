@@ -55,5 +55,31 @@ namespace Workbounty.Repository
                 return null;
             }
         }
+
+
+        public List<UserProfileInfo> ViewUserProfileDetails(int currentUserData)
+        {
+            try
+            {
+                if (currentUserData != null)
+                {
+                    var getUserDetails = entity.UserInfoes.Where(s => s.UserID == currentUserData).Select(s => new UserProfileInfo { Email = s.Email, FirstName = s.FirstName, LastName = s.LastName, DateOfBirth = s.DateOfBirth, InterestedKeywords = s.InterestedKeywords, PhoneNumber = s.PhoneNumber }).ToList();
+                    return getUserDetails;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+
+
+
     }
 }

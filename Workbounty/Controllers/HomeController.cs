@@ -232,6 +232,13 @@ namespace Workbounty.Controllers
             return View(getAllWorkitemData.ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult ViewUserData()
+        {
+            int currentUserID = Convert.ToInt32(Session["UserID"]);
+            var getUserProfileData = userRepo.ViewUserProfileDetails(currentUserID);
+            ViewBag.getUserData = getUserProfileData;
+            return View();
+        }
 
 
     }
