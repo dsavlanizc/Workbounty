@@ -15,13 +15,7 @@ $(document).ready(function () {
     });
     });
 
-    $(document).ready(function(){
-        $('#Summary').bind("contextmenu",function(e){ e.preventDefault(); });
-        $('#Summary').bind("cut copy paste",function(e) {
-            e.preventDefault();
-        });
-    });
-
+  
 function AddWorkitem() {
 
     var d = new Date();
