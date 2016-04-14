@@ -3,7 +3,6 @@
     ViewBag.Title = "Signup";
     Layout = "~/Views/_IndexLayout.cshtml";
 }
-<script src="~/assets/js/jquery_datepicker_signup.js"></script>
 <script src="~/assets/js/jquery-signup.js"></script>
 
 
@@ -38,46 +37,53 @@
                                         <fieldset>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.Email, new { @id = "Email", @maxlength="30",@class = "form-control", @placeholder = "E mail", @typeof = "email", required = "required" })
-
+                                                   
+                                                    @Html.TextBoxFor(a => a.Email, new { @id = "Email", onkeypress = "return isValidEmailAddress(emailAddress)", @maxlength = "30", @class = "form-control", @placeholder = "E mail", @typeof = "email" })
+                                                    <span id="EmailError" class="text-danger"></span>
                                                 </span>
                                           
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.PhoneNumber, new { @id = "PhoneNumber", @maxlength="20", @class = "form-control", onkeypress="return isNumberKey(event)",@placeholder = "Number", required = "required" })
-                                                </span>
+                                                    @Html.TextBoxFor(a => a.PhoneNumber, new { @id = "PhoneNumber", @maxlength = "15", @onkeypress = "return isNumberKey(event)", @class = "form-control", @placeholder = "Number" })
+                                                    <span id="PhoneNumberError" class="text-danger"></span>
+                                                    </span>
                                             
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.FirstName, new { @id = "FirstName", @maxlength = "30", @class = "form-control", onkeypress = "return isTextKey(event)", @placeholder = "First Name", required = "required", })
-                                                </span>
+                                                    @Html.TextBoxFor(a => a.FirstName, new { @id = "FirstName", @maxlength = "30", @onkeypress = "return isTextKey(event)", @class = "form-control", @placeholder = "First Name" })
+                                                    <span id="FirstNameError" class="text-danger"></span>
+                                                 </span>
                                             
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.LastName, new { @id = "LastName", @maxlength = "30", @class = "form-control", onkeypress = "return isTextKey(event)",@placeholder = "Last Name", required = "required" })
-                                                </span>
+                                                    @Html.TextBoxFor(a => a.LastName, new { @id = "LastName", @maxlength = "30", @onkeypress = "return isTextKey(event)", @class = "form-control", @placeholder = "Last Name" })
+                                                    <span id="LastNameError" class="text-danger"></span>
+                                                 </span>
                                         
                                             </label>
                                             <div class="block clearfix">
                                                 <div class="hero-unit">
 
-                                                    @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control hasDatepicker", @maxlength = "12", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth", required = "required" })
+                                                    @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control datepicker", @onkeypress = "return noDataKey(event)", @maxlength = "15", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth" })
+                                                    <span id="DateofBirthError" class="text-danger"></span>
                                                 </div>
                                             </div>
                                      
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.PasswordFor(a => a.Password, new { @id = "Password", @maxlength = "20", @class = "form-control", @placeholder = "Password", required = "required" })
-                                                </span>
+                                                    @Html.PasswordFor(a => a.Password, new { @id = "Password", @maxlength = "20", @class = "form-control", @placeholder = "Password" })
+                                                    <span id="PasswordError" class="text-danger"></span>
+                                                 </span>
                                              
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @maxlength = "10", @class = "form-control", @placeholder = "Interested Keywords", required = "required" })
-                                                </span>
+                                                    @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @maxlength = "10", @class = "form-control", @placeholder = "Interested Keywords"})
+                                                    <span id="InterestedKeywordsError" class="text-danger"></span>
+                                                 </span>
                                      
                                             </label>
                                             <div class="space-6"></div>
@@ -88,7 +94,7 @@
                                                         <i class="ace-icon fa fa-arrow-left"></i> Back To login
 
                                                     </a>
-                                                    <input id="btnSubmit" type="button" class="btn btn-primary pull-right" value="Signup">
+                                                    <input id="btnSubmit" type="button" class="btn btn-primary pull-right" value="Signup" />
 
                                                 </div>
 
@@ -107,3 +113,4 @@
 
     <script src="assets/js/jquery.2.1.1.min.js"></script>
 }
+

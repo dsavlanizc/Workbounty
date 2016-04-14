@@ -76,4 +76,3 @@ E:\last_workbounty\WorkBountyRepo\Workbounty\bin\PagedList.xml
 E:\last_workbounty\WorkBountyRepo\Workbounty\bin\PagedList.Mvc.xml
 E:\last_workbounty\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.dll
 E:\last_workbounty\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.pdb
-E:\last_workbounty\WorkBountyRepo\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache

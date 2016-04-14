@@ -59,7 +59,8 @@ namespace Workbounty
                       "~/assets/js/jquery_onclick_success.js",
                       "~/assets/js/ace-extra.min.js",
                        "~/assets/js/jquery_onclick_success.js",
-                         "~/assets/js/bootstrap-datepicker.min.js"
+                         "~/assets/js/bootstrap-datepicker.min.js",
+                         "~/assets/js/jquery_Bootstrap.js"
                        
                 ));
 
@@ -93,6 +94,7 @@ namespace Workbounty
                 "~/assets/js/bootstrap-datepicker.min.js",
                 "~/assets/js/ace-elements.min.js",
                 "~/assets/js/ace.min.js",
+                "~/assets/js/jquery_Bootstrap.js",
                 "~/assets/js/bootstrap-datepicker.min.js"
                 ));
 
