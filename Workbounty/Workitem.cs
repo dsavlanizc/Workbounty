@@ -35,6 +35,7 @@ namespace Workbounty
         public System.DateTime StartDate { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public System.DateTime DueDate { get; set; }
 
         public int PublishedTo { get; set; }

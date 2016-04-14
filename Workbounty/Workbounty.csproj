@@ -403,6 +403,7 @@
     <Content Include="assets\js\jquery.validate.min.js" />
     <Content Include="assets\js\jquery1x.min.js" />
     <Content Include="assets\js\jquery_addTeam.js" />
+    <Content Include="assets\js\jquery_Bootstrap.js" />
     <Content Include="assets\js\jquery_datepicker_addworkitem.js" />
     <Content Include="assets\js\jquery_datepicker_signup.js" />
     <Content Include="assets\js\jquery_DetailItem.js" />

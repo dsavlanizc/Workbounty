@@ -17,19 +17,23 @@ $(document).ready(function () {
 function AddWorkitem() {
 
     var d = new Date();
+    var dueDate = $("#DueDate").val();
+    var startDate = $("#StartDate").val();
+    var startDateObject = new Date(startDate);
+    var dueDateObject = new Date(dueDate);
    
     var newitem = {};
         newitem.Title = $("#Title").val();
         newitem.Summary= $("#Summary").val();
-        newitem.StartDate= $("#StartDate").val();
-        newitem.DueDate = $("#DueDate").val();
-        newitem.PublishedTo= $("#TeamName1").val();
-        newitem.DocumentFilePath = document.getElementById("myFile").value;
+        newitem.StartDate = startDateObject;
+        newitem.DueDate = dueDateObject;
+        newitem.PublishedTo = $("#TeamList").val();
+        newitem.DocumentFilePath = $("#myFile").val();
         newitem.ProposedReward = sessionStorage.getItem('key1');
         newitem.Amount = sessionStorage.getItem('key2');
-        newitem.CreatedBy = document.getElementById("Userid").value;
+        newitem.CreatedBy = $("#Userid").val();
         newitem.CreatedDateTime = d.toDateString();
-        newitem.ModifyBy = document.getElementById("Userid").value;
+        newitem.ModifyBy = $("#Userid").val();
         newitem.ModifyDateTime = d.toDateString();
         newitem.Status = true;
         newitem.Remarks = "Good";

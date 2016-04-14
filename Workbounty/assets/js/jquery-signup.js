@@ -1,11 +1,12 @@
 ﻿$(function () {
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
-      
+        var dateofBirth = $("#DateSelect").val();
+        var dateofBirthDateObject = new Date(dateofBirth);
          var userSignupData = {
             "FirstName": $("#FirstName").val(),
             "LastName": $("#LastName").val(),
-            "DateofBirth": $("#DateSelect").val().toLocaleString().substring(0, 10),
+            "DateofBirth": dateofBirthDateObject,
             "Email": $("#Email").val(),
             "PhoneNumber": $("#PhoneNumber").val(),
             "Password": $("#Password").val(),

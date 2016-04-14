@@ -3,7 +3,6 @@
     ViewBag.Title = "Signup";
     Layout = "~/Views/_IndexLayout.cshtml";
 }
-<script src="~/assets/js/jquery_datepicker_signup.js"></script>
 <script src="~/assets/js/jquery-signup.js"></script>
 
 
@@ -64,7 +63,7 @@
                                             <div class="block clearfix">
                                                 <div class="hero-unit">
 
-                                                    @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control hasDatepicker", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth", required = "required" })
+                                                    @Html.TextBoxFor(a => a.DateOfBirth, new { @class = "form-control datepicker", @placeholder = "Date of Birth", @id = "DateSelect", @name = "DateofBirth", required = "required" })
                                                 </div>
                                             </div>
                                      
