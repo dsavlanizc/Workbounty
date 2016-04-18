@@ -101,8 +101,7 @@
                                 <td>@Html.DisplayFor(a => myWorkitem.ProposedReward)</td>
                                 <td>@Html.DisplayFor(a => myWorkitem.Amount)</td>
                                 <td>@Html.ActionLink("Update", "UpdateWorkitem", "workitem", new { currentWorkitemID = myWorkitem.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
-
-                            </tr>
+                          </tr>
                             if ((ViewBag.itemsForAssigntoMe.IndexOf(myWorkitem) + 1) == 5)
                             {
                                 break;

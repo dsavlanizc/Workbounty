@@ -14,5 +14,6 @@ namespace Workbounty.Models
         public string Amount { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
+        public string Remarks { get; set; }
     }
 }

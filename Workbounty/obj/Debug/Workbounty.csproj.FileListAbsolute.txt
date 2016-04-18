@@ -45,5 +45,6 @@ E:\Workbounty\Workbounty\Workbounty\bin\PagedList.dll
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.dll
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.xml
 E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.xml
+E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.dll
 E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.pdb

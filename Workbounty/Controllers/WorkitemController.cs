@@ -41,7 +41,7 @@ namespace Workbounty.Controllers
             var getDataofCurrentWorkitem = workbountyRepo.ShowCurrentWorkitems(currentWorkitemID);
             if (getDataofCurrentWorkitem != null)
             {
-                ViewBag.dataForOpen = getDataofCurrentWorkitem;
+                ViewBag.dataForWorkitem = getDataofCurrentWorkitem;
             }
             else
             {
@@ -73,7 +73,8 @@ namespace Workbounty.Controllers
                     assignData.SubmissionDateTime = DateTime.Now;
                     assignData.SubmissionPath = path;
                     var putAssignData = workbountyRepo.UpdateWorkitems(assignData);
-                    return View();
+                    return RedirectToAction("Dashboard", "Home");
+                
                 }
             }
             catch (Exception)
@@ -99,7 +100,7 @@ namespace Workbounty.Controllers
         public ActionResult ViewUpdatedWorkitem(int currentWorkitemID)
         {
             var getDataofUploadDocument = workbountyRepo.ShowDocument(currentWorkitemID);
-            if (getDataofUploadDocument.Count!=0)
+            if (getDataofUploadDocument != null)
             {
                 ViewBag.dataofOpenDocument = getDataofUploadDocument;
             }
