@@ -20,6 +20,7 @@ namespace Workbounty.Models
         public int PublishedTo { get; set; }
         public string Status { get; set; }
         public System.DateTime CreatedDateTime { get; set; }
+        public bool IsFavourite { get; set; }
 
     }
 }

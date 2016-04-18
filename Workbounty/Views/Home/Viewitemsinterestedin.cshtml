@@ -5,6 +5,8 @@
     ViewBag.Title = "Viewitemsinterestedin";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
+@*<script src="~/assets/js/jquery-vfavourite.js"></script>*@
+
 <h2>Items You Might Be Interested In</h2>
 <div class="col-sm-10">
     <div class="widget-box transparent" id="recent-box">
@@ -24,6 +26,7 @@
                                 <th width="5%">Rewards</th>
                                 <th width="5%">Amount</th>
                                 <th width="5%">Action</th>
+                                <th width="10%">Add to Favourites</th>
                             </tr>
                         </thead>
 
@@ -39,11 +42,23 @@
                                     <td>@Html.DisplayFor(a => i.ProposedReward)</td>
                                     <td>@Html.DisplayFor(a => i.Amount)</td>
                                     <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                                    <td>
+                                        @if (i.IsFavourite == true)
+                                        {
+                                            <input type="checkbox" checked="checked" onclick="RemoveFavourite_v(@i.WorkitemID);" value="@i.WorkitemID">
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" onclick="AddFavourites_v(@i.WorkitemID);" value="@i.WorkitemID">
+                                        }
+                                    </td>
+
                                 </tr>
                             </tbody>
                             j++;
                 }
-                    </table>
+                     </table>
+                    <input type="hidden" id="UserId" value="@Convert.ToInt32(Session["UserID"])" />
                 </div>
             </div>
         </div>
@@ -51,5 +66,5 @@
 </div>
 
 <div class="pagedList col-sm-10">
-    @Html.PagedListPager(Model, page => Url.Action("Viewitemsiminterestedin", new { page }), PagedListRenderOptions.PageNumbersOnly)
+    @Html.PagedListPager(Model, page => Url.Action("Viewitemsinterestedin", new { page }), PagedListRenderOptions.PageNumbersOnly)
 </div>

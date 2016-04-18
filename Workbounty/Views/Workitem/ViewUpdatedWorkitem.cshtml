@@ -6,13 +6,12 @@
 
 <script src="~/assets/js/jquery-ViewUpdatedWorkitem.js"></script>
 <h2>View Document</h2>
+ @foreach(Workbounty.Models.WorkitemDocuments i in ViewBag.dataofOpenDocument)
+ {
+<h3>@Html.DisplayFor(a => i.Title)</h3>
+ }
 <div class="col-sm-10">
 
-</div>
-<div>
-
-</div>
-<div>
 </div>
 
 <div class="row">

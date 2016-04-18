@@ -37,22 +37,19 @@ namespace Workbounty.Controllers
             var redirectURL = "";
             try
             {
-                if (ModelState.IsValid)
+
+                var loginData = userRepo.UserLogin(userLoginData);
+                if (loginData != null)
                 {
-                    var loginData = userRepo.UserLogin(userLoginData);
-                    if (loginData != null)
-                    {
-                        Session["UserID"] = loginData.UserID;
-                        Session["FirstName"] = loginData.FirstName;
-                        success = true;
-                        message = "login successfully!";
-                        redirectURL = Url.Action("Dashboard", "Home");
-                    }
-                    message = "Error in Input";
+                    Session["UserID"] = loginData.UserID;
+                    Session["FirstName"] = loginData.FirstName;
+                    success = true;
+                    message = "login successfully!";
+                    redirectURL = Url.Action("Dashboard", "Home");
                 }
                 else
                 {
-                    message = "Invalid data";
+                    message = "Error in Input";
                 }
             }
             catch (Exception)

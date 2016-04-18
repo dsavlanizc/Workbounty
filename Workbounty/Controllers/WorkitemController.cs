@@ -41,7 +41,7 @@ namespace Workbounty.Controllers
             var getDataofCurrentWorkitem = workbountyRepo.ShowCurrentWorkitems(currentWorkitemID);
             if (getDataofCurrentWorkitem != null)
             {
-                ViewBag.dataForOpen = getDataofCurrentWorkitem;
+                ViewBag.dataForWorkitem = getDataofCurrentWorkitem;
             }
             else
             {
@@ -95,11 +95,19 @@ namespace Workbounty.Controllers
           return Json(applyDataForWorkitem);
                  
         }
+
+        [HttpPost]
+        public JsonResult RemoveFavourite(WorkitemRegistration dataForWorkitemRegistration)
+        {
+            var applyDataForWorkitem = workbountyRepo.RemoveFavouriteWorkitem(dataForWorkitemRegistration);
+            return Json(applyDataForWorkitem);
+
+        }
         
         public ActionResult ViewUpdatedWorkitem(int currentWorkitemID)
         {
             var getDataofUploadDocument = workbountyRepo.ShowDocument(currentWorkitemID);
-            if (getDataofUploadDocument.Count!=0)
+            if (getDataofUploadDocument!=null)
             {
                 ViewBag.dataofOpenDocument = getDataofUploadDocument;
             }

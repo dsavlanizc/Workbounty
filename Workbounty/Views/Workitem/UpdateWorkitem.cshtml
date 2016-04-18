@@ -16,7 +16,7 @@
            
         }
 
-       @if (ViewBag.dataForOpen != null)
+       @if (ViewBag.dataForWorkitem != null)
        {
 
            foreach (Workbounty.Models.UpdateWorkitems i in ViewBag.dataForWorkitem)
@@ -25,7 +25,7 @@
                 <form class="form-horizontal" role="form" data-toggle="validator" name="Workitemform" id="Workitemform" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="Workid" name="Workid" value="@i.WorkItemID" />
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="form-field-1"> Title </label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Title </label>
                         <div class="col-sm-3">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> @Html.DisplayFor(s => i.Title) </label>
                         </div>

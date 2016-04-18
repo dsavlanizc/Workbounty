@@ -22,7 +22,7 @@
             data: JSON.stringify(userSignupData),
             dataType: "json",
             success: function (getResponseOfSignupData) {
-                if (getResponseOfSignupData == "Success") {
+            if (getResponseOfSignupData == "Success") {
                     var url = "/home/dashboard/"
                     document.location.href = url;
                 }
@@ -31,11 +31,8 @@
                 }
 
             },
-
-            error: function (x, e) {
+                error: function (x, e) {
                 alert("Error");
-
-
             }
         });
          

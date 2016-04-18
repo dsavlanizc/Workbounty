@@ -6,9 +6,6 @@
 <script src="~/assets/js/jquery_datepicker_signup.js"></script>
 <script src="~/assets/js/jquery-signup.js"></script>
 
-
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -93,10 +90,7 @@
                                                         <i class="ace-icon fa fa-arrow-left"></i> Back To login
 
                                                     </a>
-                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="btnSave" onclick="AddUserData(); return true;">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Signup</span>
-                                                    </button>
+                                                    <input id="btnSubmit" type="button" value="Signup" class="btn btn-primary pull-right">
                                                 </div>
 
                                             </div>

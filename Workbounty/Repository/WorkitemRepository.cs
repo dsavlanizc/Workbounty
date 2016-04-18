@@ -11,12 +11,12 @@ namespace Workbounty.Repository
     public class WorkitemRepository : ApiController
     {
         private WorkbountyDBEntities entity = new WorkbountyDBEntities();
-       
+
         public string AddWorkitem(Workitem addWorkitemData)
         {
             try
             {
-               
+
                 if (ModelState.IsValid)
                 {
                     var fileName = Path.GetFileName(addWorkitemData.DocumentFilePath);
@@ -56,6 +56,23 @@ namespace Workbounty.Repository
             try
             {
                 entity.WorkitemRegistrations.Add(dataForWorkitemRegistration);
+                entity.SaveChanges();
+                return "Success";
+            }
+
+            catch (Exception)
+            {
+                return "Error";
+            }
+        }
+
+        [HttpPost]
+        public string RemoveFavouriteWorkitem(WorkitemRegistration dataForWorkitemRegistration)
+        {
+            try
+            {
+                var Fav = entity.WorkitemRegistrations.Where(s => s.WorkitemID == dataForWorkitemRegistration.WorkitemID && s.IsFavourite == true).FirstOrDefault();
+                entity.WorkitemRegistrations.Remove(Fav);
                 entity.SaveChanges();
                 return "Success";
             }
@@ -107,17 +124,16 @@ namespace Workbounty.Repository
                 return "Error";
             }
         }
-
         public List<OpenWorkitems> GetAllWorkitems(int currentUserID)
         {
             try
             {
-              
                 var getTeamID = entity.Teams.Where(s => s.UserID == currentUserID).Select(s => s.TeamUserInfoID);
                 var getWorkitemData = entity.Workitems.Where(s => s.CreatedBy != currentUserID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID, FirstName = s.UserInfo.FirstName, PublishedTo = s.PublishedTo, Title = s.Title, Summary = s.Summary, ProposedReward = s.ProposedReward, Amount = s.Amount }).ToList();
                 List<OpenWorkitems> workitemlist = new List<OpenWorkitems>();
 
-                var registereditems = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID }).ToList();
+                var favourites = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.IsFavourite == true).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID }).ToList();
+                var registereditems = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.IsFavourite == false).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID }).ToList();
                 foreach (var getUserData in getWorkitemData)
                 {
                     if (getUserData.PublishedTo == 0)
@@ -130,13 +146,17 @@ namespace Workbounty.Repository
                         {
                             if (getUserData.PublishedTo == getUserTeamID)
                             {
-
-                                workitemlist.Add(entity.Workitems.Where(s => s.WorkitemID == getUserData.WorkitemID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID, FirstName = s.UserInfo.FirstName, Title = s.Title, Summary = s.Summary, ProposedReward = s.ProposedReward, Amount = s.Amount, CreatedDateTime=s.CreatedDateTime }).FirstOrDefault());
+                                workitemlist.Add(entity.Workitems.Where(s => s.WorkitemID == getUserData.WorkitemID).Select(s => new OpenWorkitems { WorkitemID = s.WorkitemID, FirstName = s.UserInfo.FirstName, Title = s.Title, Summary = s.Summary, ProposedReward = s.ProposedReward, Amount = s.Amount, CreatedDateTime = s.CreatedDateTime }).FirstOrDefault());
                             }
                         }
                     }
                 }
                 workitemlist.RemoveAll(x => registereditems.Any(y => y.WorkitemID == x.WorkitemID));
+
+                foreach (var favo in favourites)
+                {
+                    workitemlist.Where(a => a.WorkitemID == favo.WorkitemID).Select(q => q.IsFavourite = true).FirstOrDefault();
+                }
                 workitemlist = workitemlist.OrderByDescending(s => s.CreatedDateTime).ToList();
                 return workitemlist;
             }
@@ -150,7 +170,7 @@ namespace Workbounty.Repository
         {
             List<WorkitemRegistration> item = new List<WorkitemRegistration>();
             var name = entity.WorkitemRegistrations.Where(w => w.UserID == currentUserID).Select(s => s.Workitem.UserInfo.FirstName).FirstOrDefault();
-            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime  }).ToList();
+            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime }).ToList();
             getCurrentWorkitemData = getCurrentWorkitemData.OrderByDescending(s => s.CreatedDateTime).ToList();
             return getCurrentWorkitemData;
         }
@@ -164,16 +184,40 @@ namespace Workbounty.Repository
 
         public List<AddWorkitems> ItemsIWantDone(int currentWorkitemID)
         {
-            List<Workitem> item = new List<Workitem>();
-
-            var getWorkitemData = from u in entity.Workitems.Where(s => s.CreatedBy == currentWorkitemID)
-                        join b in entity.WorkitemDistributions
-                        on u.WorkitemID equals b.WorkitemID
-                        into userArticles
-                        from ua in userArticles.DefaultIfEmpty()
-                        select new AddWorkitems { WorkitemID = u.WorkitemID, Title = u.Title, FirstName = ua.UserInfo.FirstName, ProposedReward = u.ProposedReward, StartDate = u.StartDate, EndDate = u.DueDate, CreatedDateTime = u.CreatedDateTime  };
-            getWorkitemData = getWorkitemData.OrderByDescending(s => s.CreatedDateTime);
-            return getWorkitemData.ToList();
+            List<AddWorkitems> item = new List<AddWorkitems>();
+            var status = entity.WorkItemAssignments.Where(q => q.IsRewarded == true).ToList();
+            var status2 = entity.WorkItemAssignments.Where(q => q.IsRewarded == true).Select(a => a.WorkItemID).ToList();
+            var getWorkitemData2 = from u in entity.Workitems.Where(s => s.CreatedBy == currentWorkitemID)
+                                   join b in entity.WorkitemDistributions
+                                   on u.WorkitemID equals b.WorkitemID
+                                   into userArticles
+                                   from ua in userArticles.DefaultIfEmpty()
+                                   select new AddWorkitems { WorkitemID = u.WorkitemID, Title = u.Title, FirstName = ua.UserInfo.FirstName, ProposedReward = u.ProposedReward, StartDate = u.StartDate, EndDate = u.DueDate, CreatedDateTime = u.CreatedDateTime };
+            var getWorkitemData2list = getWorkitemData2.ToList();
+            List<AddWorkitems> itemlist = new List<AddWorkitems>();
+            List<WorkItemAssignment> temp = new List<WorkItemAssignment>();
+            foreach(var z in getWorkitemData2list)
+            {
+                 temp = entity.WorkItemAssignments.Where(a => a.WorkItemID == z.WorkitemID).ToList();
+            }
+            if (temp.Count() != 0 )
+            {
+                var getWorkitemData3 = from u in status
+                                       join o in getWorkitemData2list on u.WorkItemID equals o.WorkitemID
+                                       into completeditems
+                                       from ci in completeditems.DefaultIfEmpty()
+                                       select new AddWorkitems { WorkitemID = ci.WorkitemID, Title = ci.Title, FirstName = ci.FirstName, ProposedReward = ci.ProposedReward, StartDate = ci.StartDate, EndDate = ci.DueDate, CreatedDateTime = ci.CreatedDateTime, Status = "Completed", Remarks = entity.Workitems.Where(q => q.WorkitemID == ci.WorkitemID).Select(b => b.Remarks).FirstOrDefault() };
+                var getWorkitemData3list = getWorkitemData3.ToList();
+                getWorkitemData2list.RemoveAll(x => status.Any(y => y.WorkItemID == x.WorkitemID));
+                itemlist = getWorkitemData2list.Union(getWorkitemData3list).ToList();
+                itemlist = itemlist.OrderByDescending(s => s.CreatedDateTime).ToList();
+                var getWorkitemData = itemlist.ToList();
+                return getWorkitemData;
+            }
+            else
+            {
+                return getWorkitemData2list;
+            }
         }
 
         public List<WorkitemRegistration> AppliedWorkitems(int currentWorkitemID)
@@ -261,16 +305,16 @@ namespace Workbounty.Repository
         {
             var getSearchWorkitemResults = entity.Workitems.Where(s => s.Title.StartsWith(searchValue)).ToList();
 
-           
-                return getSearchWorkitemResults;
-            
+
+            return getSearchWorkitemResults;
+
         }
 
         public List<Team> SelectTeam(int currentUserID)
         {
             List<Team> selectedteamData = new List<Team>();
             selectedteamData.Add(new Team { TeamName = "Public", TeamUserInfoID = 0 });
-             foreach (var item in entity.Teams)
+            foreach (var item in entity.Teams)
             {
                 if (item.UserID == currentUserID)
                 {
