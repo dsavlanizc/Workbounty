@@ -73,8 +73,7 @@ namespace Workbounty.Controllers
                     assignData.SubmissionDateTime = DateTime.Now;
                     assignData.SubmissionPath = path;
                     var putAssignData = workbountyRepo.UpdateWorkitems(assignData);
-                    return RedirectToAction("Dashboard", "Home");
-                
+                    return View();
                 }
             }
             catch (Exception)
@@ -96,11 +95,19 @@ namespace Workbounty.Controllers
           return Json(applyDataForWorkitem);
                  
         }
+
+        [HttpPost]
+        public JsonResult RemoveFavourite(WorkitemRegistration dataForWorkitemRegistration)
+        {
+            var applyDataForWorkitem = workbountyRepo.RemoveFavouriteWorkitem(dataForWorkitemRegistration);
+            return Json(applyDataForWorkitem);
+
+        }
         
         public ActionResult ViewUpdatedWorkitem(int currentWorkitemID)
         {
             var getDataofUploadDocument = workbountyRepo.ShowDocument(currentWorkitemID);
-            if (getDataofUploadDocument != null)
+            if (getDataofUploadDocument!=null)
             {
                 ViewBag.dataofOpenDocument = getDataofUploadDocument;
             }

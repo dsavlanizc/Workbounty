@@ -1,10 +1,9 @@
-﻿@model List<Workbounty.Models.OpenWorkitems>
+﻿@model List<Workbounty.Models.AddWorkitems>
        @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
-
-
+@*<script src="~/assets/js/jquery-dfavourite.js"></script>*@
 <h2></h2>
 <div class="col-md-6"></div>
 <div class="col-sm-6 col-lg-4">
@@ -48,7 +47,7 @@
                                     <td>@Html.DisplayFor(a => item.FirstName)</td>
                                     <td>@Html.DisplayFor(a => item.ProposedReward)</td>
                                     <td>@Html.DisplayFor(a => item.Status)</td>
-                                    <td></td>
+                                    <td>@Html.DisplayFor(a => item.Remarks)</td>
                                 </tr>
                             </tbody>
                             if ((ViewBag.itemsForIWantDone.IndexOf(item) + 1) == 5)
@@ -138,6 +137,7 @@
                                 <th width="5%">Rewards</th>
                                 <th width="5%">Amount</th>
                                 <th width="5%">Action</th>
+                                <th width="10%">Add to Favourites</th>
                             </tr>
                         </thead>
               
@@ -152,6 +152,16 @@
                                     <td>@Html.DisplayFor(a => i.ProposedReward)</td>
                                     <td>@Html.DisplayFor(a => i.Amount)</td>
                                     <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                                    <td>
+                                            @if (i.IsFavourite == true)
+                                            {
+                                                <input type="checkbox" checked="checked" onclick="RemoveFavourite(@i.WorkitemID);" value="@i.WorkitemID">
+                                            }
+                                            else
+                                            {
+                                                <input type="checkbox" onclick="AddFavourites(@i.WorkitemID);" value="@i.WorkitemID">
+                                            }
+                                    </td>
                                 </tr>
                             </tbody>
                             if ((ViewBag.itemsForAllWorkitem.IndexOf(i) + 1) == 5)
@@ -162,6 +172,7 @@
                         
                         }
                     </table>
+                    <input type="hidden" id="UserId" value="@Convert.ToInt32(Session["UserID"])" />
                 </div>
             </div>
         </div>
