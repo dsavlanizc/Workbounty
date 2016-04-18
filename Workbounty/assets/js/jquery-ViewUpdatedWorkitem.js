@@ -2,6 +2,7 @@
     var id = {
         "UserID": $(item).attr("id"),
         "WorkitemID": $("#Workid").val(),
+        "Remarks": $("#feedback").val()
     };
 
     $.ajax({

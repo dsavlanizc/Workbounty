@@ -37,17 +37,16 @@ namespace Workbounty.Controllers
             var redirectURL = "";
             try
             {
-
-                var loginData = userRepo.UserLogin(userLoginData);
-                if (loginData != null)
-                {
-                    Session["UserID"] = loginData.UserID;
-                    Session["FirstName"] = loginData.FirstName;
-                    success = true;
-                    message = "login successfully!";
-                    redirectURL = Url.Action("Dashboard", "Home");
-                }
-                else
+                  var loginData = userRepo.UserLogin(userLoginData);
+                    if (loginData != null)
+                    {
+                        Session["UserID"] = loginData.UserID;
+                        Session["FirstName"] = loginData.FirstName;
+                        success = true;
+                        message = "login successfully!";
+                        redirectURL = Url.Action("Dashboard", "Home");
+                    }
+                   else
                 {
                     message = "Error in Input";
                 }
@@ -77,7 +76,10 @@ namespace Workbounty.Controllers
                     Session["FirstName"] = userSignupInfo.FirstName;
                     return Json("Success");
                 }
-                else { return Json("false"); }
+
+                else { 
+                    return Json("false"); 
+                    }
 
             }
             catch (Exception)
@@ -230,6 +232,13 @@ namespace Workbounty.Controllers
             return View(getAllWorkitemData.ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult ViewUserData()
+        {
+            int currentUserID = Convert.ToInt32(Session["UserID"]);
+            var getUserProfileData = userRepo.ViewUserProfileDetails(currentUserID);
+            ViewBag.getUserData = getUserProfileData;
+            return View();
+        }
 
 
     }

@@ -17,24 +17,29 @@ $(document).ready(function () {
 function AddWorkitem() {
 
     var d = new Date();
-    var item = {
-        "Title": $("#Title").val(),
-        "Summary": $("#Summary").val(),
-        "StartDate": $("#StartDate").val(),
-        "DueDate": $("#DueDate").val(),
-        "PublishedTo": $("#TeamName1").val(),
-        "DocumentFilePath": document.getElementById("myFile").value,
-        "ProposedReward": sessionStorage.getItem('key1'),
-        "Amount": sessionStorage.getItem('key2'),
-        "CreatedBy": document.getElementById("Userid").value,
-        "CreatedDateTime": d.toDateString(),
-        "ModifyBy": document.getElementById("Userid").value,
-        "ModifyDateTime": d.toDateString(),
-        "Status": true,
-        "Remarks": "Good",
-        "IsOpenForGroup": true
-    };
-
+    var dueDate = $("#DueDate").val();
+    var startDate = $("#StartDate").val();
+    var startDateObject = new Date(startDate);
+    var dueDateObject = new Date(dueDate);
+   
+    var newitem = {};
+        newitem.Title = $("#Title").val();
+        newitem.Summary= $("#Summary").val();
+        newitem.StartDate = startDateObject;
+        newitem.DueDate = dueDateObject;
+        newitem.PublishedTo = $("#TeamList").val();
+        newitem.DocumentFilePath = $("#myFile").val();
+        newitem.ProposedReward = sessionStorage.getItem('key1');
+        newitem.Amount = sessionStorage.getItem('key2');
+        newitem.CreatedBy = $("#Userid").val();
+        newitem.CreatedDateTime = d.toDateString();
+        newitem.ModifyBy = $("#Userid").val();
+        newitem.ModifyDateTime = d.toDateString();
+        newitem.Status = true;
+        newitem.Remarks = "Good";
+        newitem.IsOpenForGroup = true;
+   
+   
     if ($("#Title").val() == "") {
         $("#TitleError").text("Title is Required");
 
@@ -58,13 +63,14 @@ function AddWorkitem() {
         $.ajax({
             type: "POST",
             url: '/home/AddWorkitem/',
-            data: JSON.stringify(item),
+            data: JSON.stringify({ addWorkitemData: newitem }),
             contentType: "application/json;charset=utf-8",
             processData: true,
         success: function (response) {
             console.log(response);
             if (response.IsSuccess)
             {
+                
                 alert(response.successAddWorkitemMessage);
                 location.href = response.redirectURL;
             }
@@ -79,4 +85,29 @@ function AddWorkitem() {
         });
     }
     
+}
+
+function isTextKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode > 31 && charCode < 65
+      && (charCode < 97 || charCode > 122))
+        return false;
+
+    return true;
+}
+
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode != 46 && charCode > 31
+      && (charCode < 48 || charCode > 57))
+        return false;
+
+    return true;
+}
+function noDataKey(evt) {
+    var charcode = (evt.which) ? evt.which : event.keyCode;
+    if (charcode > 0 && charcode < 127)
+        return false;
+
+    return true;
 }

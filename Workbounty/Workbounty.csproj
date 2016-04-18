@@ -405,10 +405,12 @@
     <Content Include="assets\js\jquery.validate.min.js" />
     <Content Include="assets\js\jquery1x.min.js" />
     <Content Include="assets\js\jquery_addTeam.js" />
+    <Content Include="assets\js\jquery_Bootstrap.js" />
     <Content Include="assets\js\jquery_datepicker_addworkitem.js" />
     <Content Include="assets\js\jquery_datepicker_signup.js" />
     <Content Include="assets\js\jquery_DetailItem.js" />
     <Content Include="assets\js\jquery_mobile_custom_start.js" />
+    <Content Include="assets\js\jquery_modernizer_datepicker.js" />
     <Content Include="assets\js\jquery_myitems.js" />
     <Content Include="assets\js\jquery_onclick_success.js" />
     <Content Include="assets\js\jquery_Openworkitems.js" />
@@ -647,6 +649,7 @@
     <Content Include="Views\Home\Viewitemsiwantdone.cshtml" />
     <Content Include="Views\Home\Viewitemsimworkingon.cshtml" />
     <Content Include="Views\Home\Viewitemsinterestedin.cshtml" />
+    <Content Include="Views\Home\ViewUserData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

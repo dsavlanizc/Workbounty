@@ -11,4 +11,6 @@ namespace Workbounty.Models
         public string Summary { get; set; }
         public int WorkItemID { get; set; }
     }
+
+
 }

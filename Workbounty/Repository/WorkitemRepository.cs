@@ -99,11 +99,13 @@ namespace Workbounty.Repository
 
         public List<UpdateWorkitems> ShowCurrentWorkitems(int currentWorkitemID)
         {
+            List<UpdateWorkitems> updateWorkitemData = new List<UpdateWorkitems>();
+
             var getDataforAssignWorkitem = entity.WorkItemAssignments.Where(s => s.WorkItemID == currentWorkitemID).Select(s => s.SubmissionPath).FirstOrDefault();
             if (getDataforAssignWorkitem == null)
             {
-                var displayData = entity.WorkitemRegistrations.Where(s => s.WorkitemID == currentWorkitemID).Select(s => new UpdateWorkitems { Title = s.Workitem.Title, Summary = s.Workitem.Summary, WorkItemID = s.WorkitemID }).ToList();
-                return displayData;
+                updateWorkitemData.Add(entity.WorkitemRegistrations.Where(s => s.WorkitemID == currentWorkitemID).Select(s => new UpdateWorkitems { Title = s.Workitem.Title, Summary = s.Workitem.Summary, WorkItemID = s.WorkitemID }).FirstOrDefault());
+                return updateWorkitemData;
             }
             else
             {
@@ -259,6 +261,15 @@ namespace Workbounty.Repository
         {
             try
             {
+                using(WorkbountyDBEntities entities=new WorkbountyDBEntities())
+                {
+                    entities.Configuration.ValidateOnSaveEnabled = false;
+                    string remarks = id.Remarks.ToString();
+                    Workitem remark = new Workitem() { WorkitemID = id.WorkItemID, Remarks = id.Remarks };
+                    entities.Workitems.Attach(remark);
+                    entities.Entry(remark).Property(u => u.Remarks).IsModified = true;
+                    entities.SaveChanges();
+                }
                 WorkItemAssignment item = entity.WorkItemAssignments.Where(s => s.WorkItemID == id.WorkItemID && s.UserID == id.UserID).First();
                 item.IsRewarded = true;
                 entity.SaveChanges();
