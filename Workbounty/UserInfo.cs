@@ -27,7 +27,6 @@ namespace Workbounty
     
         public int UserID { get; set; }
         [Required]
-        [RegularExpression(@"\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b")]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }

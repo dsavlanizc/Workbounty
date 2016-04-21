@@ -1,5 +1,5 @@
 ﻿@model Workbounty.UserInfo
-       @{
+@{
     ViewBag.Title = "Signup";
     Layout = "~/Views/_IndexLayout.cshtml";
 }
@@ -20,7 +20,7 @@
                     </div>
                     <div class="space-6"></div>
                     @Html.AntiForgeryToken()
-            
+
                     <div class="position-relative">
                         <div id="signup-box" class="signup-box widget-box no-border">
                             <div class="widget-body">
@@ -37,32 +37,32 @@
                                         <fieldset>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                   
+
                                                     @Html.TextBoxFor(a => a.Email, new { @id = "Email", onkeypress = "return isValidEmailAddress(emailAddress)", @maxlength = "30", @class = "form-control", @placeholder = "E mail", @typeof = "email" })
                                                     <span id="EmailError" class="text-danger"></span>
                                                 </span>
-                                          
+
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
                                                     @Html.TextBoxFor(a => a.PhoneNumber, new { @id = "PhoneNumber", @maxlength = "15", @onkeypress = "return isNumberKey(event)", @class = "form-control", @placeholder = "Number" })
                                                     <span id="PhoneNumberError" class="text-danger"></span>
-                                                    </span>
-                                            
+                                                </span>
+
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
                                                     @Html.TextBoxFor(a => a.FirstName, new { @id = "FirstName", @maxlength = "30", @onkeypress = "return isTextKey(event)", @class = "form-control", @placeholder = "First Name" })
                                                     <span id="FirstNameError" class="text-danger"></span>
-                                                 </span>
-                                            
+                                                </span>
+
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
                                                     @Html.TextBoxFor(a => a.LastName, new { @id = "LastName", @maxlength = "30", @onkeypress = "return isTextKey(event)", @class = "form-control", @placeholder = "Last Name" })
                                                     <span id="LastNameError" class="text-danger"></span>
-                                                 </span>
-                                        
+                                                </span>
+
                                             </label>
                                             <div class="block clearfix">
                                                 <div class="hero-unit">
@@ -71,20 +71,20 @@
                                                     <span id="DateofBirthError" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                     
+
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
                                                     @Html.PasswordFor(a => a.Password, new { @id = "Password", @maxlength = "20", @class = "form-control", @placeholder = "Password" })
                                                     <span id="PasswordError" class="text-danger"></span>
-                                                 </span>
-                                             
+                                                </span>
+
                                             </label>
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
-                                                    @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @maxlength = "10", @class = "form-control", @placeholder = "Interested Keywords"})
+                                                    @Html.TextBoxFor(a => a.InterestedKeywords, new { @id = "InterestedKeywords", @maxlength = "10", @class = "form-control", @placeholder = "Interested Keywords" })
                                                     <span id="InterestedKeywordsError" class="text-danger"></span>
-                                                 </span>
-                                     
+                                                </span>
+
                                             </label>
                                             <div class="space-6"></div>
                                             <div class="clearfix">
@@ -111,6 +111,5 @@
         </div>
     </div>
 
-    <script src="assets/js/jquery.2.1.1.min.js"></script>
 }
 

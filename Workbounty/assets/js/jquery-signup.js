@@ -1,8 +1,10 @@
-﻿$(function AddUserData() {
+﻿$(document).ready(function ()
+{
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
         var dateofBirth = $("#DateSelect").val();
         var dateofBirthDateObject = new Date(dateofBirth);
+
         var userSignupData =
             {
                 "FirstName": $("#FirstName").val(),
@@ -14,35 +16,35 @@
                 "InterestedKeywords": $("#InterestedKeywords").val(),
                 "isActive": true
             }
-
-        if ($("#FirstName").val() == "") {
-            $("#FirstNameError").text("First Name is Required");
-
-            if ($("#LastName").val() == "") {
-                $("#LastNameError").text("Last Name is Required");
-
-                //if ($("#DateofBirth").val() == "") {
-                //    $("#DateofBirthError").text("Date Of birth is Required");
-
-                    if ($("#Email").val() == "") {
-                        $("#EmailError").text("Email is Required");
-
-                        if ($("#PhoneNumber").val() == "") {
-                            $("#PhoneNumberError").text("Phone Number is Required");
-
-                            if ($("#Password").val() == "") {
-                                $("#PasswordError").text("Password is Required");
-
-                                if ($("#InterestedKeywords").val() == "") {
-                                    $("#InterestedKeywordsError").text("Interested Keyword is Required");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         
 
+        if ($("#Email").val() == "") {
+            $("#EmailError").text("Email is Required");
+        }
+        else  if ($("#PhoneNumber").val() == "") {
+            $("#PhoneNumberError").text("Phone Number is Required");
+        }
+
+       else if ($("#FirstName").val() == "") {
+            $("#FirstNameError").text("First Name is Required");
+        }
+
+        else if ($("#LastName").val() == "") {
+            $("#LastNameError").text("Last Name is Required");
+        }
+        else if (dateofBirth == "") {
+            $("#DateofBirthError").text("Date Of Birth is Required");
+        }
+  
+        else if ($("#Password").val() == "")
+        {
+            $("#PasswordError").text("Password is Required");
+        }
+        else if($("#InterestedKeywords").val() == "") 
+        {
+                $("#InterestedKeywordsError").text("Interested Keyword is Required");
+         }
+   
         else {
 
             $.ajax({
@@ -64,36 +66,34 @@
 
                 error: function (x, e) {
                     alert("Error");
-
                 }
             });
-
         }
-
-    });
     })
-function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode != 46 && charCode > 31
-      && (charCode < 48 || charCode > 57))
-        return false;
 
-    return true;
-}
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 43 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
 
-function isTextKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode > 31 && charCode < 65
-      && (charCode < 97 || charCode > 122))
-        return false;
+        return true;
+    }
 
-    return true;
-}
+    function isTextKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && charCode < 65
+          && (charCode < 97 || charCode > 122))
+            return false;
 
-function noDataKey(evt) {
-    var charcode = (evt.which) ? evt.which : event.keyCode;
-    if (charcode > 0 && charcode < 127)
-        return false;
+        return true;
+    }
 
-    return true;
-}
+    function noDataKey(evt) {
+        var charcode = (evt.which) ? evt.which : event.keyCode;
+        if (charcode > 0 && charcode < 127)
+            return false;
+
+        return true;
+    }
+});

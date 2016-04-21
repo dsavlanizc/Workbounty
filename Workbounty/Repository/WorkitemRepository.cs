@@ -186,39 +186,39 @@ namespace Workbounty.Repository
 
         public List<AddWorkitems> ItemsIWantDone(int currentWorkitemID)
         {
-            List<AddWorkitems> item = new List<AddWorkitems>();
             var status = entity.WorkItemAssignments.Where(q => q.IsRewarded == true).ToList();
             var status2 = entity.WorkItemAssignments.Where(q => q.IsRewarded == true).Select(a => a.WorkItemID).ToList();
-            var getWorkitemData2 = from u in entity.Workitems.Where(s => s.CreatedBy == currentWorkitemID)
+            var getListofAssignUser = from u in entity.Workitems.Where(s => s.CreatedBy == currentWorkitemID)
                                    join b in entity.WorkitemDistributions
                                    on u.WorkitemID equals b.WorkitemID
                                    into userArticles
                                    from ua in userArticles.DefaultIfEmpty()
                                    select new AddWorkitems { WorkitemID = u.WorkitemID, Title = u.Title, FirstName = ua.UserInfo.FirstName, ProposedReward = u.ProposedReward, StartDate = u.StartDate, EndDate = u.DueDate, CreatedDateTime = u.CreatedDateTime };
-            var getWorkitemData2list = getWorkitemData2.ToList();
+            var getListofAssignUserList = getListofAssignUser.ToList();
             List<AddWorkitems> itemlist = new List<AddWorkitems>();
-            List<WorkItemAssignment> temp = new List<WorkItemAssignment>();
-            foreach(var z in getWorkitemData2list)
+            List<WorkItemAssignment> assignData = new List<WorkItemAssignment>();
+            foreach(var z in getListofAssignUserList)
             {
-                 temp = entity.WorkItemAssignments.Where(a => a.WorkItemID == z.WorkitemID).ToList();
+                 assignData = entity.WorkItemAssignments.Where(a => a.WorkItemID == z.WorkitemID).ToList();
             }
-            if (temp.Count() != 0 )
+            if (assignData.Count() != 0 )
             {
-                var getWorkitemData3 = from u in status
-                                       join o in getWorkitemData2list on u.WorkItemID equals o.WorkitemID
+                var getWorkitemStatus = from u in status
+                                       join o in getListofAssignUserList on u.WorkItemID equals o.WorkitemID
                                        into completeditems
                                        from ci in completeditems.DefaultIfEmpty()
                                        select new AddWorkitems { WorkitemID = ci.WorkitemID, Title = ci.Title, FirstName = ci.FirstName, ProposedReward = ci.ProposedReward, StartDate = ci.StartDate, EndDate = ci.DueDate, CreatedDateTime = ci.CreatedDateTime, Status = "Completed", Remarks = entity.Workitems.Where(q => q.WorkitemID == ci.WorkitemID).Select(b => b.Remarks).FirstOrDefault() };
-                var getWorkitemData3list = getWorkitemData3.ToList();
-                getWorkitemData2list.RemoveAll(x => status.Any(y => y.WorkItemID == x.WorkitemID));
-                itemlist = getWorkitemData2list.Union(getWorkitemData3list).ToList();
+                var getWorkitemStatusList = getWorkitemStatus.ToList();
+                getListofAssignUserList.RemoveAll(x => status.Any(y => y.WorkItemID == x.WorkitemID));
+                itemlist = getListofAssignUserList.Union(getWorkitemStatusList).ToList();
                 itemlist = itemlist.OrderByDescending(s => s.CreatedDateTime).ToList();
                 var getWorkitemData = itemlist.ToList();
                 return getWorkitemData;
             }
             else
             {
-                return getWorkitemData2list;
+                getListofAssignUserList = getListofAssignUserList.OrderByDescending(s => s.CreatedDateTime).ToList();
+                return getListofAssignUserList;
             }
         }
 

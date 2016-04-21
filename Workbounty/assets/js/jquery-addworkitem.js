@@ -40,29 +40,28 @@ function AddWorkitem() {
         newitem.IsOpenForGroup = true;
    
    
-    if ($("#Title").val() == "") {
-        $("#TitleError").text("Title is Required");
-
-        if ($("#Summary").val() == "") {
-            $("#SummaryError").text("Summary is Required");
-
-            if ($("#StartDate").val() == "") {
-                $("#StartdateError").text("Start Date is Required");
-
-                if ($("#DueDate").val() == "") {
-                    $("#DuedateError").text("Due Date is Required");
-
-                    if ($("#amount").val() == "") {
-                        $("#AmountError").text("Amount is Required");
-                    }
-                }
-            }
+        if ($("#Title").val() == "") {
+            $("#TitleError").text("Title is Required");
         }
-    }
+        else if ($("#Summary").val() == "") 
+        {
+            $("#SummaryError").text("Summary is Required");
+        }
+        else if ($("#StartDate").val() == "") 
+        {
+            $("#StartdateError").text("Start Date is Required");
+        }
+        else     if ($("#DueDate").val() == "") {
+            $("#DuedateError").text("Due Date is Required");
+        }
+        else if ($("#amount").val() == "") {
+            $("#AmountError").text("Amount is Required");
+        }
+         
     else {
         $.ajax({
             type: "POST",
-            url: '/home/AddWorkitem/',
+            url: '/Home/AddWorkitem/',
             data: JSON.stringify({ addWorkitemData: newitem }),
             contentType: "application/json;charset=utf-8",
             processData: true,

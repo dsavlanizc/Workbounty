@@ -73,7 +73,7 @@ namespace Workbounty.Controllers
                     assignData.SubmissionDateTime = DateTime.Now;
                     assignData.SubmissionPath = path;
                     var putAssignData = workbountyRepo.UpdateWorkitems(assignData);
-                    return View();
+                    return RedirectToAction("dashboard","home");
                 }
             }
             catch (Exception)

@@ -3,7 +3,7 @@
          
        function (Data) {
     
-       });
+       }
 
     });
 function add(item) {
