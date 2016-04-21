@@ -4,7 +4,7 @@
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
 <script src="~/assets/js/jquery-ViewAssignedWorkitem.js"></script>
-<h2>ItemsIWantDone</h2>
+<h2>Items I Want Done</h2>
 <div class="col-sm-10">
     @foreach(Workbounty.Workitem i in ViewBag.items)
     {
@@ -77,7 +77,7 @@
                 <tbody>
                     <tr>
                         <td>@Html.DisplayFor(a => i.UserInfo.FirstName)</td>
-                        <td><input type="submit" class="btn btn-minier btn-purple" value="Submit" id="@i.UserID" onclick="add(id)" /></td>
+                        <td><input type="submit" class="btn btn-minier btn-purple" value="Allocate workitem" id="@i.UserID" onclick="add(id)" /></td>
                     </tr>
                 </tbody>
             }

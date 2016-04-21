@@ -5,7 +5,7 @@ namespace Workbounty
 {
     public class BundleConfig
     {
-    
+
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -18,8 +18,8 @@ namespace Workbounty
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-           bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
@@ -101,7 +101,7 @@ namespace Workbounty
                  "~/assets/js/jquery_Bootstrap.js"
                 ));
 
-           
+
             bundles.IgnoreList.Clear();
 
 

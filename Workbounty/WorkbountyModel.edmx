@@ -194,18 +194,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WorkitemDistribution_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
-          <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="TeamID" />
-            </Principal>
-            <Dependent Role="WorkitemDistribution">
-              <PropertyRef Name="TeamID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WorkitemDistribution_UserInfo">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
@@ -331,10 +319,6 @@
             <End Role="Workitem" EntitySet="Workitem" />
             <End Role="WorkItemAssignment" EntitySet="WorkItemAssignment" />
           </AssociationSet>
-          <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="WorkitemDistribution" EntitySet="WorkitemDistribution" />
-          </AssociationSet>
           <AssociationSet Name="FK_WorkitemDistribution_UserInfo" Association="Self.FK_WorkitemDistribution_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="WorkitemDistribution" EntitySet="WorkitemDistribution" />
@@ -380,7 +364,6 @@
           <NavigationProperty Name="Team1" Relationship="Self.FK_Team_Team" FromRole="Team" ToRole="Team1" />
           <NavigationProperty Name="Team2" Relationship="Self.FK_Team_Team" FromRole="Team1" ToRole="Team" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_Team_UserInfo" FromRole="Team" ToRole="UserInfo" />
-          <NavigationProperty Name="WorkitemDistributions" Relationship="Self.FK_WorkitemDistribution_Team" FromRole="Team" ToRole="WorkitemDistribution" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -455,7 +438,6 @@
           <Property Name="TeamID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="WorkitemDistributionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_WorkitemDistribution_Team" FromRole="WorkitemDistribution" ToRole="Team" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_WorkitemDistribution_UserInfo" FromRole="WorkitemDistribution" ToRole="UserInfo" />
           <NavigationProperty Name="Workitem" Relationship="Self.FK_WorkitemDistribution_Workitem" FromRole="WorkitemDistribution" ToRole="Workitem" />
         </EntityType>
@@ -514,18 +496,6 @@
             </Principal>
             <Dependent Role="Team">
               <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WorkitemDistribution_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
-          <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="TeamID" />
-            </Principal>
-            <Dependent Role="WorkitemDistribution">
-              <PropertyRef Name="TeamID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -701,10 +671,6 @@
           <AssociationSet Name="FK_Team_UserInfo" Association="Self.FK_Team_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfoes" />
             <End Role="Team" EntitySet="Teams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
-            <End Role="Team" EntitySet="Teams" />
-            <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
           </AssociationSet>
           <AssociationSet Name="FK_UserInfo_UserInfo" Association="Self.FK_UserInfo_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfoes" />

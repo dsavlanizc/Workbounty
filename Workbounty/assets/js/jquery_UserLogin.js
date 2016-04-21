@@ -7,8 +7,12 @@
             "Password": $("#Password").val()
         };
 
-
-
+        if (id.Email == "" || id.Password=="")
+        {
+            $("#alertMessage").text("Enter Email id and Password");
+        }
+        else
+            {
         $.ajax({
             url: "/Home/Login/",
             type: "POST",
@@ -32,5 +36,6 @@
 
             }
         });
+        }
     });
 });

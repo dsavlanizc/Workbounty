@@ -71,6 +71,11 @@
         }
     })
 
+});
+
+
+
+
     function isNumberKey(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode;
         if (charCode != 43 && charCode > 31
@@ -96,4 +101,3 @@
 
         return true;
     }
-});

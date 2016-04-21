@@ -21,43 +21,42 @@ function AddWorkitem() {
     var startDate = $("#StartDate").val();
     var startDateObject = new Date(startDate);
     var dueDateObject = new Date(dueDate);
-   
+
     var newitem = {};
-        newitem.Title = $("#Title").val();
-        newitem.Summary= $("#Summary").val();
-        newitem.StartDate = startDateObject;
-        newitem.DueDate = dueDateObject;
-        newitem.PublishedTo = $("#TeamList").val();
-        newitem.DocumentFilePath = $("#myFile").val();
-        newitem.ProposedReward = sessionStorage.getItem('key1');
-        newitem.Amount = sessionStorage.getItem('key2');
-        newitem.CreatedBy = $("#Userid").val();
-        newitem.CreatedDateTime = d.toDateString();
-        newitem.ModifyBy = $("#Userid").val();
-        newitem.ModifyDateTime = d.toDateString();
-        newitem.Status = true;
-        newitem.Remarks = "Good";
-        newitem.IsOpenForGroup = true;
+    newitem.Title = $("#Title").val();
+    newitem.Summary = $("#Summary").val();
+    newitem.StartDate = startDateObject;
+    newitem.DueDate = dueDateObject;
+    newitem.PublishedTo = $("#TeamList").val();
+    newitem.DocumentFilePath = $("#myFile").val();
+    newitem.ProposedReward = sessionStorage.getItem('key1');
+    newitem.Amount = sessionStorage.getItem('key2');
+    newitem.CreatedBy = $("#Userid").val();
+    newitem.CreatedDateTime = d.toDateString();
+    newitem.ModifyBy = $("#Userid").val();
+    newitem.ModifyDateTime = d.toDateString();
+    newitem.Status = true;
+    newitem.Remarks = "Good";
+    newitem.IsOpenForGroup = true;
+
+
+    if ($("#Title").val() == "") {
+        $("#TitleError").text("Title is Required");
+    }
+    else if ($("#Summary").val() == "") {
+        $("#SummaryError").text("Summary is Required");
+    }
    
-   
-        if ($("#Title").val() == "") {
-            $("#TitleError").text("Title is Required");
-        }
-        else if ($("#Summary").val() == "") 
-        {
-            $("#SummaryError").text("Summary is Required");
-        }
-        else if ($("#StartDate").val() == "") 
-        {
-            $("#StartdateError").text("Start Date is Required");
-        }
-        else     if ($("#DueDate").val() == "") {
-            $("#DuedateError").text("Due Date is Required");
-        }
-        else if ($("#amount").val() == "") {
-            $("#AmountError").text("Amount is Required");
-        }
-         
+    else if ($("#StartDate").val() == "") {
+        $("#StartdateError").text("Start Date is Required");
+    }
+    else if ($("#DueDate").val() == "") {
+        $("#DuedateError").text("Due Date is Required");
+    }
+    else if ($("#amount").val() == "") {
+        $("#AmountError").text("Amount is Required");
+    }
+
     else {
         $.ajax({
             type: "POST",
@@ -65,25 +64,23 @@ function AddWorkitem() {
             data: JSON.stringify({ addWorkitemData: newitem }),
             contentType: "application/json;charset=utf-8",
             processData: true,
-        success: function (response) {
-            console.log(response);
-            if (response.IsSuccess)
-            {
-                
-                alert(response.successAddWorkitemMessage);
-                location.href = response.redirectURL;
-            }
-            else
-            {
-                alert(response.successAddWorkitemMessage);
-            }
+            success: function (response) {
+                console.log(response);
+                if (response.IsSuccess) {
+
+                    alert(response.successAddWorkitemMessage);
+                    location.href = response.redirectURL;
+                }
+                else {
+                    alert(response.successAddWorkitemMessage);
+                }
             },
             error: function (xhr) {
                 alert(xhr.responseText);
             }
         });
     }
-    
+
 }
 
 function isTextKey(evt) {
@@ -109,4 +106,19 @@ function noDataKey(evt) {
         return false;
 
     return true;
+}
+
+$('#Summary').on('keypress', function () {
+    limitText(this, 300)
+});
+
+function limitText(field, maxChar) {
+    var ref = $(field),
+        val = ref.val();
+    if (val.length >= maxChar) {
+        ref.val(function () {
+            console.log(val.substr(0, maxChar))
+            $("#SummaryError").text("Summary should not be more than 300 words");
+        });
+    }
 }
