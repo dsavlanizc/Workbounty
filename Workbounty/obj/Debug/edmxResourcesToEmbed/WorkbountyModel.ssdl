@@ -189,18 +189,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkitemDistribution_Team">
-    <End Role="Team" Type="Self.Team" Multiplicity="1" />
-    <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Team">
-        <PropertyRef Name="TeamID" />
-      </Principal>
-      <Dependent Role="WorkitemDistribution">
-        <PropertyRef Name="TeamID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_WorkitemDistribution_UserInfo">
     <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
     <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
@@ -325,10 +313,6 @@
     <AssociationSet Name="FK_WorkItemAssignment_Workitem" Association="Self.FK_WorkItemAssignment_Workitem">
       <End Role="Workitem" EntitySet="Workitem" />
       <End Role="WorkItemAssignment" EntitySet="WorkItemAssignment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
-      <End Role="Team" EntitySet="Team" />
-      <End Role="WorkitemDistribution" EntitySet="WorkitemDistribution" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkitemDistribution_UserInfo" Association="Self.FK_WorkitemDistribution_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
