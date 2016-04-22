@@ -14,6 +14,15 @@
   
 
 </head>
+
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="~/home/dashboard">Dashboard</a>
+    </li>
+    <li class="active">Add Workitem</li>
+</ul>
+
 <h2></h2>
 <div class="col-xs-8">
     <h4 class="widget-title lighter smaller">
@@ -24,7 +33,7 @@
     <div class="col-xs-12">
         <form class="form-horizontal" role="form" data-toggle="validator" name="Workitemform">
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Title <span>*</span></label>
+                <label class="col-sm-3 control-label no-padding-right required" for="form-field-1"> Title </label>
                 <div class="col-sm-9">
                     <input type="hidden" id="Userid" value="@Session["UserID"]" />
                     <input type="text" id="Title" placeholder="" maxlength="50"  class="col-xs-10 col-sm-5" required="required" />
@@ -33,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Summary<span>*</span> </label>
+                <label class="col-sm-3 control-label no-padding-right required" for="form-field-1"> Summary </label>
                 <div class="col-sm-9">
                     <textarea rows="4" id="Summary" class="col-xs-10 col-sm-5"></textarea>
                     <span id="SummaryError" class="text-danger"></span>
@@ -41,7 +50,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Start date<span>*</span></label>
+                <label class="col-sm-3 control-label no-padding-right required" for=" form-field-1"> Start date </label>
                 <div class="col-sm-9">
                     @Html.TextBoxFor(a => a.StartDate, new { @class = "col-xs-10 col-sm-5 datepicker", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "StartDate", @placeholder = "Start Date" })
                     <span id="StartdateError" class="text-danger"></span>
@@ -49,7 +58,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Due date<span>*</span></label>
+                <label class="col-sm-3 control-label no-padding-right required" for=" form-field-1"> Due date </label>
                 <div class="col-sm-9">
                     @Html.TextBoxFor(a => a.DueDate, new { @class = "col-xs-10 col-sm-5 datepicker", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "DueDate", @placeholder = "End of completion Date" })
                     <span id="StartdateError" class="text-danger"></span>
@@ -72,7 +81,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Rewards<span>*</span></label>
+                <label class="col-sm-3 control-label no-padding-right required" for="form-field-1"> Rewards</label>
 
                 <div class="col-sm-9">
                     <div class="hidden-sm hidden-xs btn-group">
@@ -147,7 +156,7 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <label for="form-field-1"> Amount <span>*</span></label>
+                                            <label class="required" for="form-field-1"> Amount </label>
                                             <label>
                                                 <input type="text" id="amount" placeholder="" onkeypress="return isNumberKey(event)" maxlength="10" />
                                             </label>

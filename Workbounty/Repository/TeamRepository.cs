@@ -25,7 +25,7 @@ namespace Workbounty.Repository
                     teamInfo.TeamUserInfoID = item;
                     foreach (var _user in data)
                     {
-                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber,TeamName=_user.TeamName};
+                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber, TeamName = _user.TeamName };
                         teamInfo.TeamUserList.Add(_team);
                     }
                     team.Add(teamInfo);
@@ -33,7 +33,7 @@ namespace Workbounty.Repository
             }
             catch (Exception)
             {
-                return null;
+                return null; //Please log those exceptions in database table at this moment, later on we will manage in MongoDB.
             }
             return team;
         }
@@ -60,30 +60,33 @@ namespace Workbounty.Repository
         }
 
         public int AddTeamData(Team teamData)
-        {
+        {                       //Removed Goto and label
             try
             {
-            Again:
-                var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
+                int i = 0;
+                do
+                {
+                    var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
+                    if (qwe == null)
+                    {
+                        var getID = Convert.ToInt32(teamData.TeamUserInfoID);
+                        entity.Teams.Add(teamData);
+                        entity.SaveChanges();
+                        i++;
+                        return getID;
+                    }
+                    else
+                    {
+                        teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
+                    }
+                }
+                while (i == 0);
+                return 0;
 
-                if (qwe == null)
-                {
-                   var getID = Convert.ToInt32(teamData.TeamUserInfoID);
-                    entity.Teams.Add(teamData);
-                    entity.SaveChanges();
-                    return getID;
-                }
-                else
-                {
-                    teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
-                    goto Again;
-                }
             }
             catch (Exception)
             {
                 return 0;
-;
-
             }
         }
 

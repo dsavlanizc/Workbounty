@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Workbounty.Repository;
 using Workbounty.Models;
 using PagedList;
+using System.Web.Security;
 
 namespace Workbounty.Controllers
 {
@@ -24,9 +25,18 @@ namespace Workbounty.Controllers
 
         public ActionResult Login()
         {
-            Session.Abandon();
             Session.Clear();
+            Response.Cookies.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Session["FirstName"] = null;
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
 
         [HttpPost]
@@ -42,9 +52,10 @@ namespace Workbounty.Controllers
                     {
                         Session["UserID"] = loginData.UserID;
                         Session["FirstName"] = loginData.FirstName;
+                        FormsAuthentication.SetAuthCookie(loginData.FirstName, false);
                         success = true;
                         message = "login successfully!";
-                        redirectURL = Url.Action("Dashboard", "Home");
+                        redirectURL = Url.Action("Dashbo1ard", "Home");
                     }
                    else
                 {
@@ -91,6 +102,7 @@ namespace Workbounty.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Dashboard()
         {
             int currentUserID = Convert.ToInt32(Session["UserID"]);
@@ -101,8 +113,7 @@ namespace Workbounty.Controllers
             ViewBag.itemsForIWantDone = getItemsIWantDoneData;
 
             var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
-
-            ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
+             ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
             return View();
         }
 

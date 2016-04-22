@@ -3,6 +3,13 @@
     ViewBag.Title = "SearchWorkitem";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="~/home/dashboard">Dashboard</a>
+    </li>
+    <li class="active">Search</li>
+</ul>
 
 <h2>Search Results</h2>
 @if (ViewBag.displayMessage !=null)

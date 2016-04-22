@@ -28,12 +28,6 @@ F:\Workbounty - Copy\Workbounty\bin\System.Web.Http.WebHost.xml
 F:\Workbounty - Copy\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 F:\Workbounty - Copy\Workbounty\obj\Debug\Workbounty.dll
 F:\Workbounty - Copy\Workbounty\obj\Debug\Workbounty.pdb
-E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.dll.config
-E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.dll
-E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.pdb
-E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.dll
-E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.pdb
-E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\LatestProject\Workbounty\bin\Workbounty.dll.config
 E:\LatestProject\Workbounty\bin\Workbounty.dll
 E:\LatestProject\Workbounty\bin\Workbounty.pdb
@@ -54,3 +48,22 @@ E:\LatestProject1\LatestProject\Workbounty\bin\PagedList.Mvc.xml
 E:\LatestProject1\LatestProject\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\LatestProject1\LatestProject\Workbounty\obj\Debug\Workbounty.dll
 E:\LatestProject1\LatestProject\Workbounty\obj\Debug\Workbounty.pdb
+E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.dll.config
+E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.dll
+E:\Workbounty\Workbounty\Workbounty\bin\Workbounty.pdb
+E:\Workbounty\Workbounty\Workbounty\bin\PagedList.dll
+E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.dll
+E:\Workbounty\Workbounty\Workbounty\bin\PagedList.xml
+E:\Workbounty\Workbounty\Workbounty\bin\PagedList.Mvc.xml
+E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.dll
+E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.pdb
+E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\Workbounty.dll.config
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\Workbounty.dll
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\Workbounty.pdb
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\PagedList.dll
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\PagedList.Mvc.dll
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\PagedList.xml
+E:\Workbounty-Latest\Workbounty\Workbounty\bin\PagedList.Mvc.xml
+E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.dll
+E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.pdb

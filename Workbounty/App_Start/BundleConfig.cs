@@ -73,7 +73,8 @@ namespace Workbounty
                  "~/Content/themes/base/jquery.ui.all.css",
                 "~/assets/css/ace.min.css",
                 "~/assets/css/datepicker.min.css",
-                "~/assets/css/jquery-ui.min.css"
+                "~/assets/css/jquery-ui.min.css",
+                "~/assets/css/mandatory.css"
                 ));
 
 

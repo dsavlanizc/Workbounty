@@ -12,7 +12,7 @@
     <NavigationProperty Name="Team1" Relationship="Self.FK_Team_Team" FromRole="Team" ToRole="Team1" />
     <NavigationProperty Name="Team2" Relationship="Self.FK_Team_Team" FromRole="Team1" ToRole="Team" />
     <NavigationProperty Name="UserInfo" Relationship="Self.FK_Team_UserInfo" FromRole="Team" ToRole="UserInfo" />
-    <NavigationProperty Name="WorkitemDistributions" Relationship="Self.FK_WorkitemDistribution_Team" FromRole="Team" ToRole="WorkitemDistribution" />
+    <NavigationProperty Name="WorkitemDistributions" Relationship="WorkbountyDBModel.FK_WorkitemDistribution_Team" FromRole="Team" ToRole="WorkitemDistribution" />
   </EntityType>
   <EntityType Name="UserInfo">
     <Key>
@@ -87,9 +87,9 @@
     <Property Name="TeamID" Type="Int32" Nullable="false" />
     <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="WorkitemDistributionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Team" Relationship="Self.FK_WorkitemDistribution_Team" FromRole="WorkitemDistribution" ToRole="Team" />
     <NavigationProperty Name="UserInfo" Relationship="Self.FK_WorkitemDistribution_UserInfo" FromRole="WorkitemDistribution" ToRole="UserInfo" />
     <NavigationProperty Name="Workitem" Relationship="Self.FK_WorkitemDistribution_Workitem" FromRole="WorkitemDistribution" ToRole="Workitem" />
+    <NavigationProperty Name="Team" Relationship="WorkbountyDBModel.FK_WorkitemDistribution_Team" FromRole="WorkitemDistribution" ToRole="Team" />
   </EntityType>
   <EntityType Name="WorkitemHistory">
     <Key>
@@ -146,18 +146,6 @@
       </Principal>
       <Dependent Role="Team">
         <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WorkitemDistribution_Team">
-    <End Role="Team" Type="Self.Team" Multiplicity="1" />
-    <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Team">
-        <PropertyRef Name="TeamID" />
-      </Principal>
-      <Dependent Role="WorkitemDistribution">
-        <PropertyRef Name="TeamID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -334,10 +322,6 @@
       <End Role="UserInfo" EntitySet="UserInfoes" />
       <End Role="Team" EntitySet="Teams" />
     </AssociationSet>
-    <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
-      <End Role="Team" EntitySet="Teams" />
-      <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserInfo_UserInfo" Association="Self.FK_UserInfo_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfoes" />
       <End Role="UserInfo1" EntitySet="UserInfoes" />
@@ -390,5 +374,31 @@
       <End Role="WorkitemStatus" EntitySet="WorkitemStatus" />
       <End Role="WorkitemHistory" EntitySet="WorkitemHistories" />
     </AssociationSet>
+    <EntitySet Name="ExceptionLogs" EntityType="WorkbountyDBModel.ExceptionLog" />
+    <AssociationSet Name="FK_WorkitemDistribution_Team" Association="WorkbountyDBModel.FK_WorkitemDistribution_Team">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ExceptionLog">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="ErrorDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_WorkitemDistribution_Team">
+    <End Type="WorkbountyDBModel.Team" Role="Team" Multiplicity="1" />
+    <End Type="WorkbountyDBModel.WorkitemDistribution" Role="WorkitemDistribution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="TeamID" />
+      </Principal>
+      <Dependent Role="WorkitemDistribution">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -17,6 +17,10 @@
                 "isActive": true
             }
         
+        if ($("#Password").val() != $("#ConfirmPassword").val()) {
+            $("#ConfirmPasswordError").text("Both fields do not match");
+        }
+        else
 
         if ($("#Email").val() == "") {
             $("#EmailError").text("Email is Required");

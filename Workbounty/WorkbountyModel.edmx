@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WorkbountyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ExceptionLog">
+          <Key>
+            <PropertyRef Name="ExceptionID" />
+          </Key>
+          <Property Name="ExceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ErrorDetails" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="TeamID" />
@@ -194,6 +203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkitemDistribution_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="WorkitemDistribution">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WorkitemDistribution_UserInfo">
           <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
           <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
@@ -279,6 +300,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="WorkbountyDBModelStoreContainer">
+          <EntitySet Name="ExceptionLog" EntityType="Self.ExceptionLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workitem" EntityType="Self.Workitem" Schema="dbo" store:Type="Tables" />
@@ -318,6 +340,10 @@
           <AssociationSet Name="FK_WorkItemAssignment_Workitem" Association="Self.FK_WorkItemAssignment_Workitem">
             <End Role="Workitem" EntitySet="Workitem" />
             <End Role="WorkItemAssignment" EntitySet="WorkItemAssignment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="WorkitemDistribution" EntitySet="WorkitemDistribution" />
           </AssociationSet>
           <AssociationSet Name="FK_WorkitemDistribution_UserInfo" Association="Self.FK_WorkitemDistribution_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
@@ -364,6 +390,7 @@
           <NavigationProperty Name="Team1" Relationship="Self.FK_Team_Team" FromRole="Team" ToRole="Team1" />
           <NavigationProperty Name="Team2" Relationship="Self.FK_Team_Team" FromRole="Team1" ToRole="Team" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_Team_UserInfo" FromRole="Team" ToRole="UserInfo" />
+          <NavigationProperty Name="WorkitemDistributions" Relationship="WorkbountyDBModel.FK_WorkitemDistribution_Team" FromRole="Team" ToRole="WorkitemDistribution" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -440,6 +467,7 @@
           <Property Name="WorkitemDistributionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="UserInfo" Relationship="Self.FK_WorkitemDistribution_UserInfo" FromRole="WorkitemDistribution" ToRole="UserInfo" />
           <NavigationProperty Name="Workitem" Relationship="Self.FK_WorkitemDistribution_Workitem" FromRole="WorkitemDistribution" ToRole="Workitem" />
+          <NavigationProperty Name="Team" Relationship="WorkbountyDBModel.FK_WorkitemDistribution_Team" FromRole="WorkitemDistribution" ToRole="Team" />
         </EntityType>
         <EntityType Name="WorkitemHistory">
           <Key>
@@ -724,7 +752,33 @@
             <End Role="WorkitemStatus" EntitySet="WorkitemStatus" />
             <End Role="WorkitemHistory" EntitySet="WorkitemHistories" />
           </AssociationSet>
+          <EntitySet Name="ExceptionLogs" EntityType="WorkbountyDBModel.ExceptionLog" />
+          <AssociationSet Name="FK_WorkitemDistribution_Team" Association="WorkbountyDBModel.FK_WorkitemDistribution_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ExceptionLog">
+          <Key>
+            <PropertyRef Name="ExceptionID" />
+          </Key>
+          <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="ErrorDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_WorkitemDistribution_Team">
+          <End Type="WorkbountyDBModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="WorkbountyDBModel.WorkitemDistribution" Role="WorkitemDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="WorkitemDistribution">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -829,6 +883,16 @@
               <MappingFragment StoreEntitySet="WorkitemStatus">
                 <ScalarProperty Name="WorkitemStatusID" ColumnName="WorkitemStatusID" />
                 <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExceptionLogs">
+            <EntityTypeMapping TypeName="WorkbountyDBModel.ExceptionLog">
+              <MappingFragment StoreEntitySet="ExceptionLog">
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="ErrorDetails" ColumnName="ErrorDetails" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ExceptionID" ColumnName="ExceptionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
