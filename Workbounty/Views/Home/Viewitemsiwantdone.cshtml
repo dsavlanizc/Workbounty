@@ -34,7 +34,7 @@
                            <tbody>
                                 <tr>
                                     <td>@i</td>
-                                    <td>@Html.ActionLink(item.Title, "ViewAssignedworkitem", "Workitem", new { currentWorkitemID = item.WorkitemID }, null) </td>
+                                    <td>@Html.ActionLink(item.Title, "ViewAssignedworkitem", "Workitem", new { currentWorkitemID = item.WorkitemID,data_toggle="tooltip",title="Display the user who applied for workitem"}, null) </td>
                                     <td>@Html.DisplayFor(a => item.StartDate)</td>
                                     <td>@Html.DisplayFor(a => item.EndDate)</td>
                                     <td>@Html.DisplayFor(a => item.FirstName)</td>

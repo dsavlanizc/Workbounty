@@ -33,7 +33,7 @@ namespace Workbounty.Repository
             }
             catch (Exception)
             {
-                return null;
+                return null; //Please log those exceptions in database table at this moment, later on we will manage in MongoDB.
             }
             return team;
         }
@@ -63,7 +63,7 @@ namespace Workbounty.Repository
         {
             try
             {
-            Again:
+            Again: //do not use Goto and label
                 var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
 
                 if (qwe == null)

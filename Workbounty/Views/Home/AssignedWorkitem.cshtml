@@ -21,7 +21,7 @@
                         @Html.DisplayFor(a => i.Title)
                     </h4>
                 </div>
-                @Html.ActionLink("View Assignment", "ViewDocument", "work", new { id = @i.WorkitemID }, new { @class = "btn btn-minier btn-success" })
+                @Html.ActionLink("View Assignment", "ViewDocument", "work", new { id = @i.WorkitemID }, new { @class = "btn btn-minier btn-success",data_toggle="tooltip",title="View documents uploaded by user" })
             </div>
             <div>
             </div>

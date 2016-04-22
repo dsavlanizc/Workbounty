@@ -108,6 +108,10 @@ function noDataKey(evt) {
     return true;
 }
 
+
+
+
+
 $('#Summary').on('keypress', function () {
     limitText(this, 300)
 });

@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Start date<span>*</span></label>
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(a => a.StartDate, new { @class = "col-xs-10 col-sm-5 datepicker", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "StartDate", @placeholder = "Start Date" })
+                    @Html.TextBoxFor(a => a.StartDate, new { @class = "col-xs-10 col-sm-5 datepickers", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "StartDate", @placeholder = "Start Date" })
                     <span id="StartdateError" class="text-danger"></span>
                 </div>
             </div>
@@ -51,7 +51,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label no-padding-right" for=" form-field-1"> Due date<span>*</span></label>
                 <div class="col-sm-9">
-                    @Html.TextBoxFor(a => a.DueDate, new { @class = "col-xs-10 col-sm-5 datepicker", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "DueDate", @placeholder = "End of completion Date" })
+                    @Html.TextBoxFor(a => a.DueDate, new { @class = "col-xs-10 col-sm-5 datepickers", @maxlength = "25", onkeypress = "return noDataKey(event)", @id = "DueDate", @placeholder = "End of completion Date" })
                     <span id="StartdateError" class="text-danger"></span>
                 </div>
             </div>

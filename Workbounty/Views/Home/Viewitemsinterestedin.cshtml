@@ -41,7 +41,7 @@
                                     <td>@Html.DisplayFor(a => i.Summary)</td>
                                     <td>@Html.DisplayFor(a => i.ProposedReward)</td>
                                     <td>@Html.DisplayFor(a => i.Amount)</td>
-                                    <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                                    <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple",data_toggle="tooltip",title="Apply for workitem" }) </td>
                                     <td>
                                         @if (i.IsFavourite == true)
                                         {

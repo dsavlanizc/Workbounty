@@ -24,8 +24,11 @@ namespace Workbounty.Controllers
 
         public ActionResult Login()
         {
-            Session.Abandon();
             Session.Clear();
+            Response.Cookies.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            Session["FirstName"] = null;
             return View();
         }
 
