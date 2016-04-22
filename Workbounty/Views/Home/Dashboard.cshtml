@@ -14,7 +14,7 @@
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
                     <a href="@Url.Action("Viewitemsiwantdone", "Home")" data-toggle="tooltip" title="Workitems which you have added ">Items I Want Done</a>
-                       | @Html.ActionLink("Add workitem", "addworkitem", "Home")
+                       | @Html.ActionLink("Add workitem", "addworkitem", "Home", new { data_toggle = "tooltip", title = "Items which you want to upload" })
 </h4>
             </div>
 
@@ -42,7 +42,7 @@
                             <tbody>
                                 <tr>
                                     <td>@(ViewBag.itemsForIWantDone.IndexOf(item) + 1)</td>
-                                    <td>@Html.ActionLink(item.Title, "ViewAssignedworkitem", "Workitem", new { currentWorkitemID = item.WorkitemID }, null) </td>
+                                    <td>@Html.ActionLink(item.Title, "ViewAssignedworkitem", "Workitem", new { currentWorkitemID = item.WorkitemID,data_toggle="tooltip",title="Get detail of workitem" }, null) </td>
                                     <td>@Html.DisplayFor(a => item.StartDate)</td>
                                     <td>@Html.DisplayFor(a => item.EndDate)</td>
                                     <td>@Html.DisplayFor(a => item.FirstName)</td>
@@ -68,7 +68,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    @Html.ActionLink("Items I'm Working On", "Viewitemsimworkingon", "Home", new {  data_toggle="tooltip",title="Items which you want to upload"})
+                    @Html.ActionLink("Items I'm Working On", "Viewitemsimworkingon", "Home", new {  data_toggle="tooltip",title="Items which you have assigned"})
 
                 </h4>
             </div>
@@ -100,7 +100,7 @@
                                 <td>@Html.DisplayFor(a => myWorkitem.FirstName)</td>
                                 <td>@Html.DisplayFor(a => myWorkitem.ProposedReward)</td>
                                 <td>@Html.DisplayFor(a => myWorkitem.Amount)</td>
-                                <td>@Html.ActionLink("Update", "UpdateWorkitem", "workitem", new { currentWorkitemID = myWorkitem.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                                <td>@Html.ActionLink("Update", "UpdateWorkitem", "workitem", new { currentWorkitemID = myWorkitem.WorkitemID }, new { @class = "btn btn-minier btn-purple",data_toggle="tooltip",title="Submit assignments " }) </td>
                           </tr>
                             if ((ViewBag.itemsForAssigntoMe.IndexOf(myWorkitem) + 1) == 5)
                             {
@@ -152,7 +152,7 @@
                                     <td>@Html.DisplayFor(a => i.Summary)</td>
                                     <td>@Html.DisplayFor(a => i.ProposedReward)</td>
                                     <td>@Html.DisplayFor(a => i.Amount)</td>
-                                    <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                                    <td>@Html.ActionLink("Apply", "ApplyWorkitem", "workitem", new { currentWorkitemID = i.WorkitemID }, new { @class = "btn btn-minier btn-purple", data_toggle="tooltip",title="Apply for workitem"}) </td>
                                     <td>
                                             @if (i.IsFavourite == true)
                                             {

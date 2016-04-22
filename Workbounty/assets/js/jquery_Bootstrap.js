@@ -1,14 +1,15 @@
 ﻿$(document).ready(function () {
     var dateToday = new Date();
     $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'mm-dd-yyyy',
+        endDate: new Date(),
     }).on('changeDate', function (e) {
         $(this).datepicker('hide');
     });
 
     $("#StartDate").datepicker({
         startDate: new Date(),
-        format: 'yyyy-mm-dd',
+        format: 'mm-dd-yyyy',
        
     }).on('changeDate', function (e) {
         $(this).datepicker('hide');
@@ -18,7 +19,7 @@
     });
 
     $("#DueDate").datepicker({
-        format: 'yyyy-mm-dd',
+        format: 'mm-dd-yyyy',
 
     }).on('changeDate', function (e) {
 
