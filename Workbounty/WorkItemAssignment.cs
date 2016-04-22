@@ -11,6 +11,7 @@ namespace Workbounty
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class WorkItemAssignment
     {
@@ -19,6 +20,7 @@ namespace Workbounty
         public int UserID { get; set; }
         public string SubmissionPath { get; set; }
         public bool IsRewarded { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
         public System.DateTime SubmissionDateTime { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }

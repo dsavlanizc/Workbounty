@@ -52,7 +52,7 @@
                     <td>@(ViewBag.dataofOpenDocument.IndexOf(i) + 1)</td>
                     <td>@Html.DisplayFor(a => i.FirstName)</td>
                     <td>@Html.DisplayFor(a => i.SubmissionDateTime) <input type="hidden" id="Workid" value="@i.WorkItemID" /></td>
-                    <td>@Html.ActionLink("Download", "Download", "workitem", new { id = i.UserID }, new { @class = "btn btn-minier btn-purple" }) </td>
+                    <td>@Html.ActionLink("Download", "Download", "workitem", new { id = i.UserID }, new { @class = "btn btn-minier btn-purple",data_toggle="tooltip",title="Download documents"} ) </td>
                     <td>
                         <select id="feedback">
                             <option value="good">Good</option>
@@ -61,7 +61,7 @@
 
                         </select>
                     </td>
-                    <td><input type="button" id="@i.UserID" class="btn btn-minier btn-purple" value="Assign Reward" onclick="ApplyReward(this);" /></td>
+                    <td><input type="button" id="@i.UserID" class="btn btn-minier btn-purple" value="Assign Reward" onclick="ApplyReward(this);" data-toggle="tooltip" title="Apply reward to this user" /></td>
                 </tr>
             </tbody>
                 }

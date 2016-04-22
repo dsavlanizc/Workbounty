@@ -26,7 +26,7 @@
                         @Html.DisplayFor(a => i.Title)
                     </h4>
                 </div>
-                @Html.ActionLink("View Assignment", "ViewUpdatedWorkitem", "workitem", new { currentWorkitemID = @i.WorkitemID }, new { @class = "btn btn-minier btn-success" })
+                @Html.ActionLink("View Assignment", "ViewUpdatedWorkitem", "workitem", new { currentWorkitemID = @i.WorkitemID }, new { @class = "btn btn-minier btn-success",data_toggle="tooltip",title="View documents which user submitted" })
             </div>
            
             <div class="widget-header">
@@ -86,7 +86,7 @@
                 <tbody>
                     <tr>
                         <td>@Html.DisplayFor(a => i.UserInfo.FirstName)</td>
-                        <td><input type="submit" class="btn btn-minier btn-purple" value="Allocate workitem" id="@i.UserID" onclick="add(id)" /></td>
+                        <td><input type="submit" class="btn btn-minier btn-purple" value="Allocate workitem" id="@i.UserID" onclick="add(id)" data-toggle="tooltip" title="Apply and allocate work" /></td>
                     </tr>
                 </tbody>
             }
