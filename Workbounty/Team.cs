@@ -14,6 +14,11 @@ namespace Workbounty
     
     public partial class Team
     {
+        public Team()
+        {
+            this.WorkitemDistributions = new HashSet<WorkitemDistribution>();
+        }
+    
         public int TeamID { get; set; }
         public string TeamName { get; set; }
         public int UserID { get; set; }
@@ -23,5 +28,6 @@ namespace Workbounty
         public virtual Team Team1 { get; set; }
         public virtual Team Team2 { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        public virtual ICollection<WorkitemDistribution> WorkitemDistributions { get; set; }
     }
 }

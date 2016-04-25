@@ -34,9 +34,10 @@ namespace Workbounty.Controllers
             }
         }
 
-        public ActionResult AddMember()
+        public ActionResult AddMember(string TeamName)
         {
-            return View();
+            var getTeamData = teamRepo.GetTeamDetail(TeamName);
+            return View(getTeamData);
         }
 
         
@@ -48,6 +49,13 @@ namespace Workbounty.Controllers
             return Json(getMemberData);
 
         }
+
+        [HttpPost]
+        public ActionResult UpdateMember(Team memberData)
+        {
+            return View();
+        }
+
       public JsonResult FindTeamMember(string id)
         {
             var getSearchMemberData = teamRepo.GetMemberResult(id);

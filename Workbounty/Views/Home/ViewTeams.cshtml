@@ -4,6 +4,14 @@
     Layout = "~/Views/_DashboardLayout.cshtml";
     var TeamName = "";
 }
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="~/home/dashboard">Dashboard</a>
+    </li>
+    <li class="active">My Teams</li>
+</ul>
+
 <div class="widget-box transparent" id="recent-box">
     <div class="widget-header">
         <div class="col-xs-10">
@@ -14,11 +22,12 @@
 
             @foreach (var item in Model)
             {
-               foreach (var user in item.TeamUserList)
+                foreach (var user in item.TeamUserList)
                 {
                     if (TeamName != user.TeamName)
                     {
-                        <h4 id="Teamname">@Html.DisplayFor(s => user.TeamName)</h4>
+                      
+                        <h4 id="Teamname">@Html.ActionLink(user.TeamName, "AddMember", "Team", new { TeamName = user.TeamName, data_toggle = "tooltip", title = "Get Team details" }, null)  </h4>
                         TeamName = user.TeamName;
                     }
                 }
@@ -35,7 +44,6 @@
                                 <td>@Html.DisplayFor(s => user.FirstName)</td>
                                 <td>@Html.DisplayFor(s => user.Email)</td>
                                 <td>@Html.DisplayFor(s => user.PhoneNumber)</td>
-                                @*<td>@Html.DisplayFor(s => user.TeamName)</td>*@
                             </tr>
                         }
 

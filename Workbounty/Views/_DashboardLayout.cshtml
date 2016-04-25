@@ -7,13 +7,13 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/assets/css")
     @Scripts.Render("~/assets/js")
-    
+
 
 </head>
 <body class="no-skin">
 
     <div id="navbar" class="navbar navbar-default">
-  
+
         <div class="navbar-container" id="navbar-container">
             <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
                 <span class="sr-only">Toggle sidebar</span>
@@ -26,7 +26,7 @@
                 <a href="~/home/dashboard" class="navbar-brand">
                     <img src="~/img/header-logo.png" />
                 </a>
-                
+              
             </div>
 
             <div class="nav-search" id="nav-search">
@@ -43,17 +43,10 @@
 
                     <li>
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            @if (Session["FirstName"] == null)
-                            {
-                                Response.Redirect("~/home/login");
-                            }
-                            else
-                            {
-                                <span class="user-info">
-                                    Welcome,
-                                    @Session["FirstName"].ToString()
-                                </span>
-                            }
+                            <span class="user-info">
+                                Welcome,
+                             @Session["FirstName"].ToString()
+                            </span>
                         </a>
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
@@ -67,7 +60,7 @@
                             <li class="divider"></li>
 
                             <li>
-                                <a href="~/home/Login">
+                                <a href="~/Home/Logout">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Logout
                                 </a>
@@ -90,7 +83,8 @@
 
 
                 <a href="~/home/Dashboard" class="nav nav-list" data-toggle="tooltip" title="Dashboard">
-                    <button class="btn btn-block btn-success btn-sidebaricon"><i class="menu-icon fa fa-tachometer"></i>
+                    <button class="btn btn-block btn-success btn-sidebaricon">
+                        <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text padding20px"> Dashboard </span>
                     </button>
                 </a>
@@ -121,7 +115,7 @@
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
-          
+
 
         </div>
 

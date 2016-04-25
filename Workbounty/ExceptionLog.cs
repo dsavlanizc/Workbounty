@@ -12,15 +12,11 @@ namespace Workbounty
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkitemDistribution
+    public partial class ExceptionLog
     {
-        public int WorkitemID { get; set; }
-        public int TeamID { get; set; }
-        public int UserID { get; set; }
-        public int WorkitemDistributionID { get; set; }
-    
-        public virtual UserInfo UserInfo { get; set; }
-        public virtual Workitem Workitem { get; set; }
-        public virtual Team Team { get; set; }
+        public int ExceptionID { get; set; }
+        public int ClientID { get; set; }
+        public string ErrorDetails { get; set; }
+        public System.DateTime EventDateTime { get; set; }
     }
 }

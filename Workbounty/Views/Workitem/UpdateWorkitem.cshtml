@@ -3,22 +3,19 @@
     ViewBag.Title = "UpdateWorkitem";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
+<ul class="breadcrumb">
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="~/home/dashboard">Dashboard</a>
+    </li>
+    <li class="active">Update Workitem</li>
+</ul>
 
 <h2>Add Document</h2>
 <div class="row">
     <div class="col-xs-12">
-        @if (ViewBag.displayMessage != null)
-        {
-
-            <p class="ui-icon-alert alert-success">
-                You have already uploaded a document
-            </p>
-
-        }
-
-        @if (ViewBag.dataForWorkitem != null)
-        {
-            foreach (Workbounty.Models.UpdateWorkitems i in ViewBag.dataForWorkitem)
+       
+            @foreach (Workbounty.Models.UpdateWorkitems i in ViewBag.dataForWorkitem)
             {
 
                 <form class="form-horizontal" role="form" data-toggle="validator" name="Workitemform" id="Workitemform" method="post" enctype="multipart/form-data">
@@ -57,6 +54,6 @@
                     </div>
                 </form>
             }
-        }
+        
     </div>
 </div>

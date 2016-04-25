@@ -25,7 +25,7 @@ namespace Workbounty.Repository
                     teamInfo.TeamUserInfoID = item;
                     foreach (var _user in data)
                     {
-                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber,TeamName=_user.TeamName};
+                        TeamUserInfo _team = new TeamUserInfo { FirstName = _user.UserInfo.FirstName, Email = _user.UserInfo.Email, PhoneNumber = _user.UserInfo.PhoneNumber, TeamName = _user.TeamName };
                         teamInfo.TeamUserList.Add(_team);
                     }
                     team.Add(teamInfo);
@@ -33,7 +33,7 @@ namespace Workbounty.Repository
             }
             catch (Exception)
             {
-                return null; //Please log those exceptions in database table at this moment, later on we will manage in MongoDB.
+                return null; 
             }
             return team;
         }
@@ -60,30 +60,33 @@ namespace Workbounty.Repository
         }
 
         public int AddTeamData(Team teamData)
-        {
+        {                      
             try
             {
-            Again: //do not use Goto and label
-                var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
+                int i = 0;
+                do
+                {
+                    var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
+                    if (qwe == null)
+                    {
+                        var getID = Convert.ToInt32(teamData.TeamUserInfoID);
+                        entity.Teams.Add(teamData);
+                        entity.SaveChanges();
+                        i++;
+                        return getID;
+                    }
+                    else
+                    {
+                        teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
+                    }
+                }
+                while (i == 0);
+                return 0;
 
-                if (qwe == null)
-                {
-                   var getID = Convert.ToInt32(teamData.TeamUserInfoID);
-                    entity.Teams.Add(teamData);
-                    entity.SaveChanges();
-                    return getID;
-                }
-                else
-                {
-                    teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
-                    goto Again;
-                }
             }
             catch (Exception)
             {
                 return 0;
-;
-
             }
         }
 
@@ -102,5 +105,24 @@ namespace Workbounty.Repository
 
             }
         }
+
+        public List<TeamInformation> GetTeamDetail(string TeamName)
+        {
+            List<TeamInformation> team = new List<TeamInformation>();
+            var GetDetails = entity.Teams.Where(s => s.TeamName == TeamName).ToList();
+            TeamInformation teamInfo = new TeamInformation();
+            foreach(var data in GetDetails)
+            {
+                TeamUserInfo _team = new TeamUserInfo { FirstName = data.UserInfo.FirstName, Email = data.UserInfo.Email, PhoneNumber = data.UserInfo.PhoneNumber };
+                teamInfo.TeamUserList.Add(_team);
+            }
+            team.Add(teamInfo);
+            return team;
+        }
+
+
+
+
+
     }
 }

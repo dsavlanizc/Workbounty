@@ -174,6 +174,9 @@
     <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\WorkitemController.cs" />
+    <Compile Include="ExceptionLog.cs">
+      <DependentUpon>WorkbountyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,9 +187,6 @@
     <Compile Include="Models\TeamInformation.cs" />
     <Compile Include="Models\UpdateWorkitems.cs" />
     <Compile Include="Models\WorkitemDocuments.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RewardRepository.cs" />
     <Compile Include="Repository\TeamRepository.cs" />
@@ -297,6 +297,7 @@
     <Content Include="assets\css\jquery.ui.tabs.css" />
     <Content Include="assets\css\jquery.ui.theme.css" />
     <Content Include="assets\css\landing-page.css" />
+    <Content Include="assets\css\mandatory.css" />
     <Content Include="assets\css\prettify.min.css" />
     <Content Include="assets\css\select2-spinner.gif" />
     <Content Include="assets\css\select2.min.css" />
@@ -335,6 +336,7 @@
     <Content Include="assets\js\ace-extra.min.js" />
     <Content Include="assets\js\ace.min.js" />
     <Content Include="assets\js\additional-methods.min.js" />
+    <Content Include="assets\js\AddMember.js" />
     <Content Include="assets\js\addworkdatepicker.js" />
     <Content Include="assets\js\bootbox.min.js" />
     <Content Include="assets\js\bootstrap-colorpicker.min.js" />
@@ -430,25 +432,6 @@
     <Content Include="assets\js\spin.min.js" />
     <Content Include="assets\js\typeahead.jquery.min.js" />
     <Content Include="assets\swf\copy_csv_xls_pdf.swf" />
-    <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\Microsoft.Data.Edm.dll" />
-    <Content Include="bin\Microsoft.Data.OData.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Microsoft.Web.Mvc.FixedDisplayModes.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\System.Spatial.dll" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Http.OData.dll" />
-    <Content Include="bin\System.Web.Http.Tracing.dll" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Providers.dll" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -541,9 +524,6 @@
     <Content Include="img\vu-43d6535-400x400-imaeefz3ncz5agex.jpeg" />
     <Content Include="img\Wepay_Logo_.png" />
     <Content Include="img\Western-Union-logo-old.jpg" />
-    <Content Include="obj\Debug\TempPE\WorkbountyModel.cs.dll" />
-    <Content Include="obj\Debug\TempPE\WorkbountyModel.Designer.cs.dll" />
-    <Content Include="obj\Debug\Workbounty.csproj.FileListAbsolute.txt" />
     <Content Include="SQLScripts\wbscript.sql" />
     <Content Include="WorkbountyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -561,13 +541,6 @@
     <Content Include="work\Download\dropzone.html" />
     <Content Include="work\Download\Penguins.jpg" />
     <Content Include="work\Download\Person.sql" />
-    <Content Include="obj\Debug\build.force" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\WorkbountyModel.csdl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\WorkbountyModel.msl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\WorkbountyModel.ssdl" />
-    <Content Include="obj\Debug\Workbounty.csprojResolveAssemblyReference.cache" />
     <Content Include="assets\font-awesome\4.1.0\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\font-awesome\4.1.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\font-awesome\4.1.0\fonts\fontawesome-webfont.woff" />

@@ -33,5 +33,6 @@ namespace Workbounty
         public DbSet<WorkitemHistory> WorkitemHistories { get; set; }
         public DbSet<WorkitemRegistration> WorkitemRegistrations { get; set; }
         public DbSet<WorkitemStatu> WorkitemStatus { get; set; }
+        public DbSet<ExceptionLog> ExceptionLogs { get; set; }
     }
 }

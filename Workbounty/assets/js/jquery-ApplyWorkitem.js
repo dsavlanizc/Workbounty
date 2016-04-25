@@ -1,4 +1,9 @@
-﻿function register() {
+﻿$(document).ready(function () {
+    $("#labelSuccessMessage").hide();
+  
+});
+
+function register() {
 
     var item = {
         "WorkitemID": document.getElementById("Workid").value,
@@ -16,7 +21,8 @@
         contentType: "application/json;charset=utf-8",
         processData: true,
         success: function (data, status, xhr) {
-            alert("The result is : " + status);
+            $("#labelSuccessMessage").show();
+            window.location.href = "/Home/dashboard/";
         },
         error: function (xhr) {
             alert(xhr.responseText);

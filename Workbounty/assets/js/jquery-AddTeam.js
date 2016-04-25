@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     $("#recent-box1").hide();
-
+    $("#teamAlertMessage").hide();
+    $("#noDateFoundMessage").hide();
+    $("#alertMessage").hide();
 });
 
 
@@ -19,7 +21,7 @@ function add(item) {
         data: JSON.stringify(memberData),
         dataType: "json",
         success: function (response) {
-            alert("Member Added ")
+
             item.remove()
         },
         error: function (x, e) {
@@ -29,17 +31,22 @@ function add(item) {
 }
 
 function show() {
+    $("#teamAlertMessage").hide();
     $("#simple-table tr").remove();
     var id = $('#itId').val();
     $.getJSON("/api/FindMember/" + id,
 
             function (Data) {
-                $("#simple-table").append('<tr><th>Member Name</th><th>Email</th><th>Action</th></tr>');
-                var arrayLength = Data.length;
-                for (var i = 0; i < arrayLength; i++) {
-                    $("#simple-table").append('<tr><td>' + Data[i].FirstName + '</td><td>' + Data[i].Email + '</td><td><input type="button" id=' + Data[i].UserID + ' value="Add Member" onclick="add(this); return false;" class="btn btn-minier btn-purple" /></td></tr>');
+                if (Data == null) {
+                    $("#noDateFoundMessage").show();
                 }
-
+                else {
+                    $("#simple-table").append('<tr><th>Member Name</th><th>Email</th><th>Action</th></tr>');
+                    var arrayLength = Data.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        $("#simple-table").append('<tr><td>' + Data[i].FirstName + '</td><td>' + Data[i].Email + '</td><td><input type="button" id=' + Data[i].UserID + ' value="Add Member" onclick="add(this); return false;" class="btn btn-minier btn-purple" /></td></tr>');
+                    }
+                }
 
             })
 
@@ -54,7 +61,8 @@ function show() {
 }
 
 function submit() {
-  
+    var teamName = $("#txtTeamName").val();
+
     var teamData = {
         "TeamName": $("#txtTeamName").val(),
         "UserID": $("#Userid").val(),
@@ -62,18 +70,25 @@ function submit() {
         "TeamUserInfoID": $("#Userid").val()
     };
 
-    $.ajax({
-        url: "/Team/Addteam",
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(teamData),
-        dataType: "json",
-        success: function (response) {
-            alert("Team Added ")
-            $("#recent-box1").show()
-        },
-        error: function (x, e) {
-            alert("Error");
-        }
-    });
+    if (teamName == "") {
+        $("#alertMessage").show();
+        document.getElementById("txtTeamName").value = "";
+    }
+    else {
+        $.ajax({
+            url: "/Team/Addteam",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(teamData),
+            dataType: "json",
+            success: function (response) {
+                $("#teamAlertMessage").show();
+                document.getElementById("txtTeamName").value = "";
+                $("#recent-box1").show();
+            },
+            error: function (x, e) {
+                $("#noDateFoundMessage").show();
+            }
+        });
+    }
 }
