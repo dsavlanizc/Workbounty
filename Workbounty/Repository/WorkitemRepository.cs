@@ -194,7 +194,7 @@ namespace Workbounty.Repository
             }
             if (assignData.Count() != 0)
             {
-                var getWorkitemStatus = from u in status
+                var getWorkitemStatus = from u in assignData
                                         join o in getListofAssignUserList on u.WorkItemID equals o.WorkitemID
                                         into completeditems
                                         from ci in completeditems.DefaultIfEmpty()

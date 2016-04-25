@@ -11,14 +11,12 @@ namespace Workbounty
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class WorkitemHistory
     {
         public int WorkitemID { get; set; }
         public int WorkitemStatusID { get; set; }
         public int UpdatedBy { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
         public System.DateTime UpdatedDateTIme { get; set; }
         public int WorkitemHistoryID { get; set; }
     

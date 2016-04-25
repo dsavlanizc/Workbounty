@@ -55,7 +55,7 @@ namespace Workbounty.Controllers
                         FormsAuthentication.SetAuthCookie(loginData.FirstName, false);
                         success = true;
                         message = "login successfully!";
-                        redirectURL = Url.Action("Dashbo1ard", "Home");
+                        redirectURL = Url.Action("Dashboard", "Home");
                     }
                    else
                 {
@@ -248,6 +248,11 @@ namespace Workbounty.Controllers
             int currentUserID = Convert.ToInt32(Session["UserID"]);
             var getUserProfileData = userRepo.ViewUserProfileDetails(currentUserID);
             ViewBag.getUserData = getUserProfileData;
+            return View();
+        }
+
+        public ActionResult Error()
+        {
             return View();
         }
 
