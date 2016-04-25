@@ -528,7 +528,7 @@
     <Content Include="img\WB.png" />
     <Content Include="img\Wepay_Logo_.png" />
     <Content Include="img\Western-Union-logo-old.jpg" />
-    <Content Include="SQLScripts\wbscript.sql" />
+    <Content Include="SQLScripts\WorkBountyDB.sql" />
     <Content Include="WorkbountyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WorkbountyModel.edmx</DependentUpon>
