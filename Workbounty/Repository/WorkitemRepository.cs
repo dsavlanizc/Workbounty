@@ -161,10 +161,24 @@ namespace Workbounty.Repository
 
         public List<AssignWorkitems> GetCurrentWorkitem(int currentUserID)
         {
-            List<WorkitemRegistration> item = new List<WorkitemRegistration>();
-            var name = entity.WorkitemRegistrations.Where(w => w.UserID == currentUserID).Select(s => s.Workitem.UserInfo.FirstName).FirstOrDefault();
-            var getCurrentWorkitemData = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = name, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime }).ToList();
-            getCurrentWorkitemData = getCurrentWorkitemData.OrderByDescending(s => s.CreatedDateTime).ToList();
+            List<WorkitemDistribution> items = new List<WorkitemDistribution>();
+            var WorkitemRegisteredUserID = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID);
+            var exclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == true).ToList();
+            var checkWorkitem = new List<int>();
+            var getCurrentWorkitemData = new List<AssignWorkitems>();
+            foreach (var item in exclusiveitems)
+            {
+                var innerList = entity.WorkitemDistributions.Where(s => s.WorkitemID == item.WorkitemID && s.UserID == item.UserID).Select(s => s.WorkitemID).Distinct().ToList();
+                innerList.ForEach(a => checkWorkitem.Add(a));
+            }
+            var nonExclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == false).Select(s => s.WorkitemID).Distinct().ToList();
+            nonExclusiveitems.ForEach(a => checkWorkitem.Add(a));
+            foreach (var workItemID in checkWorkitem)
+            {
+                
+                var item = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.WorkitemID == workItemID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = s.Workitem.UserInfo.FirstName, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime }).FirstOrDefault();
+                getCurrentWorkitemData.Add(item);
+            }
             return getCurrentWorkitemData;
         }
 
@@ -190,7 +204,7 @@ namespace Workbounty.Repository
             List<WorkItemAssignment> assignData = new List<WorkItemAssignment>();
             foreach (var z in getListofAssignUserList)
             {
-                assignData = entity.WorkItemAssignments.Where(a => a.WorkItemID == z.WorkitemID).ToList();
+                assignData = entity.WorkItemAssignments.Where(a => a.WorkItemID == z.WorkitemID && a.IsRewarded == true).ToList();
             }
             if (assignData.Count() != 0)
             {

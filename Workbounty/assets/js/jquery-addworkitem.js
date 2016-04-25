@@ -11,6 +11,9 @@ $(document).ready(function () {
         sessionStorage.setItem('key1', radioValue);
         sessionStorage.setItem('key2', amount);
         $("#myModal").fadeOut();
+        var res ='Voucher:' +radioValue +', Price:$' + amount;
+        $("#AmountError").text(res);
+
     });
 });
 
@@ -53,10 +56,6 @@ function AddWorkitem() {
     else if ($("#DueDate").val() == "") {
         $("#DuedateError").text("Due Date is Required");
     }
-    else if ($("#amount").val() == "") {
-        $("#AmountError").text("Amount is Required");
-    }
-
     else {
         $.ajax({
             type: "POST",

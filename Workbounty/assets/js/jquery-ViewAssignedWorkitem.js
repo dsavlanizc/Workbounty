@@ -1,4 +1,10 @@
-﻿function add(id) {
+﻿
+$(document).ready(function () {
+    $("#labelSuccessMessage").hide();
+});
+
+
+function add(id) {
     var Data = {
         "UserID": id,
         "TeamID": document.getElementById("Teamid").value,
@@ -13,7 +19,7 @@
         success: function (response) {
             if (response == "Success")
                 {
-            alert("Workitem Alloted ")
+                $("#labelSuccessMessage").show();
             window.location.href = "/Home/Dashboard/";
             }
             else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,8 +13,10 @@ namespace Workbounty.Models
         public string Summary { get; set; }
         public int WorkItemID { get; set; }
         public bool IsExclusive { get; set; }
+          [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public System.DateTime DueDate { get; set; }
-        public string SubmissionPath { get; set; }
+         public string SubmissionPath { get; set; }
+       [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public System.DateTime SubmissionDateTime { get; set; }
         public bool IsRewarded { get; set; }
         public int UserID { get; set; }

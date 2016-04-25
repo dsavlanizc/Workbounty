@@ -1,4 +1,9 @@
-﻿function AddFavourites(id) {
+﻿$(document).ready(function () {
+  
+});
+
+
+function AddFavourites(id) {
     var item = {
         "WorkitemID": id,
         "UserID": $("#UserId").val(),
@@ -15,7 +20,7 @@
         contentType: "application/json;charset=utf-8",
         processData: true,
         success: function (data, status, xhr) {
-            alert("Added to Favourite");
+            $("#BookmarkDisplay").show();
             window.location.href = 'Dashboard';
         },
         error: function (xhr) {
@@ -39,7 +44,7 @@ function RemoveFavourite(id) {
         contentType: "application/json;charset=utf-8",
         processData: true,
         success: function (data, status, xhr) {
-            alert("Removed from Favourite");
+            $("#BookmarkDisplay").hide();
             window.location.href = 'Dashboard';
         },
         error: function (xhr) {

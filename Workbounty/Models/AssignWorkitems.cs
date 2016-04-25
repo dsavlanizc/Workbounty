@@ -10,12 +10,12 @@ namespace Workbounty.Models
     {
         public int UserID { get; set; }
         public int WorkitemID { get; set; }
-         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public System.DateTime StartDate { get; set; }
-         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yy}")]
+   [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public System.DateTime EndDate { get; set; }
         public string FirstName { get; set; }
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
         public string Title { get; set; }
         public string Status { get; set; }
         public string ProposedReward { get; set; }

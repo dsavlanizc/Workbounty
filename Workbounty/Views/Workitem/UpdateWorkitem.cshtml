@@ -14,17 +14,7 @@
 <h2>Add Document</h2>
 <div class="row">
     <div class="col-xs-12">
-        @*@if (ViewBag.displayMessage != null)
-        {
-
-            <p class="ui-icon-alert alert-success">
-                You have already uploaded a document
-            </p>
-
-        }*@
-
-        @*@if (ViewBag.dataForWorkitem != null)
-        {*@
+       
             @foreach (Workbounty.Models.UpdateWorkitems i in ViewBag.dataForWorkitem)
             {
 
@@ -42,7 +32,7 @@
                             </p>
                             <hr>
                             <p class="muted">
-                                <table><tr><td>Attach Documents: </td><td><input type="file" id="myFile" name="myFile" /></td></tr></table>                                 
+                                <table><tr><td class="padding10px">Attach Documents: </td><td><input type="file" id="myFile" name="myFile" /></td></tr></table>                                 
                             </p>
                             <hr />
                         </div>

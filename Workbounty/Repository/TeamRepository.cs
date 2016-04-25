@@ -33,7 +33,7 @@ namespace Workbounty.Repository
             }
             catch (Exception)
             {
-                return null; //Please log those exceptions in database table at this moment, later on we will manage in MongoDB.
+                return null; 
             }
             return team;
         }
@@ -60,7 +60,7 @@ namespace Workbounty.Repository
         }
 
         public int AddTeamData(Team teamData)
-        {                       //Removed Goto and label
+        {                      
             try
             {
                 int i = 0;
@@ -105,5 +105,24 @@ namespace Workbounty.Repository
 
             }
         }
+
+        public List<TeamInformation> GetTeamDetail(string TeamName)
+        {
+            List<TeamInformation> team = new List<TeamInformation>();
+            var GetDetails = entity.Teams.Where(s => s.TeamName == TeamName).ToList();
+            TeamInformation teamInfo = new TeamInformation();
+            foreach(var data in GetDetails)
+            {
+                TeamUserInfo _team = new TeamUserInfo { FirstName = data.UserInfo.FirstName, Email = data.UserInfo.Email, PhoneNumber = data.UserInfo.PhoneNumber };
+                teamInfo.TeamUserList.Add(_team);
+            }
+            team.Add(teamInfo);
+            return team;
+        }
+
+
+
+
+
     }
 }
