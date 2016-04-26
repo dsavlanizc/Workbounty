@@ -4,6 +4,7 @@ var filepath;
 
 $(document).ready(function () {
 
+    $("#alertMessage").hide();
     $("#btn").click(function () {
 
         var radioValue = $("input[name='formfieldradio']:checked").val();
@@ -67,15 +68,14 @@ function AddWorkitem() {
                 console.log(response);
                 if (response.IsSuccess) {
 
-                    alert(response.successAddWorkitemMessage);
                     location.href = response.redirectURL;
                 }
                 else {
-                    alert(response.successAddWorkitemMessage);
+                    $("#alertMessage").show();
                 }
             },
             error: function (xhr) {
-                alert(xhr.responseText);
+                $("#alertMessage").show();
             }
         });
     }
