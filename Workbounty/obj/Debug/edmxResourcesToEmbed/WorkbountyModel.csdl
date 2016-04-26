@@ -379,6 +379,7 @@
       <End Role="Team" EntitySet="Teams" />
       <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="WorkbountyDBModel.sysdiagram" />
   </EntityContainer>
   <EntityType Name="ExceptionLog">
     <Key>
@@ -386,8 +387,9 @@
     </Key>
     <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClientID" Type="Int32" Nullable="false" />
-    <Property Name="ErrorDetails" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ErrorDetails" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InnerException" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_WorkitemDistribution_Team">
     <End Type="WorkbountyDBModel.Team" Role="Team" Multiplicity="1" />
@@ -401,4 +403,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

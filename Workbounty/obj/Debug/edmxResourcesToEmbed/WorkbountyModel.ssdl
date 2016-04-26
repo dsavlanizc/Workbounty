@@ -6,8 +6,19 @@
     </Key>
     <Property Name="ExceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClientID" Type="int" Nullable="false" />
-    <Property Name="ErrorDetails" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ErrorDetails" Type="varchar(max)" Nullable="false" />
+    <Property Name="InnerException" Type="varchar" MaxLength="5000" />
     <Property Name="EventDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Team">
     <Key>
@@ -198,18 +209,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkitemDistribution_Team">
-    <End Role="Team" Type="Self.Team" Multiplicity="1" />
-    <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Team">
-        <PropertyRef Name="TeamID" />
-      </Principal>
-      <Dependent Role="WorkitemDistribution">
-        <PropertyRef Name="TeamID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_WorkitemDistribution_UserInfo">
     <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
     <End Role="WorkitemDistribution" Type="Self.WorkitemDistribution" Multiplicity="*" />
@@ -296,6 +295,7 @@
   </Association>
   <EntityContainer Name="WorkbountyDBModelStoreContainer">
     <EntitySet Name="ExceptionLog" EntityType="Self.ExceptionLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Workitem" EntityType="Self.Workitem" Schema="dbo" store:Type="Tables" />
@@ -335,10 +335,6 @@
     <AssociationSet Name="FK_WorkItemAssignment_Workitem" Association="Self.FK_WorkItemAssignment_Workitem">
       <End Role="Workitem" EntitySet="Workitem" />
       <End Role="WorkItemAssignment" EntitySet="WorkItemAssignment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WorkitemDistribution_Team" Association="Self.FK_WorkitemDistribution_Team">
-      <End Role="Team" EntitySet="Team" />
-      <End Role="WorkitemDistribution" EntitySet="WorkitemDistribution" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkitemDistribution_UserInfo" Association="Self.FK_WorkitemDistribution_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />

@@ -36,6 +36,8 @@
                     @Html.DisplayFor(a => item.Summary)
                 </div>
             </div>
+            <div style="padding-top: 20px">
+            </div>
             <div>
 
                 <p class="ui-icon-alert alert-success" id="labelSuccessMessage">Successfully Applied!</p>
@@ -48,9 +50,8 @@
                             <th width="10%">Due Date</th>
                             <th width="10%">Rewards</th>
                             <th width="10%">Amount</th>
-                            <th width="10%">Status</th>
+                            <th width="10%">Option</th>
                             <th width="10%">Action</th>
-                            <th width="10%"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +60,6 @@
                             <td>@Html.DisplayFor(a => item.DueDate)</td>
                             <td>@Html.DisplayFor(a => item.ProposedReward)</td>
                             <td>@Html.DisplayFor(a => item.Amount)</td>
-                            <td>@Html.DisplayFor(a => item.Status)</td>
                             <td>
                                 <select id="open">
                                     <option value="false">Open</option>
