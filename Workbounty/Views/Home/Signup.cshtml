@@ -27,18 +27,7 @@
                                         New User Registration
                                     </h4>
                                     <div class="space-6">
-                                        <div class="alert alert-danger" id="alertMessage">
-                                            <button type="button" class="close" data-dismiss="alert">
-                                                <i class="ace-icon fa fa-times"></i>
-                                            </button>
-
-                                            <strong>
-                                                <i class="ace-icon fa fa-times"></i>
-                                                Failed!
-                                            </strong>
-                                              Signup failed due to invalid data.
-                                            <br>
-                                        </div>
+                                        
 
                                     </div>
                                     <p> Enter your details to begin: </p>
@@ -49,7 +38,7 @@
                                             <label class="block clearfix">
                                                 <span class="block input-icon input-icon-right">
 
-                                                    @Html.TextBoxFor(a => a.Email, new { @id = "Email", onkeypress = "return isValidEmailAddress(emailAddress)", @maxlength = "30", @class = "form-control", @placeholder = "E mail", @typeof = "email" })
+                                                    @Html.TextBoxFor(a => a.Email, new { @id = "Email", @maxlength = "30", @class = "form-control", @placeholder = "E mail", @typeof = "email" })
                                                     <span id="EmailError" class="text-danger"></span>
                                                 </span>
 

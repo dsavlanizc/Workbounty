@@ -36,9 +36,11 @@ function removeMember(item) {
 }
 
 function show() {
-    $("#teamAlertMessage").hide();
+   
     $("#simple-table tr").remove();
     var id = $('#itId').val();
+    var teamID = $('#teamID').val();
+    var teamName = $('#teamName').val();
     $.getJSON("/api/FindMember/" + id,
 
             function (Data) {
@@ -66,14 +68,15 @@ function show() {
 }
 function add(item) {
     var id = $(item).attr("id");
+    var teamID = $('#teamID').val();
     var memberData = {
         "UserID": id,
         "IsActive": true,
         "TeamName": $("#Teamname").val(),
-        "TeamUserInfoID": $("#teamid").val()
+        "TeamUserInfoID": teamID
     };
     $.ajax({
-        url: "/Team/AddMember",
+        url: "/Team/UpdateNewMember",
         type: "POST",
         contentType: "application/json;charset=utf-8",
         data: JSON.stringify(memberData),

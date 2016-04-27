@@ -85,7 +85,7 @@ function submit() {
             success: function (response) {
                 if (response != 0) {
                     $("#teamAlertMessage").show();
-
+                    $("#AddTeamButton").hide();
                     $("#recent-box1").show();
                 }
                 else

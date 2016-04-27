@@ -161,6 +161,7 @@ namespace Workbounty.Repository
 
         public List<AssignWorkitems> GetCurrentWorkitem(int currentUserID)
         {
+            DateTime currentDate = DateTime.Now;
             List<WorkitemDistribution> items = new List<WorkitemDistribution>();
             var WorkitemRegisteredUserID = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID);
             var exclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == true).ToList();
@@ -171,13 +172,16 @@ namespace Workbounty.Repository
                 var innerList = entity.WorkitemDistributions.Where(s => s.WorkitemID == item.WorkitemID && s.UserID == item.UserID).Select(s => s.WorkitemID).Distinct().ToList();
                 innerList.ForEach(a => checkWorkitem.Add(a));
             }
-            var nonExclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == false).Select(s => s.WorkitemID).Distinct().ToList();
+            var nonExclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == false && s.Workitem.DueDate<=currentDate).Select(s => s.WorkitemID).Distinct().ToList();
             nonExclusiveitems.ForEach(a => checkWorkitem.Add(a));
             foreach (var workItemID in checkWorkitem)
             {
-                
+                var checkDueDateValidation = entity.WorkitemRegistrations.Where(s => s.Workitem.DueDate <= currentDate).FirstOrDefault();
+               if(checkDueDateValidation!=null)
+               { 
                 var item = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.WorkitemID == workItemID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = s.Workitem.UserInfo.FirstName, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime }).FirstOrDefault();
                 getCurrentWorkitemData.Add(item);
+               }
             }
             return getCurrentWorkitemData;
         }

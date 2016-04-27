@@ -42,9 +42,9 @@ namespace Workbounty
             //    innerException = CurrentException.InnerException.InnerException.Message;
             //}
             //catch
-            //{ 
+            //{
             //}
-            //string clientID = Session["UserID"].ToString();
+            //string clientID = "1";
             //ExceptionLog obj = new ExceptionLog();
             //obj.ClientID = Convert.ToInt32(clientID);
             //obj.ErrorDetails = error;

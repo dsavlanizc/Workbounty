@@ -62,5 +62,15 @@ namespace Workbounty.Controllers
             var getSearchMemberData = teamRepo.GetMemberResult(id);
             return Json(getSearchMemberData);
         }
+
+        [HttpPost]
+        public JsonResult UpdateNewMember(Team updateMemberData)
+      {
+          var getMemberResults = teamRepo.AddUpdateMemberData(updateMemberData);
+          return Json(getMemberResults);
+      }
+
+
+
     }
 }

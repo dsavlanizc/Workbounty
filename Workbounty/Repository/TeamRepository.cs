@@ -100,6 +100,24 @@ namespace Workbounty.Repository
             }
         }
 
+        public string AddUpdateMemberData(Team updateMemberData)
+        {
+            try
+            {
+                var checkTeamName = entity.Teams.Where(s => s.TeamUserInfoID == updateMemberData.TeamUserInfoID).Select(s => s.TeamName).FirstOrDefault();
+                updateMemberData.TeamName = checkTeamName;
+                entity.Teams.Add(updateMemberData);
+                entity.SaveChanges();
+                return "Success";
+            }
+            catch (Exception)
+            {
+                return "Error";
+
+            }
+        }
+
+
 
         public string AddMemberData(Team memberData)
         {
