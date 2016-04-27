@@ -3,27 +3,31 @@
     $("#teamAlertMessage").hide();
     $("#noDateFoundMessage").hide();
     $("#alertMessage").hide();
-    $("#teamWarningMessage").hide();
-    
 });
 
 
-function add(item) {
+function removeMember(item) {
     var id = $(item).attr("id");
-    var memberData = {
+    var teamID = $(item).data('teamuserid');    
+    var updateMemberData = {
         "UserID": id,
-        "IsActive": true,
-        "TeamName": $("#txtTeamName").val(),
-        "TeamUserInfoID": $("#teamid").val()
+        "IsActive": false,
+        "TeamUserInfoID": teamID
     };
     $.ajax({
-        url: "/Team/AddMember",
+        url: "/Team/UpdateMember",
         type: "POST",
         contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(memberData),
+        data: JSON.stringify(updateMemberData),
         dataType: "json",
         success: function (response) {
-            item.remove()
+            if (response == "Success") {
+                item.remove()
+            }
+            else
+            {
+                alert("Error");
+            }
         },
         error: function (x, e) {
             alert("Error");
@@ -60,42 +64,25 @@ function show() {
             });
 
 }
-
-function submit() {
-    var teamName = $("#txtTeamName").val();
-
-    var teamData = {
-        "TeamName": $("#txtTeamName").val(),
-        "UserID": $("#Userid").val(),
-        "IsActive": false,
-        "TeamUserInfoID": $("#Userid").val()
+function add(item) {
+    var id = $(item).attr("id");
+    var memberData = {
+        "UserID": id,
+        "IsActive": true,
+        "TeamName": $("#Teamname").val(),
+        "TeamUserInfoID": $("#teamid").val()
     };
-
-    if (teamName == "") {
-        $("#alertMessage").show();
-        document.getElementById("txtTeamName").value = "";
-    }
-    else {
-        $.ajax({
-            url: "/Team/Addteam",
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(teamData),
-            dataType: "json",
-            success: function (response) {
-                if (response != 0) {
-                    $("#teamAlertMessage").show();
-
-                    $("#recent-box1").show();
-                }
-                else
-                {
-                    $("#teamWarningMessage").show();
-                }
-            },
-            error: function (x, e) {
-                $("#noDateFoundMessage").show();
-            }
-        });
-    }
+    $.ajax({
+        url: "/Team/AddMember",
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(memberData),
+        dataType: "json",
+        success: function (response) {
+            item.remove()
+        },
+        error: function (x, e) {
+            alert("Error");
+        }
+    });
 }

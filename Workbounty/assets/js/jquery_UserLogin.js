@@ -1,4 +1,9 @@
-﻿$(function () {
+﻿$(document).ready(function () {
+    $("#alertMessage").hide();
+    $("#loginWarningMessage").hide();
+
+});
+$(function () {
     $("#loginButton").click(function (e) {
         e.preventDefault();
         var id = {
@@ -9,7 +14,7 @@
 
         if (id.Email == "" || id.Password=="")
         {
-            $("#alertMessage").text("Enter Email id and Password");
+            $("#loginWarningMessage").show();
         }
         else
             {
@@ -25,14 +30,13 @@
                     location.href = response.redirectURL;
                 }
                 else {
-                    alert(response.message);
+                    $("#alertMessage").show();
                 }
             },
 
             error: function (x, e) {
-                alert('Failed');
-                alert(x.responseText);
-                alert(x.status);
+                $("#loginWarningMessage").show();
+             
 
             }
         });
