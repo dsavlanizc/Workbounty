@@ -7,6 +7,7 @@ using Workbounty.Repository;
 using Workbounty.Models;
 using PagedList;
 using System.Web.Security;
+using System.IO;
 
 namespace Workbounty.Controllers
 {

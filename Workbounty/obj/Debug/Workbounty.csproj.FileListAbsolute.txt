@@ -183,6 +183,5 @@ E:\Workbounty-Latest\Workbounty\Workbounty\bin\ko\System.Spatial.resources.dll
 E:\Workbounty-Latest\Workbounty\Workbounty\bin\ru\System.Spatial.resources.dll
 E:\Workbounty-Latest\Workbounty\Workbounty\bin\zh-Hans\System.Spatial.resources.dll
 E:\Workbounty-Latest\Workbounty\Workbounty\bin\zh-Hant\System.Spatial.resources.dll
-E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.dll
 E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.pdb
