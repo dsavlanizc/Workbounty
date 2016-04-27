@@ -72,7 +72,7 @@ function submit() {
 
     if (teamName == "") {
         $("#alertMessage").show();
-        document.getElementById("txtTeamName").value = "";
+      
     }
     else {
         $.ajax({
@@ -83,7 +83,7 @@ function submit() {
             dataType: "json",
             success: function (response) {
                 $("#teamAlertMessage").show();
-                document.getElementById("txtTeamName").value = "";
+                //document.getElementById("txtTeamName").value = "";
                 $("#recent-box1").show();
             },
             error: function (x, e) {

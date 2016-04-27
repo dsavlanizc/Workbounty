@@ -7,7 +7,7 @@
 <div class="widget-box transparent" id="recent-box">
     <div class="widget-header">
         <div class="col-xs-10">
-            <h4 class="widget-title lighter smaller">
+            <h4 class="widget-title lighter smaller" data_toggle="tooltip" , title="Add team & members">
                 Team |
                 @Html.ActionLink("Add Team", "addteam", "Team")
             </h4>
@@ -29,12 +29,10 @@
                                 <td>@Html.DisplayFor(s => user.FirstName)</td>
                                 <td>@Html.DisplayFor(s => user.Email)</td>
                                 <td>@Html.DisplayFor(s => user.PhoneNumber)</td>
-                                <td><input type="button" id="@user.UserID" value="Delete Member" onclick="add(this);" class="btn btn-minier btn-purple"></td>
+                                <td><input type="button" id="@user.UserID" value="Delete Member" onclick="add(this);" class="btn btn-minier btn-purple" data_toggle="tooltip" , title="Delete team member"></td>
                             </tr>
                         }
-
                     </tbody>
-
                 </table>
             }
         </div>
