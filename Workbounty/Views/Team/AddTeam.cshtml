@@ -19,7 +19,7 @@
                         <i class="ace-icon fa fa-times"></i>
                         Failed!
                     </strong>
-                            Team name should not be blank.
+                            Team name should not be empty.
                     <br>
                 </div>
                 <div class="col-xs-8">
@@ -31,6 +31,7 @@
                     <div class="col-md-5"></div>
                     <div class="col-sm-12" id="addTeamData">
                         <p class="ui-icon-alert alert-success" id="teamAlertMessage"> Team created successfully!</p>
+                        <p class="ui-icon-alert alert-danger" id="teamWarningMessage"> Team Already exists.</p>
                         <input type="text" id="txtTeamName" placeholder="" class="col-xs-10 col-sm-5" maxlength="20"  />&nbsp;
                         <input type="hidden" id="Userid" value="@Session["UserID"]" />
                         <input type="button" value="Submit" onclick="submit();" class="btn btn-minier btn-success" data-toggle="tooltip" title="Create team" />
