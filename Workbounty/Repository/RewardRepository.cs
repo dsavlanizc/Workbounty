@@ -17,17 +17,18 @@ namespace Workbounty.Repository
             var assignUserId = entity.WorkItemAssignments.Where(a => a.UserID.Equals(currentUserID) && a.IsRewarded == true).ToList();
             List<Rewards> displayRewarddata = new List<Rewards>();
 
-            if (assignUserId == null)
-            {
-                return null;
-            }
-            else
+            if (assignUserId != null)
             {
                 foreach (var data in assignUserId)
                 {
-                    displayRewarddata = entity.WorkItemAssignments.Select(s => new Rewards { Title = s.Workitem.Title, FirstName = s.UserInfo.FirstName, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount }).ToList();
+                    displayRewarddata = entity.WorkItemAssignments.Where(a => a.UserID.Equals(currentUserID) && a.IsRewarded == true).Select(s => new Rewards { Title = s.Workitem.Title, FirstName = s.Workitem.UserInfo.FirstName, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount }).ToList();
                 }
                 return displayRewarddata;
+             
+            }
+            else
+            {
+                return null;
             }
         }
 

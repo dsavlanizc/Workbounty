@@ -57,7 +57,6 @@ E:\WorkBounty\Workbounty\Workbounty\bin\PagedList.dll
 E:\WorkBounty\Workbounty\Workbounty\bin\PagedList.Mvc.dll
 E:\WorkBounty\Workbounty\Workbounty\bin\PagedList.xml
 E:\WorkBounty\Workbounty\Workbounty\bin\PagedList.Mvc.xml
-E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\Workbounty\Workbounty\Workbounty\bin\Antlr3.Runtime.dll
 E:\Workbounty\Workbounty\Workbounty\bin\EntityFramework.dll
 E:\Workbounty\Workbounty\Workbounty\bin\Microsoft.Data.Edm.dll
@@ -186,3 +185,4 @@ E:\Workbounty-Latest\Workbounty\Workbounty\bin\zh-Hant\System.Spatial.resources.
 E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache
 E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.dll
 E:\Workbounty-Latest\Workbounty\Workbounty\obj\Debug\Workbounty.pdb
+E:\Workbounty\Workbounty\Workbounty\obj\Debug\Workbounty.csprojResolveAssemblyReference.cache

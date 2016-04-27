@@ -1,5 +1,6 @@
 ﻿$(document).ready(function ()
 {
+    $("#alertMessage").hide();
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
         var dateofBirth = $("#DateSelect").val();
@@ -63,13 +64,13 @@
                         document.location.href = url;
                     }
                     else {
-                        alert("Signup Fail");
+                        $("#alertMessage").show();
                     }
 
                 },
 
                 error: function (x, e) {
-                    alert("Error");
+                    $("#alertMessage").show();
                 }
             });
         }

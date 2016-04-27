@@ -364,6 +364,7 @@
     <Content Include="assets\js\fuelux.tree.min.js" />
     <Content Include="assets\js\fuelux.wizard.min.js" />
     <Content Include="assets\js\fullcalendar.min.js" />
+    <Content Include="assets\js\getTeamDetail.js" />
     <Content Include="assets\js\grid.locale-en.js" />
     <Content Include="assets\js\html5shiv.min.js" />
     <Content Include="assets\js\jquery-.js" />

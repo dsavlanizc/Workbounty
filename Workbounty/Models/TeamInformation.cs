@@ -23,6 +23,8 @@ namespace Workbounty.Models
         public string PhoneNumber { get; set; }
         public string FirstName { get; set; }
         public int PublishedTo { get; set; }
+        public Nullable<int> TeamUserInfoID { get; set; }
+       
     }
 
     public class UserProfileInfo

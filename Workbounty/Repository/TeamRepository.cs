@@ -64,21 +64,31 @@ namespace Workbounty.Repository
             try
             {
                 int i = 0;
+                
                 do
                 {
-                    var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
-                    if (qwe == null)
+                    var checkTeamName = entity.Teams.Where(s => s.TeamName == teamData.TeamName).FirstOrDefault();
+                    if (checkTeamName == null)
                     {
-                        var getID = Convert.ToInt32(teamData.TeamUserInfoID);
-                        entity.Teams.Add(teamData);
-                        entity.SaveChanges();
-                        i++;
-                        return getID;
+                          var qwe = entity.Teams.Where(s => s.TeamUserInfoID == teamData.TeamUserInfoID).FirstOrDefault();
+                           if (qwe == null)
+                                {
+                                    var getID = Convert.ToInt32(teamData.TeamUserInfoID);
+                                    entity.Teams.Add(teamData);
+                                    entity.SaveChanges();
+                                    i++;
+                                    return getID;
+                                }
+                          else
+                                {
+                                    teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
+                                }
                     }
                     else
                     {
-                        teamData.TeamUserInfoID = teamData.TeamUserInfoID + 1;
+                        return 0;
                     }
+                
                 }
                 while (i == 0);
                 return 0;
@@ -106,18 +116,45 @@ namespace Workbounty.Repository
             }
         }
 
+        public string UpdateMemberData(Team memberData)
+        {
+            try
+            {
+                Team teamData = new Team();
+                teamData = entity.Teams.Where(s => s.TeamUserInfoID == memberData.TeamUserInfoID && s.UserID == memberData.UserID).FirstOrDefault();
+                if(teamData!=null)
+                {
+                entity.Teams.Remove(teamData);
+                entity.SaveChanges();
+                return "Success";
+                }
+                else
+                {
+                    return "error";
+                }
+            }
+            catch (Exception)
+            {
+                return "Error";
+
+            }
+        }
+
+
+
         public List<TeamInformation> GetTeamDetail(string TeamName)
         {
             List<TeamInformation> team = new List<TeamInformation>();
             var GetDetails = entity.Teams.Where(s => s.TeamName == TeamName).ToList();
             TeamInformation teamInfo = new TeamInformation();
-            foreach(var data in GetDetails)
+            foreach (var data in GetDetails)
             {
-                TeamUserInfo _team = new TeamUserInfo { FirstName = data.UserInfo.FirstName, Email = data.UserInfo.Email, PhoneNumber = data.UserInfo.PhoneNumber };
+                TeamUserInfo _team = new TeamUserInfo { FirstName = data.UserInfo.FirstName, Email = data.UserInfo.Email, PhoneNumber = data.UserInfo.PhoneNumber,UserID=data.UserID,TeamUserInfoID=data.TeamUserInfoID };
                 teamInfo.TeamUserList.Add(_team);
             }
             team.Add(teamInfo);
             return team;
+
         }
 
 
