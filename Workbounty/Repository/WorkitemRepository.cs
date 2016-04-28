@@ -179,6 +179,7 @@ namespace Workbounty.Repository
                 var item = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.WorkitemID == workItemID).Select(s => new AssignWorkitems { WorkitemID = s.WorkitemID, Title = s.Workitem.Title, StartDate = s.Workitem.StartDate, EndDate = s.Workitem.DueDate, FirstName = s.Workitem.UserInfo.FirstName, ProposedReward = s.Workitem.ProposedReward, Amount = s.Workitem.Amount, CreatedDateTime = s.Workitem.CreatedDateTime }).FirstOrDefault();
                 getCurrentWorkitemData.Add(item);
             }
+            getCurrentWorkitemData.OrderByDescending(s => s.CreatedDateTime).ToList();
             return getCurrentWorkitemData;
         }
 
@@ -216,8 +217,8 @@ namespace Workbounty.Repository
                 var getWorkitemStatusList = getWorkitemStatus.ToList();
                 getListofAssignUserList.RemoveAll(x => status.Any(y => y.WorkItemID == x.WorkitemID));
                 itemlist = getListofAssignUserList.Union(getWorkitemStatusList).ToList();
-                itemlist = itemlist.OrderByDescending(s => s.CreatedDateTime).ToList();
                 var getWorkitemData = itemlist.ToList();
+                getWorkitemData = getWorkitemData.OrderByDescending(s => s.CreatedDateTime).ToList();
                 return getWorkitemData;
             }
             else
@@ -247,6 +248,7 @@ namespace Workbounty.Repository
             if (getDataForIsRewarded == false)
             {
                 var getListofUserAppliedForWorkitem = entity.WorkItemAssignments.Where(s => s.WorkItemID == id).Select(s => new WorkitemDocuments { WorkItemID = s.WorkItemID, UserID = s.UserID, Title = s.Workitem.Title, Summary = s.Workitem.Summary, FirstName = s.UserInfo.FirstName, SubmissionDateTime = s.SubmissionDateTime, SubmissionPath = s.SubmissionPath }).ToList();
+                getListofUserAppliedForWorkitem.OrderByDescending(a => a.SubmissionDateTime).ToList();
                 return getListofUserAppliedForWorkitem;
             }
             else
@@ -319,9 +321,8 @@ namespace Workbounty.Repository
 
         public List<Workitem> SearchWorkitems(string searchValue)
         {
-            var getSearchWorkitemResults = entity.Workitems.Where(s => s.Title.StartsWith(searchValue)).ToList();
-
-
+            //var getSearchWorkitemResults = entity.Workitems.Where(s => s.Title.StartsWith(searchValue)).ToList();
+            var getSearchWorkitemResults = entity.Workitems.Where(s => s.Title.Contains(searchValue) || s.Summary.Contains(searchValue)).ToList();
             return getSearchWorkitemResults;
 
         }

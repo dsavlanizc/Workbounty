@@ -86,6 +86,7 @@ namespace Workbounty.Controllers
                     var userSignupInfo = userRepo.AddUserDetails(userSignupData);
                     Session["UserID"] = userSignupInfo.UserID;
                     Session["FirstName"] = userSignupInfo.FirstName;
+                    FormsAuthentication.SetAuthCookie(userSignupInfo.FirstName, false);
                     return Json("Success");
                 }
 
@@ -151,6 +152,9 @@ namespace Workbounty.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var fileName = Path.GetFileName(addWorkitemData.DocumentFilePath);
+                    var path = Path.Combine(Server.MapPath("~/work/Download/"), fileName);
+                    addWorkitemData.DocumentFilePath = path;
                     var getResultsOfWorkitemData = workbountyRepo.AddWorkitem(addWorkitemData);
                     IsSuccess = true;
                     successAddWorkitemMessage = "Workitem Added successfully!";

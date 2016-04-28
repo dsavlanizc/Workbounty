@@ -39,15 +39,23 @@ namespace Workbounty.Controllers
         public ActionResult UpdateWorkitem(int currentWorkitemID)
         {
             var getDataofCurrentWorkitem = workbountyRepo.ShowCurrentWorkitems(currentWorkitemID);
-            if (getDataofCurrentWorkitem != null)
+            var currentDate = DateTime.Now;
+            var workitemInfo = entity.Workitems.Where(s => s.WorkitemID == currentWorkitemID).FirstOrDefault();
+            if (currentDate < workitemInfo.DueDate)
             {
-                ViewBag.dataForWorkitem = getDataofCurrentWorkitem;
+                if (getDataofCurrentWorkitem != null)
+                {
+                    ViewBag.dataForWorkitem = getDataofCurrentWorkitem;
+                }
+                else
+                {
+                    ViewBag.displayMessage = "Already Submitted a Document";
+                }
             }
-            else
+            else 
             {
-                ViewBag.displayMessage = "Already Submit a Document";
+                ViewBag.displayMessage = "Due date is reached. Cannot upload document";
             }
-        
             return View();
         }
 

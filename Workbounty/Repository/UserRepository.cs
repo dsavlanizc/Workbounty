@@ -10,7 +10,7 @@ namespace Workbounty.Repository
 {
     public class UserRepository : ApiController
     {
-        private WorkbountyDBEntities entity = new WorkbountyDBEntities(); 
+        private WorkbountyDBEntities entity = new WorkbountyDBEntities();
 
         public UserInfo UserLogin(UserInfo userLoginData)
         {
@@ -61,15 +61,10 @@ namespace Workbounty.Repository
         {
             try
             {
-                if (currentUserData != null)
-                {
-                    var getUserDetails = entity.UserInfoes.Where(s => s.UserID == currentUserData).Select(s => new UserProfileInfo { Email = s.Email, FirstName = s.FirstName, LastName = s.LastName, DateOfBirth = s.DateOfBirth, InterestedKeywords = s.InterestedKeywords, PhoneNumber = s.PhoneNumber }).ToList();
-                    return getUserDetails;
-                }
-                else
-                {
-                    return null;
-                }
+
+                var getUserDetails = entity.UserInfoes.Where(s => s.UserID == currentUserData).Select(s => new UserProfileInfo { Email = s.Email, FirstName = s.FirstName, LastName = s.LastName, DateOfBirth = s.DateOfBirth, InterestedKeywords = s.InterestedKeywords, PhoneNumber = s.PhoneNumber }).ToList();
+                return getUserDetails;
+
             }
             catch (Exception)
             {

@@ -47,12 +47,19 @@
                 <ul>
 
                     <li>
+                        @try
+                        { 
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             <span class="user-info">
-                                Welcome,
+                             Welcome,
                              @Session["FirstName"].ToString()
                             </span>
                         </a>
+                        }
+                        catch 
+                       {
+                           Response.Redirect("~/home/login");
+                       }
 
                         <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                             <li>

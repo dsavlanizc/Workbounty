@@ -33,28 +33,28 @@ namespace Workbounty
         protected void Application_Error(object sender, EventArgs e)
         {
             //// Get the error details
-            //Exception CurrentException = Server.GetLastError();
-            ////HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
-            //string error = CurrentException.ToString();
-            //string innerException = null;
-            //try
-            //{
-            //    innerException = CurrentException.InnerException.InnerException.Message;
-            //}
-            //catch
-            //{ 
-            //}
-            //string clientID = Session["UserID"].ToString();
-            //ExceptionLog obj = new ExceptionLog();
-            //obj.ClientID = Convert.ToInt32(clientID);
-            //obj.ErrorDetails = error;
-            //obj.InnerException = innerException;
-            //obj.EventDateTime = DateTime.Now.Date;
-            //WorkbountyDBEntities entity = new WorkbountyDBEntities();
-            //entity.ExceptionLogs.Add(obj);
-            //entity.SaveChanges();
-            //Server.ClearError();
-            //Response.Redirect("/Home/Error");
+            Exception CurrentException = Server.GetLastError();
+            //HttpException lastErrorWrapper = Server.GetLastError() as HttpException;
+            string error = CurrentException.ToString();
+            string innerException = null;
+            try
+            {
+                innerException = CurrentException.InnerException.InnerException.Message;
+            }
+            catch
+            {
+            }
+            string clientID = Session["UserID"].ToString();
+            ExceptionLog obj = new ExceptionLog();
+            obj.ClientID = Convert.ToInt32(clientID);
+            obj.ErrorDetails = error;
+            obj.InnerException = innerException;
+            obj.EventDateTime = DateTime.Now.Date;
+            WorkbountyDBEntities entity = new WorkbountyDBEntities();
+            entity.ExceptionLogs.Add(obj);
+            entity.SaveChanges();
+            Server.ClearError();
+            Response.Redirect("/Home/Error");
         }
 
     }

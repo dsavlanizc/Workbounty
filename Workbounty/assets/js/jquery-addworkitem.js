@@ -36,9 +36,9 @@ function AddWorkitem() {
     newitem.ProposedReward = sessionStorage.getItem('key1');
     newitem.Amount = sessionStorage.getItem('key2');
     newitem.CreatedBy = $("#Userid").val();
-    newitem.CreatedDateTime = d.toDateString();
+    newitem.CreatedDateTime = d;
     newitem.ModifyBy = $("#Userid").val();
-    newitem.ModifyDateTime = d.toDateString();
+    newitem.ModifyDateTime = d;
     newitem.Status = true;
     newitem.Remarks = "Good";
     newitem.IsOpenForGroup = true;
@@ -61,7 +61,7 @@ function AddWorkitem() {
         $.ajax({
             type: "POST",
             url: '/Home/AddWorkitem/',
-            data: JSON.stringify({ addWorkitemData: newitem }),
+            data: JSON.stringify({ addWorkitemData: newitem}),
             contentType: "application/json;charset=utf-8",
             processData: true,
             success: function (response) {

@@ -16,7 +16,7 @@
         contentType: "application/json;charset=utf-8",
         processData: true,
         success: function (data, status, xhr) {
-            alert("Added to Favourite");
+            //alert("Added to Favourite");
             window.location.href = 'Viewitemsinterestedin';
         },
         error: function (xhr) {
@@ -40,7 +40,7 @@ function RemoveFavourite_v(id) {
         contentType: "application/json;charset=utf-8",
         processData: true,
         success: function (data, status, xhr) {
-            alert("Removed from Favourite");
+            //alert("Removed from Favourite");
             window.location.href = 'Viewitemsinterestedin';
         },
         error: function (xhr) {
