@@ -8,6 +8,7 @@ using Workbounty.Models;
 using PagedList;
 using System.Web.Security;
 using System.Data;
+using System.IO;
 
 namespace Workbounty.Controllers
 {

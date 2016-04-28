@@ -15,8 +15,8 @@
 <div class="widget-box transparent" id="recent-box">
     <div class="widget-header">
         <div class="col-xs-10">
-            <h4 class="widget-title lighter smaller data_toggle=" tooltip" , title="Add team & members">
-                Team |
+            <h4 class="widget-title lighter smaller padding10pxbottom" data_toggle="tooltip" , title="Add team & members">
+                <i class="menu-icon fa fa-users"></i>  Team |
                 @Html.ActionLink("Add team", "addteam", "Team")
             </h4>
 
@@ -26,8 +26,8 @@
                 {
                     if (TeamName != user.TeamName)
                     {
-                      
-                        <h4 id="Teamname">@Html.ActionLink(user.TeamName, "AddMember", "Team", new { TeamName = user.TeamName, data_toggle = "tooltip", title = "Get Team details" }, null)  </h4>
+
+                        <h4 id="Teamname" class="widget-title lighter smaller"><i class="menu-icon fa fa-user padding10px"></i>@Html.ActionLink(user.TeamName, "AddMember", "Team", new { TeamName = user.TeamName, data_toggle = "tooltip", title = "Get Team details" }, null)  </h4>
                         TeamName = user.TeamName;
                     }
                 }
