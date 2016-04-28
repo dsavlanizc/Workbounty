@@ -3,8 +3,6 @@
     $("#teamAlertMessage").hide();
     $("#noDateFoundMessage").hide();
     $("#alertMessage").hide();
-    $("#teamWarningMessage").hide();
-    
 });
 
 
@@ -23,6 +21,7 @@ function add(item) {
         data: JSON.stringify(memberData),
         dataType: "json",
         success: function (response) {
+
             item.remove()
         },
         error: function (x, e) {
@@ -73,7 +72,7 @@ function submit() {
 
     if (teamName == "") {
         $("#alertMessage").show();
-        document.getElementById("txtTeamName").value = "";
+      
     }
     else {
         $.ajax({
@@ -83,15 +82,9 @@ function submit() {
             data: JSON.stringify(teamData),
             dataType: "json",
             success: function (response) {
-                if (response != 0) {
-                    $("#teamAlertMessage").show();
-
-                    $("#recent-box1").show();
-                }
-                else
-                {
-                    $("#teamWarningMessage").show();
-                }
+                $("#teamAlertMessage").show();
+                //document.getElementById("txtTeamName").value = "";
+                $("#recent-box1").show();
             },
             error: function (x, e) {
                 $("#noDateFoundMessage").show();

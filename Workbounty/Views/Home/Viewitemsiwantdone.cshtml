@@ -2,18 +2,18 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Viewitemsiwantdone";
+    ViewBag.Title = "My workitems";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
-<ul class="breadcrumb">
+<ul class="breadcrumb" >
     <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="~/home/dashboard">Dashboard</a>
+        <a href="~/home/dashboard" data_toggle="tooltip" , title="Dashboard">Dashboard</a>
     </li>
     <li class="active">Items I Want Done</li>
 </ul>
 
-<h2>Items I Want Done</h2>
+<h2>Items i want done</h2>
 <div class="col-sm-10">
     <div class="widget-box transparent" id="recent-box">
         <div class="widget-header">

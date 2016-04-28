@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "AddTeam";
+    ViewBag.Title = "Add team";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-xs-8">
                     <h4 class="widget-title lighter smaller">
-                        Add Team
+                        Add team
                     </h4>
                 </div>
                 <div class="row">
@@ -53,7 +53,7 @@
                     <div class="col-sm-9">
                         <input type="text" id="itId" size="5" class="col-xs-10 col-sm-5" />&nbsp;
                         <input type="hidden" id="Searchid" value="@Session["UserID"]" />
-                        <input type="button" value="Search" onclick="show();" class="btn btn-minier btn-purple" /> &nbsp;
+                        <input type="button" value="Search" onclick="show();" class="btn btn-minier btn-purple" data_toggle="tooltip" , title="Search member" /> &nbsp;
                     </div>
                     <div class=".col-xs-4.col-sm-2 no-padding-right">
                         <div class="col-xs-4">

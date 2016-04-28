@@ -62,5 +62,11 @@ namespace Workbounty.Controllers
             var getSearchMemberData = teamRepo.GetMemberResult(id);
             return Json(getSearchMemberData);
         }
+
+
+
+
+
+
     }
 }

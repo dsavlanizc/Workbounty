@@ -48,6 +48,7 @@ namespace Workbounty
                       "~/assets/js/jquery-ui.min.js",
                       "~/assets/js/jquery.ui.touch-punch.min.js",
                       "~/assets/js/jquery.easypiechart.min.js",
+                      "~/assets/js/jquery-vfavourite.js",
                        "~/assets/js/jquery.sparkline.min.js",
                        "~/assets/js/jquery.flot.min.js",
                         "~/assets/js/ace-extra.min.js",
