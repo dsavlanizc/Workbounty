@@ -1,6 +1,6 @@
 ﻿@model List<Workbounty.WorkItemAssignment>
 @{
-    ViewBag.Title = "ViewUpdatedWorkitem";
+    ViewBag.Title = "View assignment";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
 
@@ -8,14 +8,14 @@
 <ul class="breadcrumb">
     <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="~/home/dashboard">Dashboard</a>
+        <a href="~/home/dashboard" data_toggle="tooltip" , title="Dashboard">Dashboard</a>
     </li>
     <li>
-        <a href="javascript:history.back()">Items I Want Done</a>
+        <a href="javascript:history.back() " data_toggle="tooltip" , title="Workitems which you have added">Items i want done</a>
     </li>
-    <li class="active">View Updated Workitem</li>
+    <li class="active">View updated workitem</li>
 </ul>
-<h2>View Document</h2>
+<h2>View document</h2>
 <div class="row">
     <h4 class="widget-title lighter smaller">
         Details
@@ -46,7 +46,7 @@
 
 
     <div>
-         <h3>Work</h3>
+         
         <table id="simple-table" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
@@ -71,9 +71,8 @@
                     <td>
                         <select id="feedback">
                             <option value="good">Good</option>
-                            <option value="bad">Bad</option>
                             <option value="average">Average</option>
-
+                            <option value="poor">Poor</option>
                         </select>
                     </td>
                     <td><input type="button" id="@i.UserID" class="btn btn-minier btn-purple" value="Assign Reward" onclick="ApplyReward(this);" data-toggle="tooltip" title="Apply reward to this user" /></td>

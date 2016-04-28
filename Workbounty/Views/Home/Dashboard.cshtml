@@ -6,7 +6,7 @@
 <ul class="breadcrumb">
     <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="~/home/dashboard">Dashboard</a>
+        <a href="~/home/dashboard" data_toggle="tooltip" , title="Dashboard">Dashboard</a>
     </li>
 </ul>
 
@@ -19,7 +19,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    <a href="@Url.Action("Viewitemsiwantdone", "Home")" data-toggle="tooltip" title="Workitems which you have added ">Items I Want Done</a>
+                    <a href="@Url.Action("Viewitemsiwantdone", "Home")" data-toggle="tooltip" title="Workitems which you have added ">Items i want done</a>
                        | @Html.ActionLink("Add workitem", "addworkitem", "Home", new { data_toggle = "tooltip", title = "Items which you want to upload" })
 </h4>
             </div>
@@ -74,7 +74,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    @Html.ActionLink("Items I'm Working On", "Viewitemsimworkingon", "Home", new {  data_toggle="tooltip",title="Items which you have assigned"})
+                    @Html.ActionLink("Items i'm working on", "Viewitemsimworkingon", "Home", new {  data_toggle="tooltip",title="Items which you have assigned"})
 
                 </h4>
             </div>
@@ -86,8 +86,8 @@
                             <tr>
                                 <th width="5%">Sr No</th>
                                 <th width="21%">Title</th>
-                                <th width="5%">Start Date</th>
-                                <th width="5%">End Date</th>
+                                <th width="8%">Start Date</th>
+                                <th width="8%">End Date</th>
                                 <th width="8%">Client</th>
                                 <th width="5%">Rewards</th>
                                 <th width="5%">Amount</th>
@@ -128,7 +128,7 @@
         <div class="widget-header">
             <div class="col-xs-8">
                 <h4 class="widget-title lighter smaller">
-                    @Html.ActionLink("Items You Might Be Interested In", "Viewitemsinterestedin", "Home", new { data_toggle = "tooltip", title = "Items which are in interested in" })
+                    @Html.ActionLink("Items you might be interested in", "Viewitemsinterestedin", "Home", new { data_toggle = "tooltip", title = "Items which are in interested in" })
                 </h4>
             </div>
             <div class="row">
@@ -162,11 +162,11 @@
                                     <td>
                                             @if (i.IsFavourite == true)
                                             {
-                                                <input type="checkbox" checked="checked" onclick="RemoveFavourite(@i.WorkitemID);" value="@i.WorkitemID">
+                                                <input type="checkbox" checked="checked" onclick="RemoveFavourite(@i.WorkitemID);" value="@i.WorkitemID" data_toggle="tooltip" , title="Remove as a favourite">
                                             }
                                             else
                                             {
-                                                <input type="checkbox" onclick="AddFavourites(@i.WorkitemID);" value="@i.WorkitemID">
+                                                <input type="checkbox" onclick="AddFavourites(@i.WorkitemID);" value="@i.WorkitemID" data_toggle="tooltip" , title="Add as a favourite">
                                             }
                                     </td>
                                 </tr>

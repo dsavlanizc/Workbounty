@@ -3,7 +3,7 @@
 @using System.Web     
 
 @{
-    ViewBag.Title = "AddWorkitem";
+    ViewBag.Title = "Add workitem";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
 <head>
@@ -18,16 +18,19 @@
 <ul class="breadcrumb">
     <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="~/home/dashboard">Dashboard</a>
+        <a href="~/home/dashboard" data_toggle="tooltip" , title="Dashboard">Dashboard</a>
     </li>
-    <li class="active">Add Workitem</li>
+    <li class="active">Add workitem</li>
 </ul>
 
 <h2></h2>
 <div class="col-xs-8">
     <h4 class="widget-title lighter smaller">
-        <i class="ace-icon"></i> Add work item
+        <i class="menu-icon fa fa-plus-circle"></i>
+        Add Workitem
+
     </h4>
+
 </div>
 <div class="row">
     <div class="col-xs-12">
@@ -172,8 +175,8 @@
                                             <label>
                                                 <input type="text" id="amount" placeholder="" onkeypress="return isNumberKey(event)" maxlength="10" />
                                             </label>
-                                            <input type="button" class="btn btn-info btn-xs ace-icon fa fa-check bigger-110" id="btn" value="Save" />
-                                            <input type="reset" class="btn btn-xs ace-icon fa fa-undo bigger-110" value="Reset" />
+                                            <input type="button" class="btn btn-info btn-xs ace-icon fa fa-check bigger-110" id="btn" value="Save" data_toggle="tooltip" , title="Submit data" />
+                                            <input type="reset" class="btn btn-xs ace-icon fa fa-undo bigger-110" value="Reset" data_toggle="tooltip" , title="Reset data" />
                                         </div>
                                     </div>
                                 </div>

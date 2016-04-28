@@ -2,17 +2,17 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Viewitemsimworkingon";
+    ViewBag.Title = "Assigned workitems";
     Layout = "~/Views/_DashboardLayout.cshtml";
 }
 <ul class="breadcrumb">
     <li>
         <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="~/home/dashboard">Dashboard</a>
+        <a href="~/home/dashboard" data_toggle="tooltip" , title="Dashboard">Dashboard</a>
     </li>
-    <li class="active">Items I Am Working On</li>
+    <li class="active">Items i am working on</li>
 </ul>
-<h2>Items I'm Working On</h2>
+<h2>Items i'm working on</h2>
 <div class="col-sm-10">
     <div class="widget-box transparent" id="recent-box">
         <div class="widget-header">

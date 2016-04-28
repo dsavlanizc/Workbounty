@@ -7,6 +7,8 @@ using Workbounty.Repository;
 using Workbounty.Models;
 using PagedList;
 using System.Web.Security;
+using System.Data;
+using System.IO;
 
 namespace Workbounty.Controllers
 {
@@ -151,6 +153,9 @@ namespace Workbounty.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var fileName = Path.GetFileName(addWorkitemData.DocumentFilePath);
+                    var path = Path.Combine(Server.MapPath("~/work/Download/"), fileName);
+                    addWorkitemData.DocumentFilePath = path;
                     var getResultsOfWorkitemData = workbountyRepo.AddWorkitem(addWorkitemData);
                     IsSuccess = true;
                     successAddWorkitemMessage = "Workitem Added successfully!";
@@ -257,6 +262,7 @@ namespace Workbounty.Controllers
             return View();
         }
 
+     
 
     }
 }

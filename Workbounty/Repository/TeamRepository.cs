@@ -43,19 +43,15 @@ namespace Workbounty.Repository
             {
                 var getMemberData = entity.UserInfoes.Where(s => s.LastName.ToLower().StartsWith(memberName)
                               || s.FirstName.ToLower().StartsWith(memberName)).ToList();
-
                 if (getMemberData == null)
                 {
-
                     return null;
                 }
-
                 return getMemberData;
             }
             catch (Exception)
             {
                 return null;
-
             }
         }
 

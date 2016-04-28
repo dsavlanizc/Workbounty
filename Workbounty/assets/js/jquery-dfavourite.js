@@ -1,9 +1,4 @@
-﻿$(document).ready(function () {
-  
-});
-
-
-function AddFavourites(id) {
+﻿function AddFavourites(id) {
     var item = {
         "WorkitemID": id,
         "UserID": $("#UserId").val(),
