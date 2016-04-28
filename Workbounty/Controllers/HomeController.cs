@@ -85,6 +85,7 @@ namespace Workbounty.Controllers
                     var userSignupInfo = userRepo.AddUserDetails(userSignupData);
                     Session["UserID"] = userSignupInfo.UserID;
                     Session["FirstName"] = userSignupInfo.FirstName;
+                    FormsAuthentication.SetAuthCookie(userSignupInfo.FirstName, false);
                     return Json("Success");
                 }
 
@@ -113,7 +114,7 @@ namespace Workbounty.Controllers
             ViewBag.itemsForIWantDone = getItemsIWantDoneData;
 
             var getWorkitemAssigntoMeData = workbountyRepo.GetCurrentWorkitem(currentUserID);
-             ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
+            ViewBag.itemsForAssigntoMe = getWorkitemAssigntoMeData;
             return View();
         }
 

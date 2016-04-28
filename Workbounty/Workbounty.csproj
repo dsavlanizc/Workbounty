@@ -250,7 +250,10 @@
     <Content Include="assets\css\bootstrap-duallistbox.min.css" />
     <Content Include="assets\css\bootstrap-editable.min.css" />
     <Content Include="assets\css\bootstrap-multiselect.min.css" />
+    <Content Include="assets\css\bootstrap-theme.css" />
+    <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\bootstrap-timepicker.min.css" />
+    <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\chosen-sprite%402x.png" />
     <Content Include="assets\css\chosen-sprite.png" />
@@ -348,6 +351,7 @@
     <Content Include="assets\js\bootstrap-tag.min.js" />
     <Content Include="assets\js\bootstrap-timepicker.min.js" />
     <Content Include="assets\js\bootstrap-wysiwyg.min.js" />
+    <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\chosen.jquery.min.js" />
     <Content Include="assets\js\dataTables.colVis.min.js" />
@@ -420,6 +424,7 @@
     <Content Include="assets\js\markdown.min.js" />
     <Content Include="assets\js\moment.min.js" />
     <Content Include="assets\js\naavbar-fixed.js" />
+    <Content Include="assets\js\npm.js" />
     <Content Include="assets\js\prettify.min.js" />
     <Content Include="assets\js\respond.min.js" />
     <Content Include="assets\js\Search.js" />

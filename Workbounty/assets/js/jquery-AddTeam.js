@@ -4,6 +4,7 @@
     $("#noDateFoundMessage").hide();
     $("#alertMessage").hide();
     $("#teamWarningMessage").hide();
+    $("#memberAlreadyExist").hide();
     
 });
 
@@ -23,7 +24,13 @@ function add(item) {
         data: JSON.stringify(memberData),
         dataType: "json",
         success: function (response) {
-            item.remove()
+            if (response == "Success") {
+                item.remove()
+            }
+            else
+            {
+                $("#memberAlreadyExist").show();
+            }
         },
         error: function (x, e) {
             alert("Error");

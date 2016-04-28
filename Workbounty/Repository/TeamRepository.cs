@@ -106,9 +106,15 @@ namespace Workbounty.Repository
             {
                 var checkTeamName = entity.Teams.Where(s => s.TeamUserInfoID == updateMemberData.TeamUserInfoID).Select(s => s.TeamName).FirstOrDefault();
                 updateMemberData.TeamName = checkTeamName;
-                entity.Teams.Add(updateMemberData);
-                entity.SaveChanges();
-                return "Success";
+                var checkExistingUser = entity.Teams.Where(s => s.TeamUserInfoID == updateMemberData.TeamUserInfoID && s.UserID == updateMemberData.UserID).Any(s => s.UserID == updateMemberData.UserID);
+                if (checkExistingUser == false)
+                {
+                    entity.Teams.Add(updateMemberData);
+                    entity.SaveChanges();
+                    return "Success";
+
+                }
+                return "Error";
             }
             catch (Exception)
             {
@@ -123,9 +129,17 @@ namespace Workbounty.Repository
         {
             try
             {
-                entity.Teams.Add(memberData);
-                entity.SaveChanges();
-                return "Success";
+                var checkExistingUser = entity.Teams.Where(s=>s.TeamUserInfoID==memberData.TeamUserInfoID && s.UserID==memberData.UserID).Any(s => s.UserID == memberData.UserID);
+                    if (checkExistingUser == false)
+                    {
+                        entity.Teams.Add(memberData);
+                        entity.SaveChanges();
+                        return "Success";
+                    
+                    }
+             
+                
+                return "Error";
             }
             catch (Exception)
             {
