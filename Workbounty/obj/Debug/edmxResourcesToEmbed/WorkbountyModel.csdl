@@ -379,7 +379,6 @@
       <End Role="Team" EntitySet="Teams" />
       <End Role="WorkitemDistribution" EntitySet="WorkitemDistributions" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="WorkbountyDBModel.sysdiagram" />
   </EntityContainer>
   <EntityType Name="ExceptionLog">
     <Key>
@@ -403,14 +402,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>
