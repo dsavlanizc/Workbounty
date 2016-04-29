@@ -23,14 +23,15 @@
                             {
                                 foreach (var user in item.TeamUserList)
                                 {
-                                    <input type="hidden" id="teamID" value="@user.TeamUserInfoID"/>
+                                    <input type="hidden" id="teamID" value="@user.TeamUserInfoID" />
                                     <input type="hidden" id="teamName" value="@user.TeamName" />
-                             
+
                                 }
                             }
-                            <input type="text" id="itId" size="5" class="col-xs-10 col-sm-5 padding15px" />
+                     
                             <input type="hidden" id="Searchid" value="@Session["UserID"]" />
-                            <input type="button" value="Search" onclick="show();" class="btn btn-minier btn-purple padding5px" />
+                            <input type="text" id="itId" size="5" class="col-xs-10 col-sm-5" />
+                            <input type="button" value="Search" onclick="show();" class="btn btn-minier btn-purple layoutcss" />
                         </div>
                         <div class=".col-xs-4.col-sm-2 no-padding-right">
                             <div class="col-xs-4">

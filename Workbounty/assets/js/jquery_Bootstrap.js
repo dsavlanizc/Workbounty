@@ -7,6 +7,8 @@
         $(this).datepicker('hide');
     });
 
+    $("#DueDate").prop('disabled', true);
+
     $("#StartDate").datepicker({
         startDate: new Date(),
         format: 'mm-dd-yyyy',
@@ -15,9 +17,16 @@
         $(this).datepicker('hide');
         startDate = new Date(e.date.valueOf());
         startDate.setDate(startDate.getDate(new Date(e.date.valueOf())));
-        $("#DueDate").datepicker('setStartDate', startDate);
+        if(startDate!=null)
+        {
+            $("#DueDate").prop('disabled', false);
+            $("#DueDate").datepicker('setStartDate', startDate);
+        }
+       
     });
 
+    var startDate = $("#StartDate").val();
+    
     $("#DueDate").datepicker({
         format: 'mm-dd-yyyy',
 

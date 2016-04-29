@@ -163,7 +163,7 @@ namespace Workbounty.Repository
         {
             DateTime currentDate = DateTime.Now;
             List<WorkitemDistribution> items = new List<WorkitemDistribution>();
-            var WorkitemRegisteredUserID = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID);
+            var WorkitemRegisteredUserID = entity.WorkitemRegistrations.Where(s => s.UserID == currentUserID && s.IsRegistered==true);
             var exclusiveitems = WorkitemRegisteredUserID.Where(s => s.IsExclusive == true).ToList();
             var checkWorkitem = new List<int>();
             var getCurrentWorkitemData = new List<AssignWorkitems>();
